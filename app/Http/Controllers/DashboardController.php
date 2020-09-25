@@ -14,6 +14,8 @@ class DashboardController extends Controller
      */
     public function dashboard(Request $request)
     {
-        return Inertia::render('Dashboard');
+        return Inertia::render('Dashboard', [
+            'projects' => $request->user()->currentTeam->projects
+        ]);
     }
 }
