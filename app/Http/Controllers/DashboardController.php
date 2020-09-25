@@ -14,8 +14,12 @@ class DashboardController extends Controller
      */
     public function dashboard(Request $request)
     {
+        // Get the user's current team's projects.
+        $projects = $request->user()->currentTeam->projects;
+
+        // Return the view and the data.
         return Inertia::render('Dashboard', [
-            'projects' => $request->user()->currentTeam->projects
+            'projects' => $projects
         ]);
     }
 }
