@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Jetstream\Events\TeamCreated;
 use Laravel\Jetstream\Events\TeamDeleted;
 use Laravel\Jetstream\Events\TeamUpdated;
@@ -24,8 +25,7 @@ class Team extends JetstreamTeam
      * @var array
      */
     protected $fillable = [
-        'name',
-        'personal_team',
+        'name', 'personal_team',
     ];
 
     /**
@@ -38,4 +38,14 @@ class Team extends JetstreamTeam
         'updated' => TeamUpdated::class,
         'deleted' => TeamDeleted::class,
     ];
+
+    /**
+     * Get the projects under this team.
+     *
+     * @author Brian k. Kiragu <brian@amprest.co.ke>
+     */
+    protected function projects(): HasMany
+    {
+        return $this->hasMany(Project::class);
+    }
 }
