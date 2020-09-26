@@ -83,7 +83,8 @@ class Project extends Model
      */
     public function subscriptions(): HasMany
     {
-        return $this->hasMany(Subscription::class);
+        return $this->hasMany(Subscription::class)
+            ->orderBy('expires_at', 'desc');
     }
 
     /**

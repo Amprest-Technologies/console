@@ -6,7 +6,7 @@
       </h2>
     </template>
 
-    <div class="py-12">
+    <div class="container mx-auto px-6 py-8 flex flex-row">
       <!-- <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg"> -->
       <inertia-link

@@ -15,6 +15,13 @@ Vue.use(PortalVue);
 
 const app = document.getElementById('app');
 
+// MomentJS filter.
+Vue.filter('fromTime', function (value) {
+  if (!value) return ''
+  value = value.toString()
+  return moment(value).format('MMMM Do YYYY, h:mm A');
+})
+
 new Vue({
   render: (h) =>
     h(InertiaApp, {
