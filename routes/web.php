@@ -21,4 +21,6 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])
         ->name('dashboard');
+    Route::get('projects/{project}', [DashboardController::class, 'projectDetails'])
+        ->name('dashboard.projects.show');
 });

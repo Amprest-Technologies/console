@@ -9,12 +9,14 @@
     <div class="py-12">
       <!-- <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg"> -->
-          <project-card
-            v-for="project in projects"
-            :key="`project-${project.id}`"
-            :project="project"
-          ></project-card>
-        <!-- </div>
+      <inertia-link
+        v-for="project in projects"
+        :key="`project-${project.id}`"
+        :href="$route('dashboard.projects.show', { project: project.uuid })"
+      >
+        <project-card :project="project"></project-card>
+      </inertia-link>
+      <!-- </div>
       </div> -->
     </div>
   </app-layout>

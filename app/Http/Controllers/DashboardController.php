@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -20,6 +21,18 @@ class DashboardController extends Controller
         // Return the view and the data.
         return Inertia::render('Dashboard', [
             'projects' => $projects
+        ]);
+    }
+
+    /**
+     * Show the project details
+     *
+     * @author Brian K. Kiragu <brian@amprest.co.ke>
+     */
+    public function projectDetails(Project $project)
+    {
+        return Inertia::render('Projects/Show', [
+            'project' => $project
         ]);
     }
 }
