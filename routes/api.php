@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,8 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['auth:sanctum'])->group(function () {
-    Route::get('/user', function (Request $request) {
-        return $request->user();
+Route::prefix('v1')->group(function () {
+    Route::middleware(['auth:sanctum'])->group(function () {
+        Route::post('/projects/{project}/new-subscription', [
+            DashboardController::class, 'storeSubscription'
+        ])->name('dashboard.projects.newSubscription');
     });
 });

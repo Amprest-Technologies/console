@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\Service;
+use Exception;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -52,5 +53,22 @@ class DashboardController extends Controller
                 'tiers' => fn ($query) => $query->public()
             ])
         ]);
+    }
+
+    public function storeSubscription(Request $request, Project $project)
+    {
+        try {
+            // Attach the subscription to the project.
+            $project->subscriptions()->create($request->all());
+
+            // Set the payload.
+            $payload = "Successfully created a new subscription.";
+            $status = 201;
+        } catch (Exception $e) {
+            $payload = $e->getMessage();
+            $status = 404;
+        } finally {
+            return response($payload, $status);
+        }
     }
 }
