@@ -48,7 +48,9 @@ class DashboardController extends Controller
     {
         return Inertia::render('Projects/Subscribe', [
             'project' => $project,
-            'service' => $service
+            'service' => $service->load([
+                'tiers' => fn ($query) => $query->public()
+            ])
         ]);
     }
 }

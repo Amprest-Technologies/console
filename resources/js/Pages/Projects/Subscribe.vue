@@ -6,13 +6,87 @@
       </h2>
     </template>
 
-    <div class="container py-6">
-      <!--  -->
+    <div class="container mb-4 mx-auto px-4 py-6">
+      <div class="flex flex-wrap lg:-mx-2">
+        <div class="w-full lg:w-2/3 mb-4 px-2">
+          <div class="bg-white shadow rounded px-5 py-4">
+            <form @submit.prevent="onSubmit">
+              <!-- Heading. -->
+              <h2 class="font-bold playfair-font text-3xl">Choose a tier</h2>
+
+              <!-- Tiers. -->
+              <div class="radio-group my-4">
+                <div class="flex mb-1">
+                  <div
+                    class="flex items-center mr-8"
+                    v-for="tier in service.tiers"
+                    :key="`tier-${tier.id}`"
+                  >
+                    <input
+                      type="radio"
+                      name="tier"
+                      :value="tier.id"
+                      :id="`tier-${tier.id}`"
+                      @change="onSubscribe(tier)"
+                      v-model.number="$v.subscription.tier_id.$model"
+                    />
+                    <label
+                      :for="`tier-${tier.id}`"
+                      class="text-md italic work-sans-font ml-2"
+                      >{{ tier.name }} (KES
+                      {{ tier.price.toLocaleString() }})</label
+                    >
+                  </div>
+                </div>
+                <div class="feedback" v-if="$v.subscription.tier_id.$error">
+                  <p class="text-red-500 text-sm">You must select a tier</p>
+                </div>
+              </div>
+
+              <!-- Submission button. -->
+              <button
+                class="bg-blue-500 transition ease-out duration-700 text-white py-2 px-4 border border-gray-400 rounded shadow work-sans-font"
+              >
+                Button
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="w-full lg:w-1/3 mb-4 px-2">
+          <div id="summary" class="bg-white shadow rounded p-3 px-5">
+            <h2 class="playfair-font font-bold text-3xl mb-4">Your Summary</h2>
+            <div class="items flex flex-col" v-if="hasSubscription">
+              <div class="item flex mb-2">
+                <div class="item-name avenir-font font-semibold">Tier</div>
+                <div class="item-details ml-auto italic work-sans-font">
+                  {{ subscription.tier.name }}
+                </div>
+              </div>
+              <div class="item flex mb-2">
+                <div class="item-name avenir-font font-semibold">Price</div>
+                <div class="item-details ml-auto italic work-sans-font">
+                  KES {{ subscription.amount.toLocaleString() }}
+                </div>
+              </div>
+              <div class="item flex mb-2">
+                <div class="item-name avenir-font font-semibold">
+                  Usage Limit
+                </div>
+                <div class="item-details ml-auto italic work-sans-font">
+                  {{ subscription.usage_limit.toLocaleString() }} requests
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </app-layout>
 </template>
 
 <script>
+import { required, minLength, between } from 'vuelidate/lib/validators'
 import AppLayout from "../../Layouts/AppLayout"
 
 // Set API Token on axios.
@@ -27,15 +101,26 @@ export default {
 
   data() {
     return {
-      isLoading: false,
       message: null,
+      isLoading: false,
       transaction: null,
       baseURI: `https://pay.amprest.co.ke`,
       subscription: {
         project_id: this.project.id,
         project: this.project,
+        tier_id: null
       },
     }
+  },
+
+  computed: {
+    hasSubscription: function () {
+      return this.subscription.tier_id !== null
+    }
+  },
+
+  validations: {
+    subscription: { tier_id: { required } }
   },
 
   methods: {
@@ -46,7 +131,6 @@ export default {
    * @author Brian K. Kiragu <brian@amprest.co.ke>
    */
     onSubscribe(tier) {
-      const today = new Date();
       this.subscription = {
         ...this.subscription,
         ...{
@@ -54,10 +138,12 @@ export default {
           tier_id: tier.id,
           usage_limit: tier.usage_limit,
           amount: tier.price,
-          expires_at: new Date(today.setMonth(today.getMonth() + 1)),
           tier: tier,
         },
       };
+
+      // Touch vuelidate.
+      this.$v.subscription.$touch();
 
       // Scroll to the submit button.
       document.getElementById("summary").scrollIntoView({

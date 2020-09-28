@@ -2,7 +2,7 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-// Fonts
+/* Fonts. */
 @font-face {
     font-family: "Playfair Display";
     src: url("../fonts/PlayfairDisplay/PlayfairDisplay-VariableFont_wght.ttf")
@@ -43,4 +43,16 @@
     src: url("../fonts/Avenir/Avenir-Light.ttf") format("truetype");
     src: url("../fonts/Avenir/Avenir-Heavy.ttf") format("truetype");
     src: url("../fonts/Avenir/Avenir-Medium.ttf") format("truetype");
+}
+
+.playfair-font {
+    font-family: "Playfair Display", serif !important;
+}
+
+.work-sans-font {
+    font-family: "Work Sans", sans-serif !important;
+}
+
+.avenir-font {
+    font-family: "Avenir", sans-serif !important;
 }
