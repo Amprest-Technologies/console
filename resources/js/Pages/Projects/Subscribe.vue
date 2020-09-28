@@ -16,9 +16,9 @@
 
               <!-- Tiers. -->
               <div class="radio-group my-4">
-                <div class="flex mb-1">
+                <div class="flex flex-col lg:flex-row mb-1">
                   <div
-                    class="flex items-center mr-8"
+                    class="flex items-center mr-8 mb-2"
                     v-for="tier in service.tiers"
                     :key="`tier-${tier.id}`"
                   >
@@ -42,13 +42,6 @@
                   <p class="text-red-500 text-sm">You must select a tier</p>
                 </div>
               </div>
-
-              <!-- Submission button. -->
-              <button
-                class="bg-blue-500 transition ease-out duration-700 text-white py-2 px-4 border border-gray-400 rounded shadow work-sans-font"
-              >
-                Button
-              </button>
             </form>
           </div>
         </div>
@@ -56,6 +49,8 @@
         <div class="w-full lg:w-1/3 mb-4 px-2">
           <div id="summary" class="bg-white shadow rounded p-3 px-5">
             <h2 class="playfair-font font-bold text-3xl mb-4">Your Summary</h2>
+
+            <!-- Summary Details. -->
             <div class="items flex flex-col" v-if="hasSubscription">
               <div class="item flex mb-2">
                 <div class="item-name avenir-font font-semibold">Tier</div>
@@ -78,6 +73,15 @@
                 </div>
               </div>
             </div>
+
+            <!-- Submission button. -->
+            <button
+              class="w-full mt-2 bg-blue-500 transition ease-out duration-700 text-white py-2 px-4 border border-gray-400 rounded shadow work-sans-font disabled:opacity-0"
+              :disabled="!hasSubscription"
+              @click.prevent="onSubmit"
+            >
+              Subscribe
+            </button>
           </div>
         </div>
       </div>
@@ -151,6 +155,37 @@ export default {
       });
     },
 
+
+    /**
+     * User submission.
+     *
+     * @returns {void}
+     * @author Brian K. Kiragu <brian@amprest.co.ke>
+     */
+    onSubmit() {
+      // Set the form to loading and clear message.
+      this.isLoading = true;
+      this.message = null;
+
+      this.prepareTransaction({
+        business_short_code: 204440,
+        bill_ref_number: this.project.uuid,
+        transaction_amount: this.subscription.amount,
+        transaction_desc: `New Subscription for ${this.project.name}`,
+      })
+        .then((res) => {
+          // Set the transaction.
+          this.transaction = { ...res };
+
+          // Remove the loading state.
+          this.isLoading = false;
+        })
+        .catch((err) => {
+          this.message = err;
+          this.isLoading = false;
+        });
+    },
+
     /**
      * Prepare a C2B Transaction.
      *
@@ -194,51 +229,6 @@ export default {
           .then(({ data }) => resolve(data))
           .catch(({ message }) => reject(message))
       );
-    },
-
-    /**
-     * Add the subscription to the project.
-     *
-     * @author Brian K. Kiragu <brian@amprest.co.ke>
-     * @returns {ITransaction | string}
-     */
-    async addSubscription(data) {
-      return new Promise((resolve, reject) =>
-        this.axios
-          .post(`/api/v1/projects/${this.project.uuid}/new-subscription`, data)
-          .then(({ data }) => resolve(data))
-          .catch(({ message }) => reject(message))
-      );
-    },
-
-    /**
-     * User submission.
-     *
-     * @returns {void}
-     * @author Brian K. Kiragu <brian@amprest.co.ke>
-     */
-    onSubmit() {
-      // Set the form to loading and clear message.
-      this.isLoading = true;
-      this.message = null;
-
-      this.prepareTransaction({
-        business_short_code: 204440,
-        bill_ref_number: this.project.uuid,
-        transaction_amount: this.subscription.amount,
-        transaction_desc: `New Subscription for ${this.project.name}`,
-      })
-        .then((res) => {
-          // Set the transaction.
-          this.transaction = { ...res };
-
-          // Remove the loading state.
-          this.isLoading = false;
-        })
-        .catch((err) => {
-          this.message = err;
-          this.isLoading = false;
-        });
     },
 
     /**
@@ -291,7 +281,22 @@ export default {
           this.message = err;
           this.isLoading = false;
         });
-    }
+    },
+
+    /**
+     * Add the subscription to the project.
+     *
+     * @author Brian K. Kiragu <brian@amprest.co.ke>
+     * @returns {ITransaction | string}
+     */
+    async addSubscription(data) {
+      return new Promise((resolve, reject) =>
+        this.axios
+          .post(`/api/v1/projects/${this.project.uuid}/new-subscription`, data)
+          .then(({ data }) => resolve(data))
+          .catch(({ message }) => reject(message))
+      );
+    },
   }
 }
 </script>
