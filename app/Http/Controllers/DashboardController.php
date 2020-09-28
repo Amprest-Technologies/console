@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Service;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -35,6 +36,19 @@ class DashboardController extends Controller
     {
         return Inertia::render('Projects/Show', [
             'project' => $project
+        ]);
+    }
+
+    /**
+     * Subscribe a project to a particular service.
+     *
+     * @author Brian K. Kiragu <brian@amprest.co.ke>
+     */
+    public function subscribeToService(Project $project, Service $service)
+    {
+        return Inertia::render('Projects/Subscribe', [
+            'project' => $project,
+            'service' => $service
         ]);
     }
 }

@@ -14,13 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Welcome page.
+Route::get('/', fn () =>  view('welcome'));
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    // User dashboard.
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])
         ->name('dashboard');
-    Route::get('projects/{project}', [DashboardController::class, 'projectDetails'])
-        ->name('dashboard.projects.show');
+
+    // Project details.
+    Route::get('projects/{project}', [
+        DashboardController::class, 'projectDetails'
+    ])->name('dashboard.projects.show');
+
+    // Subscribe to a new service form.
+    Route::get('projects/{project}/subscribe/{service}', [
+        DashboardController::class, 'subscribeToService'
+    ])->name('dashboard.projects.subscribe');
 });

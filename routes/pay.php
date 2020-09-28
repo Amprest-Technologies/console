@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Pay\PaymentHandlerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['auth:sanctum'])->group(function () {
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
+Route::middleware(['auth:sanctum', 'subscribed:pay'])->group(function () {
+    // Prepare a web checkout.
+    Route::get('/', [PaymentHandlerController::class, 'pay'])->name('express.prepare');
+
+    // Web checkout pages.
+    Route::get('/express-checkout', [
+        PaymentHandlerController::class, 'checkout'
+    ])->name('express.checkout');
 });
