@@ -126,13 +126,12 @@ export default {
      */
     checkTransaction: async function (data) {
       return new Promise((resolve, reject) =>
-        resolve({ ...this.transaction, ...{ status: 'COMPLETED' } })
-        // window.axios
-        //   .post(`${this.baseUri}/mobile-money/safaricom/c2b/check`, data, {
-        //     headers: this.baseHeaders
-        //   })
-        //   .then(({ data }) => resolve(data))
-        //   .catch(({ message }) => reject(message))
+        window.axios
+          .post(`${this.baseUri}/mobile-money/safaricom/c2b/check`, data, {
+            headers: this.baseHeaders
+          })
+          .then(({ data }) => resolve(data))
+          .catch(({ message }) => reject(message))
       );
     },
 
@@ -144,13 +143,12 @@ export default {
      */
     retrievedTransaction: async function (data) {
       return new Promise((resolve, reject) =>
-        resolve(this.transaction)
-        // window.axios
-        //   .post(`${this.baseUri}/mobile-money/safaricom/c2b/retrieve`, data, {
-        //     headers: this.baseHeaders
-        //   })
-        //   .then(({ data }) => resolve(data))
-        //   .catch(({ message }) => reject(message))
+        window.axios
+          .post(`${this.baseUri}/mobile-money/safaricom/c2b/retrieve`, data, {
+            headers: this.baseHeaders
+          })
+          .then(({ data }) => resolve(data))
+          .catch(({ message }) => reject(message))
       );
     },
 

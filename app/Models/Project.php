@@ -100,6 +100,23 @@ class Project extends Model
     }
 
     /**
+     * Check if the service has an active subscription.
+     *
+     * @param int $service_id
+     * @return bool
+     * @author Brian K. Kiragu <brian@amprest.co.ke>
+     */
+    public function serviceIsActive($service_id): bool
+    {
+        return $this->subscriptions()->active()
+            ->get()
+            ->filter(function ($subscription) use ($service_id) {
+                return $subscription->tier->service->id === $service_id;
+            })
+            ->count() > 0;
+    }
+
+    /**
      * Scope a query to only include active subscriptions.
      *
      * @param Builder $query
