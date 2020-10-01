@@ -36,9 +36,9 @@ class ServiceSeeder extends Seeder
             Tier::create([
                 'service_id' => $pay->id,
                 'name' => 'HQ',
-                'usage_limit' => null,
-                'price' => null,
-                'status' => 'private'
+                'usage_limit' => 100000,
+                'price' => 1,
+                // 'status' => 'private'
             ]),
             Tier::create([
                 'service_id' => $pay->id,
