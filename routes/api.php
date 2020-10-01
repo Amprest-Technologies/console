@@ -16,9 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('v1')->group(function () {
-    Route::middleware(['auth:sanctum'])->group(function () {
-        Route::post('/projects/{project}/new-subscription', [
-            DashboardController::class, 'storeSubscription'
-        ])->name('dashboard.projects.newSubscription');
-    });
+    Route::post('/projects/{project}/new-subscription', [
+        DashboardController::class, 'storeSubscription'
+    ])->name('dashboard.projects.newSubscription');
 });

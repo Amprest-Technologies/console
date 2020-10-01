@@ -9,10 +9,8 @@
     <div class="container mb-4 mx-auto px-4 py-6">
       <div class="flex flex-wrap lg:-mx-2">
         <div class="w-full lg:w-2/3 mb-4 px-2">
-          <div
-            class="bg-white shadow rounded mb-4 px-5 py-4"
-            v-if="!transaction"
-          >
+          <!-- Choose a tier. -->
+          <div class="bg-white shadow rounded mb-4 px-5 py-4" v-if="!canPay">
             <!-- Heading. -->
             <h2 class="font-bold playfair-font text-3xl">Choose a tier</h2>
 
@@ -20,6 +18,48 @@
             <div class="radio-group my-4">
               <div class="flex flex-col lg:flex-row mb-1">
                 <div
+                  class="tier flex-grow shadow-md rounded-md mb-3 lg:mr-4"
+                  v-for="tier in service.tiers"
+                  :key="`tier-${tier.id}`"
+                >
+                  <div
+                    class="tier-header bg-white rounded-tl rounded-tr text-center avenir-font py-3"
+                  >
+                    <h3 class="name font-semibold text-xl">{{ tier.name }}</h3>
+                    <h4
+                      class="price font-bold text-3xl flex items-center mx-auto"
+                    >
+                      <span class="text-gray-400 text-lg ml-auto mr-2"
+                        >KES</span
+                      >
+                      <span class="mr-auto">
+                        {{ tier.price.toLocaleString() }}
+                      </span>
+                    </h4>
+                  </div>
+
+                  <div
+                    class="tier-body bg-gray-200 p-5 rounded-bl-md rounded-br-md flex-fi"
+                  >
+                    <ul class="list-disc mb-3 px-5 work-sans-font font-medium">
+                      <li>{{ tier.usage_limit.toLocaleString() }} requests</li>
+                    </ul>
+
+                    <button
+                      class="avenir-font font-semibold mx-auto shadow-md rounded w-full bg-white py-2 focus:outline-none"
+                      :class="{
+                        'bg-blue-500 text-white':
+                          subscription.tier_id === tier.id,
+                      }"
+                      @click.prevent="onSubscribe(tier)"
+                    >
+                      {{
+                        subscription.tier_id === tier.id ? "Selected" : "Select"
+                      }}
+                    </button>
+                  </div>
+                </div>
+                <!-- <div
                   class="flex items-center mr-8 mb-2"
                   v-for="tier in service.tiers"
                   :key="`tier-${tier.id}`"
@@ -38,7 +78,7 @@
                     >{{ tier.name }} (KES
                     {{ tier.price.toLocaleString() }})</label
                   >
-                </div>
+                </div> -->
               </div>
               <div class="feedback" v-if="$v.subscription.tier_id.$error">
                 <p class="text-red-500 text-sm">You must select a tier</p>
@@ -47,32 +87,30 @@
           </div>
 
           <!-- Make the payment. -->
-          <payment-options
-            :_transaction="transaction"
-            v-if="transaction"
+          <ExpressCheckout
+            v-if="canPay"
+            :payment-options="paymentOptions"
+            :payload="paymentPayload"
             @completed="onComplete"
-          ></payment-options>
+          />
         </div>
 
         <div class="w-full lg:w-1/3 mb-4 px-2">
-          <div id="summary" class="bg-white shadow rounded p-3 px-5">
-            <h2 class="playfair-font font-bold text-3xl mb-4">Your Summary</h2>
+          <!-- Summary. -->
+          <div class="bg-white shadow rounded p-3 px-5">
+            <h2 id="summary" class="playfair-font font-bold text-3xl mb-4">
+              Your Summary
+            </h2>
 
             <!-- Summary Details. -->
             <div class="items flex flex-col" v-if="hasSubscription">
-              <div class="item flex mb-2">
+              <div class="item flex items-center mb-2">
                 <div class="item-name avenir-font font-semibold">Tier</div>
                 <div class="item-details ml-auto italic work-sans-font">
                   {{ subscription.tier.name }}
                 </div>
               </div>
-              <div class="item flex mb-2">
-                <div class="item-name avenir-font font-semibold">Price</div>
-                <div class="item-details ml-auto italic work-sans-font">
-                  KES {{ subscription.amount.toLocaleString() }}
-                </div>
-              </div>
-              <div class="item flex mb-2">
+              <div class="item flex items-center mb-2">
                 <div class="item-name avenir-font font-semibold">
                   Usage Limit
                 </div>
@@ -80,15 +118,37 @@
                   {{ subscription.usage_limit.toLocaleString() }} requests
                 </div>
               </div>
+              <div class="item flex items-center mb-2">
+                <div class="item-name avenir-font font-semibold">Sub-Total</div>
+                <div class="item-details ml-auto italic work-sans-font">
+                  KES {{ (subscription.amount * 0.86).toLocaleString() }}
+                </div>
+              </div>
+              <div class="item flex items-center mb-2">
+                <div class="item-name avenir-font font-semibold">Tax</div>
+                <div class="item-details ml-auto italic work-sans-font">
+                  KES {{ (subscription.amount * 0.16).toLocaleString() }}
+                </div>
+              </div>
+              <hr class="mb-2 mt-3" />
+              <div class="item flex items-center mb-2">
+                <div class="item-name avenir-font font-semibold">Total</div>
+                <div
+                  class="item-details ml-auto avenir-font font-bold text-3xl"
+                >
+                  KES {{ subscription.amount.toLocaleString() }}
+                </div>
+              </div>
             </div>
 
             <!-- Submission button. -->
             <button
-              class="w-full mt-2 bg-blue-500 transition ease-out duration-700 text-white py-2 px-4 border border-gray-400 rounded shadow work-sans-font disabled:opacity-0"
-              :disabled="hasSubscription && hasTransaction"
+              class="w-full mt-2 bg-blue-500 transition ease-out duration-700 text-white py-2 px-4 border border-gray-400 rounded shadow work-sans-font flex items-center"
               @click.prevent="onSubmit"
+              v-if="hasSubscription && !canPay"
             >
-              Subscribe
+              <img src="/img/loader.svg" v-show="isLoading" width="30" />
+              <span class="mx-auto">Subscribe</span>
             </button>
           </div>
         </div>
@@ -100,13 +160,14 @@
 <script>
 import { required, minLength, between } from 'vuelidate/lib/validators'
 import AppLayout from "../../Layouts/AppLayout"
+import ExpressCheckout from "../API/Pay/ExpressCheckout"
 import PaymentOptions from "../../Components/PaymentOptions"
 
 // Set API Token on axios.
 window.axios.defaults.headers.common["Api-Token"] = process.env.MIX_AMPREST_PAYMENT_API_TOKEN;
 
 export default {
-  components: { AppLayout, PaymentOptions },
+  components: { AppLayout, ExpressCheckout, PaymentOptions },
   props: {
     project: { type: Object, default: () => { } },
     service: { type: Object, default: () => { } },
@@ -114,14 +175,16 @@ export default {
 
   data() {
     return {
+      canPay: false,
+      status: 'PENDING',
       message: null,
       isLoading: false,
-      transaction: null,
+      paymentOptions: ['mpesa'],
       baseURI: `https://pay.amprest.co.ke`,
       subscription: {
-        project_id: this.project.id,
+        tier_id: null,
         project: this.project,
-        tier_id: null
+        project_id: this.project.id,
       },
     }
   },
@@ -131,8 +194,18 @@ export default {
       return this.subscription.tier_id !== null
     },
 
-    hasTransaction: function () {
-      return this.transaction !== null
+    paymentPayload: function () {
+      const amount = this.hasSubscription ? this.subscription.amount : 0
+      const description = this.hasSubscription
+        ? `Amprest Web Services subscription renewal for project: ${this.project.name} using service: ${this.subscription.tier.service.name} on tier: ${this.subscription.tier.name}`
+        : null
+
+      return {
+        bill_ref_number: this.project.uuid,
+        business_short_code: 204440,
+        transaction_amount: amount,
+        transaction_desc: description
+      }
     }
   },
 
@@ -142,21 +215,6 @@ export default {
 
   methods: {
     /**
-     * Prepare a C2B Transaction.
-     *
-     * @author Brian K. Kiragu <brian@amprest.co.ke>
-     * @returns {ITransaction | string}
-     */
-    prepareTransaction: async function (data) {
-      return new Promise((resolve, reject) =>
-        window.axios
-          .post(`${this.baseURI}/mobile-money/mpesa/c2b/prepare`, data)
-          .then(({ data }) => resolve(data))
-          .catch(({ message }) => reject(message))
-      );
-    },
-
-    /**
      * Add the subscription to the project.
      *
      * @returns {ITransaction | string}
@@ -164,7 +222,7 @@ export default {
      */
     addSubscription: async function (data) {
       return new Promise((resolve, reject) =>
-        this.axios
+        window.axios
           .post(`/api/v1/projects/${this.project.uuid}/new-subscription`, data)
           .then(({ data }) => resolve(data))
           .catch(({ message }) => reject(message))
@@ -185,7 +243,7 @@ export default {
           tier_id: tier.id,
           usage_limit: tier.usage_limit,
           amount: tier.price,
-          tier: tier,
+          tier: { ...tier, ...{ service: this.service } },
         },
       };
 
@@ -206,23 +264,7 @@ export default {
      */
     onSubmit: function () {
       // Set the form to loading and clear message.
-      this.isLoading = true;
-      this.message = null;
-
-      this.prepareTransaction({
-        business_short_code: 204440,
-        bill_ref_number: this.project.uuid,
-        transaction_amount: this.subscription.amount,
-        transaction_desc: `New Subscription for ${this.project.name}`,
-      }).then((res) => {
-        // Set the transaction.
-        this.transaction = { ...res };
-        // Remove the loading state.
-        this.isLoading = false;
-      }).catch((err) => {
-        this.message = err;
-        this.isLoading = false;
-      });
+      this.canPay = true
     },
 
     /**
@@ -231,7 +273,7 @@ export default {
      * @returns {void}
      * @author Brian K. Kiragu <brian@amprest.co.ke>
      */
-    onComplete: function () {
+    onComplete: function (_data) {
       // Add the new subscription.
       this.addSubscription(this.subscription)
         .then((res) => window.location.replace(
@@ -246,5 +288,5 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 </style>

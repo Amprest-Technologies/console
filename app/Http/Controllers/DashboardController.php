@@ -59,7 +59,11 @@ class DashboardController extends Controller
     {
         try {
             // Attach the subscription to the project.
-            $project->subscriptions()->create($request->all());
+            $project->subscriptions()->create(
+                $request->merge([
+                    'expires_at' => now()->addMonth()
+                ])->all()
+            );
 
             // Set the payload.
             $payload = "Successfully created a new subscription.";
