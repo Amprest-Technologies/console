@@ -28,6 +28,7 @@ class UserSeeder extends Seeder
             if (env('DB_CONNECTION') == 'mysql') {
                 Schema::disableForeignKeyConstraints();
                 Subscription::truncate();
+                MPesaCredentials::truncate();
                 Project::truncate();
                 Membership::truncate();
                 Team::truncate();
@@ -126,7 +127,7 @@ class UserSeeder extends Seeder
             // Seed the M-Pesa credentials.
             $saimun->mpesaCredentials()->save(
                 MPesaCredentials::create([
-                    'project_id' => $transact->id,
+                    'project_id' => $saimun->id,
                     'short_code' => '657531',
                     'operating_short_code' => '657531',
                     'short_code_type' => 'pay_bill',
@@ -153,7 +154,7 @@ class UserSeeder extends Seeder
             // Seed the M-Pesa credentials.
             $cakeUniverse->mpesaCredentials()->save(
                 MPesaCredentials::create([
-                    'project_id' => $transact->id,
+                    'project_id' => $cakeUniverse->id,
                     'short_code' => '950112',
                     'operating_short_code' => '929074',
                     'short_code_type' => 'buy_goods',
