@@ -14,12 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['auth:sanctum', 'subscribed:pay'])->group(function () {
+// Route::middleware(['subscribed:pay'])->group(function () {
     // Prepare a web checkout.
     Route::get('/', [PaymentHandlerController::class, 'pay'])->name('express.prepare');
 
     // Web checkout pages.
-    Route::get('/express-checkout', [
+    Route::get('/express', [
         PaymentHandlerController::class, 'checkout'
     ])->name('express.checkout');
-});
+// });

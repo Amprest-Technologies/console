@@ -1,3 +1,38 @@
+/**
+ * Function to register service worker.
+ *
+ * @author Brian K. Kiragu <brian@amprest.co.ke>
+ */
+const registerServiceWorker = async () => {
+  // Check if service worker is available
+  if ('serviceWorker' in navigator) {
+    // Register a service worker
+    const registration = await navigator.serviceWorker.register(
+      // A service worker JS file is separate
+      '/service-worker.js',
+    );
+
+    // Check if Payment Handler is available
+    if (!registration.paymentManager) return;
+
+    registration.paymentManager.userHint = 'Pay with Amprest Technologies';
+    registration.paymentManager.instruments.set(
+      // Payment instrument key can be any string.
+      'amprest-pay',
+      // Payment instrument detail
+      {
+        name: 'Amprest Technologies Web Services',
+        method: `https://console.amprest.co.ke/api/pay`,
+      },
+    );
+  }
+};
+
+window.addEventListener('load', (e) => {
+  // Register the service worker.
+  registerServiceWorker();
+});
+
 window._ = require('lodash');
 
 /**

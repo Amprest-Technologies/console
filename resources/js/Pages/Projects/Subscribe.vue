@@ -160,7 +160,7 @@
 <script>
 import { required, minLength, between } from 'vuelidate/lib/validators'
 import AppLayout from "../../Layouts/AppLayout"
-import ExpressCheckout from "../API/Pay/ExpressCheckout"
+import ExpressCheckout from "../../Components/Checkout/ExpressCheckout"
 
 // Set API Token on axios.
 window.axios.defaults.headers.common["Api-Token"] = process.env.MIX_AMPREST_PAYMENT_API_TOKEN;

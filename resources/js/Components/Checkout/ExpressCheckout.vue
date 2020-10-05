@@ -1,8 +1,5 @@
 <template>
   <div class="container">
-    <h1 class="font-bold playfair-font text-3xl mb-3">
-      Select a payment method
-    </h1>
     <div id="payment-options">
       <component
         class="mb-3"
@@ -12,7 +9,8 @@
         :base-uri="baseURI"
         :base-headers="baseHeaders"
         :payload="payload"
-        @completed="onComplete"
+        @completed="onCompleted"
+        @failed="onFailed"
       ></component>
     </div>
   </div>
@@ -55,8 +53,12 @@ export default {
   },
 
   methods: {
-    onComplete: function (data) {
+    onCompleted: function (data) {
       this.$emit('completed', data)
+    },
+
+    onFailed: function (data) {
+      this.$emit('failed', data)
     }
   }
 }

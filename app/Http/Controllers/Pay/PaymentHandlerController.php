@@ -33,6 +33,6 @@ class PaymentHandlerController extends Controller
      */
     public function checkout()
     {
-        return Inertia::render('API/Pay/ExpressCheckout');
+        return Inertia::render('API/Pay/Checkout');
     }
 }

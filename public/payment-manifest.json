@@ -1,0 +1,9 @@
+{
+    "default_applications": [
+        "https://console.amprest.co.ke/manifest.json"
+    ],
+    "supported_origins": [
+        "https://*.amprest.co.ke",
+        "http://localhost"
+    ]
+}
