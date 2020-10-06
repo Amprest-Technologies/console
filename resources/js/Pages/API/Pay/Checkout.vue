@@ -27,6 +27,8 @@
         Select a payment method
       </h1>
 
+      <div class="data">{{ payload }}</div>
+
       <ExpressCheckout
         :payment-options="['mpesa']"
         :payload="payload"
