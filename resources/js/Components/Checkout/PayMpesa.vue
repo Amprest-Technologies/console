@@ -5,7 +5,10 @@
       @click.prevent="onInitiate"
     >
       <img src="/img/payments/mpesa.jpg" class="mr-4 w-20" />
-      <h2 class="font-semibold avenir-font text-lg">Pay with M-Pesa</h2>
+      <h2 class="font-semibold avenir-font text-lg">
+        Pay with M-Pesa
+        {{ message }}
+      </h2>
       <img
         src="/img/loader.svg"
         class="ml-auto mr-4"
@@ -113,14 +116,8 @@ export default {
           .post(`${this.baseUri}/mobile-money/safaricom/c2b/prepare`, data, {
             headers: this.baseHeaders
           })
-          .then(({ data }) => {
-            console.log(data);
-            resolve(data);
-          })
-          .catch(({ message }) => {
-            console.error(message);
-            reject(message);
-          })
+          .then(({ data }) => resolve(data))
+          .catch(({ message }) => reject(message))
       );
     },
 
@@ -172,12 +169,13 @@ export default {
       // Prepare the transaction.
       this.prepareTransaction(this.payload)
         .then(res => {
-          // Set the loading state.
           this.isLoading = false
-          // Set the transaction.
           this.transaction = { ...res }
         })
-        .catch(err => console.error(err))
+        .catch(err => {
+          this.isLoading = false;
+          this.message = err
+        })
     },
 
     /**

@@ -120,10 +120,10 @@ export default {
       // Set the data properties.
       this.payload = {
         ...{
+          bill_ref_number: e.data.methodData[0].data.transactionType,
           business_short_code: e.data.methodData[0].data.businessShortCode,
           transaction_amount: parseInt(e.data.total.value),
-          transaction_desc: `Payment from ${e.data.paymentRequestOrigin}`,
-          bill_ref_number: e.data.methodData[0].data.transactionType,
+          transaction_desc: `Express Payment from ${e.data.paymentRequestOrigin}`,
         },
       };
     });
