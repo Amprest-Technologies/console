@@ -174,7 +174,7 @@ export default {
         })
         .catch(err => {
           this.isLoading = false;
-          this.message = `${err}: ${this.baseUri}/mobile-money/safaricom/c2b/prepare`
+          this.message = err
         })
     },
 
