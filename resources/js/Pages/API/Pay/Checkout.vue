@@ -59,6 +59,7 @@ export default {
   computed: {
     hasPayload: function () {
       return Object.entries(this.payload).length > 0
+        && Object.values(this.payload).every(el => el)
     }
   },
 
