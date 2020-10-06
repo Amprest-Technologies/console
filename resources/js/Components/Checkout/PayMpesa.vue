@@ -113,8 +113,14 @@ export default {
           .post(`${this.baseUri}/mobile-money/safaricom/c2b/prepare`, data, {
             headers: this.baseHeaders
           })
-          .then(({ data }) => resolve(data))
-          .catch(({ message }) => reject(message))
+          .then(({ data }) => {
+            console.log(data);
+            resolve(data);
+          })
+          .catch(({ message }) => {
+            console.error(message);
+            reject(message);
+          })
       );
     },
 
