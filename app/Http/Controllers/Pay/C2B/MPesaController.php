@@ -23,7 +23,8 @@ class MPesaController extends Controller
         try {
             // Send the request to the service.
             $response = Http::withHeaders($this->headers)
-                ->post("$this->uri/mobile-money/safaricom/c2b/prepare", $request->all());
+                ->post("$this->uri/mobile-money/safaricom/c2b/prepare", $request->all())
+                ->json();
 
             // Set the response.
             $payload = $response;
@@ -41,7 +42,8 @@ class MPesaController extends Controller
         try {
             // Send the request to the service.
             $response = Http::withHeaders($this->headers)
-                ->post("$this->uri/mobile-money/safaricom/c2b/check", $request->all());
+                ->post("$this->uri/mobile-money/safaricom/c2b/check", $request->all())
+                ->json();
 
             // Set the response.
             $payload = $response;
