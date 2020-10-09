@@ -117,7 +117,7 @@ export default {
             headers: this.baseHeaders
           })
           .then(({ data }) => resolve(data))
-          .catch(({ message }) => reject(message))
+          .catch((message) => reject(message))
       );
     },
 

@@ -14,10 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware(['subscribed:pay'])->group(function () {
-    // Prepare a web checkout.
-    Route::get('/', [PaymentHandlerController::class, 'pay'])->name('express.prepare');
+// Prepare a web checkout.
+Route::get('/', [PaymentHandlerController::class, 'pay'])->name('express.prepare');
 
+// Route::middleware(['subscribed:pay'])->group(function () {
     // Web checkout pages.
     Route::get('/express', [
         PaymentHandlerController::class, 'checkout'
