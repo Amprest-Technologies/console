@@ -7,7 +7,7 @@
       <img src="/img/payments/mpesa.jpg" class="mr-4 w-20" />
       <h2 class="font-semibold avenir-font text-lg">
         Pay with M-Pesa
-        {{ message }}
+        {{ data }} {{ baseHeaders }}
       </h2>
       <img
         src="/img/loader.svg"
@@ -116,8 +116,8 @@ export default {
           .post(`${this.baseUri}/mobile-money/safaricom/c2b/prepare`, data, {
             headers: this.baseHeaders
           })
-          .then(({ data }) => resolve(`${this.baseUri}/mobile-money/safaricom/c2b/prepare`))
-          .catch(({ message }) => reject(message))
+          .then(({ data }) => resolve(data))
+          .catch(({ message }) => reject(`${this.baseUri}/mobile-money/safaricom/c2b/prepare`))
       );
     },
 
