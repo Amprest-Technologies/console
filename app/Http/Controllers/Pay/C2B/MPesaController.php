@@ -20,6 +20,7 @@ class MPesaController extends Controller
 
     public function prepare(Request $request)
     {
+        return $request->all();
         try {
             // Send the request to the service.
             $response = Http::withHeaders($this->headers)
@@ -38,7 +39,6 @@ class MPesaController extends Controller
 
     public function check(Request $request)
     {
-        return $request->all();
         try {
             // Send the request to the service.
             $response = Http::withHeaders($this->headers)
