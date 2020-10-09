@@ -5,10 +5,8 @@
       @click.prevent="onInitiate"
     >
       <img src="/img/payments/mpesa.jpg" class="mr-4 w-20" />
-      <h2 class="font-semibold avenir-font text-lg">
-        Pay with M-Pesa
-        {{ data }} {{ baseHeaders }}
-      </h2>
+      <h2 class="font-semibold avenir-font text-lg">Pay with M-Pesa</h2>
+      <span>Data: {{ payload }} </span>
       <img
         src="/img/loader.svg"
         class="ml-auto mr-4"
