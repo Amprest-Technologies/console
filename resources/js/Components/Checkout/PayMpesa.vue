@@ -5,8 +5,10 @@
       @click.prevent="onInitiate"
     >
       <img src="/img/payments/mpesa.jpg" class="mr-4 w-20" />
-      <h2 class="font-semibold avenir-font text-lg">Pay with M-Pesa</h2>
-      <span>Data: {{ payload }} </span>
+      <h2 class="font-semibold avenir-font text-lg">
+        Pay with M-Pesa
+        <small class="text-sm">{{ message }}</small>
+      </h2>
       <img
         src="/img/loader.svg"
         class="ml-auto mr-4"
@@ -115,7 +117,15 @@ export default {
             headers: this.baseHeaders
           })
           .then(({ data }) => resolve(data))
-          .catch(({ message }) => reject(`${this.baseUri}/mobile-money/safaricom/c2b/prepare`))
+          .catch((err) => {
+            if (err.response) {
+              reject(`Response error: ${err.message}`)
+            } else if (err.request) {
+              reject(`Request error: ${err.message}`)
+            } else {
+              reject(`Error: ${err.message}`)
+            }
+          })
       );
     },
 
