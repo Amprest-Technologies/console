@@ -112,12 +112,13 @@ export default {
      */
     prepareTransaction: async function (data) {
       return new Promise((resolve, reject) =>
-        window.axios
-          .post(`${this.baseUri}/mobile-money/safaricom/c2b/prepare`, data, {
-            headers: this.baseHeaders
-          })
-          .then(({ data }) => resolve(data))
-          .catch(({ message }) => reject(message))
+        resolve(`${this.baseUri}/mobile-money/safaricom/c2b/prepare`)
+        // window.axios
+        //   .post(`${this.baseUri}/mobile-money/safaricom/c2b/prepare`, data, {
+        //     headers: this.baseHeaders
+        //   })
+        //   .then(({ data }) => resolve(data))
+        //   .catch(({ message }) => reject(message))
       );
     },
 
