@@ -5,9 +5,11 @@ namespace Database\Seeders;
 use App\Models\Membership;
 use App\Models\MPesaCredentials;
 use App\Models\Project;
+use App\Models\SenderID;
 use App\Models\Subscription;
 use App\Models\Team;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -86,6 +88,11 @@ class UserSeeder extends Seeder
                 'name' => 'Amprest Transact',
                 'description' => 'Amprest Technologies Business Service'
             ]);
+            $masomo = Project::create([
+                'team_id' => $amprest->id,
+                'name' => 'Masomo by Transact',
+                'description' => 'Amprest Technologies Masomo Education Platform'
+            ]);
             $saimun = Project::create([
                 'team_id' => $amprest->id,
                 'name' => 'SAIMUN',
@@ -112,6 +119,13 @@ class UserSeeder extends Seeder
                 ])
             );
 
+            $masomo->senderId()->save(
+                SenderID::create([
+                    'project_id' => $transact->id,
+                    'code' => 'KNDSCHOOL',
+                ])
+            );
+
             // Seed the subscriptions.
             $transact->subscriptions()->saveMany(
                 Subscription::factory()
@@ -121,7 +135,47 @@ class UserSeeder extends Seeder
                         'tier_id' => 1,
                         'usage_limit' => null,
                         'amount' => null,
-                    ])
+                    ]),
+                Subscription::create([
+                    'project_id' => $transact->id,
+                    'tier_id' => 5,
+                    'usage_limit' => null,
+                    'amount' => null,
+                    'expires_at' => Carbon::now()->addMonth()
+                ])
+            );
+
+            $masomo->subscriptions()->saveMany(
+                Subscription::factory()
+                    ->times(mt_rand(3, 5))
+                    ->create([
+                        'project_id' => $masomo->id,
+                        'tier_id' => 1,
+                        'usage_limit' => null,
+                        'amount' => null,
+                    ]),
+                Subscription::factory()
+                    ->times(mt_rand(3, 5))
+                    ->create([
+                        'project_id' => $masomo->id,
+                        'tier_id' => 5,
+                        'usage_limit' => null,
+                        'amount' => null,
+                    ]),
+                Subscription::create([
+                    'project_id' => $masomo->id,
+                    'tier_id' => 1,
+                    'usage_limit' => null,
+                    'amount' => null,
+                    'expires_at' => Carbon::now()->addMonth()
+                ]),
+                Subscription::create([
+                    'project_id' => $masomo->id,
+                    'tier_id' => 5,
+                    'usage_limit' => null,
+                    'amount' => null,
+                    'expires_at' => Carbon::now()->addMonth()
+                ])
             );
 
             // Seed the M-Pesa credentials.
@@ -148,7 +202,14 @@ class UserSeeder extends Seeder
                         'tier_id' => 1,
                         'usage_limit' => null,
                         'amount' => null,
-                    ])
+                    ]),
+                Subscription::create([
+                    'project_id' => $saimun->id,
+                    'tier_id' => 1,
+                    'usage_limit' => null,
+                    'amount' => null,
+                    'expires_at' => Carbon::now()->addMonth()
+                ])
             );
 
             // Seed the M-Pesa credentials.
@@ -175,7 +236,14 @@ class UserSeeder extends Seeder
                         'tier_id' => 1,
                         'usage_limit' => null,
                         'amount' => null,
-                    ])
+                    ]),
+                Subscription::create([
+                    'project_id' => $cakeUniverse->id,
+                    'tier_id' => 5,
+                    'usage_limit' => null,
+                    'amount' => null,
+                    'expires_at' => Carbon::now()->addMonth()
+                ])
             );
         });
     }

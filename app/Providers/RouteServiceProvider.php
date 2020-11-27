@@ -53,6 +53,13 @@ class RouteServiceProvider extends ServiceProvider
                 ->middleware('api')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/pay.php'));
+
+            // Messaging routes.
+            Route::prefix('api/message')
+                ->name('api.message.')
+                ->middleware('api')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/message.php'));
         });
     }
 

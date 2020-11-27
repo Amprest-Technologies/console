@@ -77,6 +77,17 @@ class Project extends Model
     }
 
     /**
+     * Get the sender id associated with this project.
+     *
+     * @return HasOne
+     * @author Brian K. Kiragu <brian@amprest.co.ke>
+     */
+    public function senderId(): HasOne
+    {
+        return $this->hasOne(SenderID::class);
+    }
+
+    /**
      * Get the project's subscriptions.
      *
      * @return HasMany

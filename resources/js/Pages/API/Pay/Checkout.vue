@@ -9,8 +9,8 @@
     </button>
 
     <div id="intro" class="px-3 my-5">
-      <h1 class="avenir-font font-bold text-3xl">Payment Methods</h1>
-      <h3 class="work-sans-font text-sm">
+      <h1 class="font-avenir font-bold text-3xl">Payment Methods</h1>
+      <h3 class="font-work-sans text-sm">
         Powered by
         <a
           class="text-blue-500"
@@ -23,7 +23,7 @@
 
     <!-- Payment methods. -->
     <div v-if="hasPayload" id="payment-methods" class="mt-10 px-3">
-      <h1 class="font-bold avenir-font text-xl mb-3">
+      <h1 class="font-bold font-avenir text-xl mb-3">
         Select a payment method
       </h1>
 
@@ -36,7 +36,7 @@
     </div>
 
     <div v-else class="my-10 px-3">
-      <h1 class="work-sans-font text-semibold">
+      <h1 class="font-work-sans text-semibold">
         Could not process payment. Kindly retry.
       </h1>
     </div>

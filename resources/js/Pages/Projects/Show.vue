@@ -1,14 +1,16 @@
 <template>
   <app-layout>
     <template #header>
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+      <h1 class="font-semibold text-xl text-gray-800 leading-tight">
         {{ project.name }}
-      </h2>
+      </h1>
     </template>
 
     <!-- Project details. -->
     <div class="project-details container mx-auto px-4 p-6">
-      <h1 class="font-bold">{{ project.description }}</h1>
+      <h1 class="font-bold">
+        {{ project.description }}
+      </h1>
       <p class="font-mono text-gray-800">
         <span class="font-bold">UUID</span>: {{ project.uuid }}
       </p>
@@ -18,18 +20,22 @@
     </div>
 
     <div class="container mb-10 mx-auto px-4">
-      <h2 class="playfair-font text-2xl font-semibold mb-2">
+      <h2 class="font-playfair text-2xl font-semibold mb-2">
         Available Services
       </h2>
-      <div class="services">
+      <div class="services md:flex">
         <div
-          class="max-w-sm rounded overflow-hidden shadow-lg bg-white"
           v-for="service in project.available_services"
           :key="`service-${service.slug}`"
+          class="max-w-sm rounded overflow-hidden shadow-lg bg-white mr-4 mb-2"
         >
           <div class="px-6 py-4">
-            <div class="font-bold text-xl mb-2">{{ service.name }}</div>
-            <p class="text-gray-700 text-base">{{ service.description }}</p>
+            <div class="font-bold text-xl mb-2">
+              {{ service.name }}
+            </div>
+            <p class="text-gray-700 text-base">
+              {{ service.description }}
+            </p>
             <inertia-link
               v-if="!isServiceActive(service.id)"
               :href="
@@ -40,7 +46,8 @@
               "
             >
               <button
-                class="bg-white hover:bg-gray-100 text-gray-800 font-semibold mt-2 py-2 px-4 border border-gray-400 rounded shadow"
+                class="bg-white hover:bg-gray-100 text-gray-800 font-semibold
+                mt-2 py-2 px-4 border border-gray-400 rounded shadow"
               >
                 Renew
               </button>
@@ -52,7 +59,9 @@
 
     <!-- Project subscription history. -->
     <div class="container mb-10 mx-auto px-4">
-      <h1 class="text-2xl">Project Subscription History</h1>
+      <h1 class="text-2xl mb-4 font-playfair">
+        Project Subscription History
+      </h1>
       <div class="project-subscription-history container pb-6">
         <div class="flex flex-col">
           <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -66,22 +75,26 @@
                   <thead>
                     <tr>
                       <th
-                        class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                        class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium
+                        text-gray-500 uppercase tracking-wider"
                       >
                         Service Name
                       </th>
                       <th
-                        class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                        class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium
+                        text-gray-500 uppercase tracking-wider"
                       >
                         Expires At
                       </th>
                       <th
-                        class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                        class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium
+                        text-gray-500 uppercase tracking-wider"
                       >
                         Status
                       </th>
                       <th
-                        class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                        class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium
+                        text-gray-500 uppercase tracking-wider"
                       >
                         Tier
                       </th>
@@ -116,7 +129,7 @@
                       </td>
                       <td class="px-6 py-4 whitespace-no-wrap">
                         <div class="text-sm leading-5 text-gray-900">
-                          {{ subscription.expires_at | fromTime }}
+                          {{ getLocaleString(subscription.expires_at) }}
                         </div>
                         <div class="text-sm leading-5 text-gray-500">
                           <!-- Optimization -->
@@ -124,7 +137,8 @@
                       </td>
                       <td class="px-6 py-4 whitespace-no-wrap">
                         <span
-                          class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
+                          class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
+                          bg-green-100 text-green-800"
                         >
                           {{ subscription.is_active ? "Active" : "Inactive" }}
                         </span>
@@ -135,13 +149,13 @@
                         {{ subscription.tier.name }}
                       </td>
                       <td
-                        class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium"
+                        class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5
+                        font-medium"
                       >
                         <a
                           href="#"
                           class="text-indigo-600 hover:text-indigo-900"
-                          >View</a
-                        >
+                        >View</a>
                       </td>
                     </tr>
                   </tbody>
@@ -156,23 +170,35 @@
 </template>
 
 <script>
-import AppLayout from "../../Layouts/AppLayout";
+import AppLayout from '../../Layouts/AppLayout.vue';
 
 export default {
   components: { AppLayout },
 
   props: {
-    project: { type: Object, default: () => { } }
+    project: { type: Object, default: () => { } },
   },
 
   methods: {
-    isServiceActive: function (service_id) {
-      return this.project.subscriptions.filter((sub) => {
-        return sub.is_active && sub.tier.service.id === service_id
-      }).length > 0
-    }
-  }
-}
+    getLocaleString(date) {
+      return new Date(date).toLocaleString(undefined, {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true,
+      });
+    },
+
+    isServiceActive(serviceId) {
+      return this.project.subscriptions.filter(
+        (sub) => sub.is_active && sub.tier.service.id === serviceId,
+      ).length > 0;
+    },
+  },
+};
 </script>
 
 <style>

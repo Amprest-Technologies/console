@@ -21,7 +21,8 @@ class MPesaCredentials extends Model
      * @var array
      */
     protected $fillable = [
-        'project_id', 'short_code', 'operating_short_code', 'short_code_type'
+        'project_id', 'short_code',
+        'operating_short_code', 'short_code_type'
     ];
 
     /**

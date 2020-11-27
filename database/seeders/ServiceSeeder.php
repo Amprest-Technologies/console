@@ -61,35 +61,35 @@ class ServiceSeeder extends Seeder
         ]);
 
         // Seed the service.
-        $sms = Service::create([
-            'name' => 'SMS with Amprest',
-            'slug' => 'sms',
-            'description' => 'Send customisable SMS services using the Amprest Technologies Web Services.'
+        $message = Service::create([
+            'name' => 'Message with Amprest',
+            'slug' => 'message',
+            'description' => 'Send customisable message (SMS, Mail) services using the Amprest Technologies Web Services.'
         ]);
 
         // Seed its tiers.
-        $sms->tiers()->saveMany([
+        $message->tiers()->saveMany([
             Tier::create([
-                'service_id' => $sms->id,
+                'service_id' => $message->id,
                 'name' => 'HQ',
-                'usage_limit' => null,
-                'price' => null,
-                'status' => 'private'
+                'usage_limit' => 100000,
+                'price' => 1,
+                // 'status' => 'private'
             ]),
             Tier::create([
-                'service_id' => $sms->id,
+                'service_id' => $message->id,
                 'name' => 'Bronze',
                 'usage_limit' => 500,
                 'price' => 400.00
             ]),
             Tier::create([
-                'service_id' => $sms->id,
+                'service_id' => $message->id,
                 'name' => 'Silver',
                 'usage_limit' => 1200,
                 'price' => 800.00
             ]),
             Tier::create([
-                'service_id' => $sms->id,
+                'service_id' => $message->id,
                 'name' => 'Gold',
                 'usage_limit' => 2500,
                 'price' => 1200.00

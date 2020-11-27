@@ -5,47 +5,47 @@
       @click.prevent="toggleAccordion"
     >
       <img src="/img/payments/tkash.png" class="mr-4 w-20" />
-      <h2 class="font-semibold avenir-font text-lg">Pay with T-Kash</h2>
+      <h2 class="font-semibold font-avenir text-lg">Pay with T-Kash</h2>
       <img src="/img/loader.svg" class="ml-auto mr-4" width="40" />
     </button>
 
     <div class="accordion-body hidden transition-all duration-500 ease-in-out">
       <div class="bg-wheat mb-4 px-5 py-4">
         <ol class="list-decimal px-5">
-          <li class="mb-3 work-sans-font">Go to your T-Kash Menu.</li>
-          <li class="mb-3 work-sans-font">Go to Lipa na T-Kash.</li>
-          <li class="mb-3 work-sans-font">Select Pay Bill.</li>
-          <li class="mb-3 work-sans-font">
+          <li class="mb-3 font-work-sans">Go to your T-Kash Menu.</li>
+          <li class="mb-3 font-work-sans">Go to Lipa na T-Kash.</li>
+          <li class="mb-3 font-work-sans">Select Pay Bill.</li>
+          <li class="mb-3 font-work-sans">
             Enter
-            <strong class="avenir-font text-md">{{ 204440 }}</strong>
+            <strong class="font-avenir text-md">{{ 204440 }}</strong>
             as the Business Number.
           </li>
-          <li class="mb-3 work-sans-font">
+          <li class="mb-3 font-work-sans">
             Enter
-            <strong class="avenir-font text-md">{{ 501042345 }}</strong>
+            <strong class="font-avenir text-md">{{ 501042345 }}</strong>
             as the Account Number.
           </li>
-          <li class="mb-3 work-sans-font">
+          <li class="mb-3 font-work-sans">
             Enter
-            <strong class="avenir-font text-md"
+            <strong class="font-avenir text-md"
               >KES {{ "25000".toLocaleString() }}</strong
             >
             as the Amount.
           </li>
-          <li class="mb-3 work-sans-font">Enter your pin.</li>
-          <li class="mb-3 work-sans-font">
+          <li class="mb-3 font-work-sans">Enter your pin.</li>
+          <li class="mb-3 font-work-sans">
             Enter confirmation code in the input field below and click
             'Confirm'.
           </li>
         </ol>
 
         <div class="feedback">
-          <p class="text-red-600 text-sm italic avenir-font">{{ "message" }}</p>
+          <p class="text-red-600 text-sm italic font-avenir">{{ "message" }}</p>
         </div>
 
         <!-- Submission button. -->
         <button
-          class="w-full mt-2 bg-teal-600 transition ease-out duration-700 text-white py-2 px-4 border rounded work-sans-font disabled:opacity-0"
+          class="w-full mt-2 bg-teal-600 transition ease-out duration-700 text-white py-2 px-4 border rounded font-work-sans disabled:opacity-0"
         >
           Confirm
         </button>

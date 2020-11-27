@@ -16,7 +16,9 @@ class MPesaController extends Controller
     {
         // Get the base URI and headers
         $this->uri = env('AMPREST_PAYMENT_API_URI');
-        $this->headers = ['Api-Token' => env('AMPREST_PAYMENT_API_TOKEN')];
+        $this->headers = [
+            'Api-Token' => env('AMPREST_PAYMENT_API_TOKEN')
+        ];
     }
 
     /**

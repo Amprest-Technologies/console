@@ -26,10 +26,15 @@
           <!-- Settings Dropdown -->
           <div class="hidden sm:flex sm:items-center sm:ml-6">
             <div class="ml-3 relative">
-              <jet-dropdown align="right" width="48">
+              <jet-dropdown
+                align="right"
+                width="48"
+              >
                 <template #trigger>
                   <button
-                    class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out"
+                    class="flex text-sm border-2 border-transparent rounded-full
+                    focus:outline-none focus:border-gray-300 transition duration-150
+                    ease-in-out"
                   >
                     <img
                       class="h-8 w-8 rounded-full object-cover"
@@ -50,8 +55,8 @@
                   </jet-dropdown-link>
 
                   <jet-dropdown-link
-                    href="/user/api-tokens"
                     v-if="$page.jetstream.hasApiFeatures"
+                    href="/user/api-tokens"
                   >
                     API Tokens
                   </jet-dropdown-link>
@@ -72,8 +77,8 @@
                     </jet-dropdown-link>
 
                     <jet-dropdown-link
-                      href="/teams/create"
                       v-if="$page.jetstream.canCreateTeams"
+                      href="/teams/create"
                     >
                       Create New Team
                     </jet-dropdown-link>
@@ -85,8 +90,14 @@
                       Switch Teams
                     </div>
 
-                    <template v-for="team in $page.user.all_teams">
-                      <form @submit.prevent="switchToTeam(team)">
+                    <div
+                      v-for="(team, index) in $page.user.all_teams"
+                      :key="`team-${index}`"
+                    >
+                      <form
+
+                        @submit.prevent="switchToTeam(team)"
+                      >
                         <jet-dropdown-link as="button">
                           <div class="flex items-center">
                             <svg
@@ -107,14 +118,16 @@
                           </div>
                         </jet-dropdown-link>
                       </form>
-                    </template>
+                    </div>
 
                     <div class="border-t border-gray-100"></div>
                   </template>
 
                   <!-- Authentication -->
                   <form @submit.prevent="logout">
-                    <jet-dropdown-link as="button"> Logout </jet-dropdown-link>
+                    <jet-dropdown-link as="button">
+                      Logout
+                    </jet-dropdown-link>
                   </form>
                 </template>
               </jet-dropdown>
@@ -124,8 +137,10 @@
           <!-- Hamburger -->
           <div class="-mr-2 flex items-center sm:hidden">
             <button
+              class="inline-flex items-center justify-center p-2 rounded-md
+              text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none
+              focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
               @click="showingNavigationDropdown = !showingNavigationDropdown"
-              class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
             >
               <svg
                 class="h-6 w-6"
@@ -206,15 +221,18 @@
             </jet-responsive-nav-link>
 
             <jet-responsive-nav-link
+              v-if="$page.jetstream.hasApiFeatures"
               href="/user/api-tokens"
               :active="$page.currentRouteName == 'api-tokens.index'"
-              v-if="$page.jetstream.hasApiFeatures"
             >
               API Tokens
             </jet-responsive-nav-link>
 
             <!-- Authentication -->
-            <form method="POST" @submit.prevent="logout">
+            <form
+              method="POST"
+              @submit.prevent="logout"
+            >
               <jet-responsive-nav-link as="button">
                 Logout
               </jet-responsive-nav-link>
@@ -250,8 +268,14 @@
                 Switch Teams
               </div>
 
-              <template v-for="team in $page.user.all_teams">
-                <form @submit.prevent="switchToTeam(team)" :key="team.id">
+              <div
+                v-for="team in $page.user.all_teams"
+                :key="team.id"
+              >
+                <form
+
+                  @submit.prevent="switchToTeam(team)"
+                >
                   <jet-responsive-nav-link as="button">
                     <div class="flex items-center">
                       <svg
@@ -272,7 +296,7 @@
                     </div>
                   </jet-responsive-nav-link>
                 </form>
-              </template>
+              </div>
             </template>
           </div>
         </div>
@@ -292,21 +316,25 @@
     </main>
 
     <!-- Modal Portal -->
-    <portal-target name="modal" multiple> </portal-target>
+    <portal-target
+      name="modal"
+      multiple
+    >
+    </portal-target>
   </div>
 </template>
 
 <script>
-import JetApplicationLogo from "./../Jetstream/ApplicationLogo";
-import JetApplicationMark from "./../Jetstream/ApplicationMark";
-import JetDropdown from "./../Jetstream/Dropdown";
-import JetDropdownLink from "./../Jetstream/DropdownLink";
-import JetNavLink from "./../Jetstream/NavLink";
-import JetResponsiveNavLink from "./../Jetstream/ResponsiveNavLink";
+// import JetApplicationLogo from '../Jetstream/ApplicationLogo.vue';
+import JetApplicationMark from '../Jetstream/ApplicationMark.vue';
+import JetDropdown from '../Jetstream/Dropdown.vue';
+import JetDropdownLink from '../Jetstream/DropdownLink.vue';
+import JetNavLink from '../Jetstream/NavLink.vue';
+import JetResponsiveNavLink from '../Jetstream/ResponsiveNavLink.vue';
 
 export default {
   components: {
-    JetApplicationLogo,
+    // JetApplicationLogo,
     JetApplicationMark,
     JetDropdown,
     JetDropdownLink,
@@ -320,29 +348,29 @@ export default {
     };
   },
 
+  computed: {
+    path() {
+      return window.location.pathname;
+    },
+  },
+
   methods: {
     switchToTeam(team) {
       this.$inertia.put(
-        "/current-team",
+        '/current-team',
         {
           team_id: team.id,
         },
         {
           preserveState: false,
-        }
+        },
       );
     },
 
     logout() {
-      axios.post("/logout").then((response) => {
-        window.location = "/";
+      window.axios.post('/logout').then(() => {
+        window.location = '/';
       });
-    },
-  },
-
-  computed: {
-    path() {
-      return window.location.pathname;
     },
   },
 };

@@ -34,8 +34,6 @@ class CreateMPesaCredentialsTable extends Migration
 
             $table->foreign('project_id')
                 ->references('id')->on('projects');
-
-            $table->unique(['project_id', 'short_code']);
         });
     }
 
