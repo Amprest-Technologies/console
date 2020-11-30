@@ -19,9 +19,7 @@ class SMSController extends Controller
     {
         // Get the base URI and headers
         $this->uri = env('AMPREST_MESSAGING_API_URI');
-        $this->headers = [
-            'Api-Token' => env('AMPREST_MESSAGING_API_TOKEN')
-        ];
+        $this->token =  env('AMPREST_MESSAGING_API_TOKEN');
     }
 
     /**
@@ -67,7 +65,7 @@ class SMSController extends Controller
             ])->all();
 
             // Submit the request to the microservice.
-            $response = Http::withHeaders($this->headers)
+            $response = Http::withToken($this->token)
                 ->post("$this->uri/bulk-sms/analyse", $data)
                 ->json();
 
@@ -103,7 +101,7 @@ class SMSController extends Controller
             // $this->authorise('create', '')
 
             // Submit the request to the microservice.
-            $response = Http::withHeaders($this->headers)
+            $response = Http::withToken($this->token)
                 ->post("$this->uri/bulk-sms/send/$messageId")
                 ->json();
 

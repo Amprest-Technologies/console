@@ -16,7 +16,9 @@ class Subscription extends Model
      * @var array
      */
     protected $fillable = [
-        'project_id', 'tier_id', 'usage_limit', 'amount', 'expires_at'
+        'project_id', 'tier_id',
+        'usage_limit', 'amount',
+        'expires_at'
     ];
 
     /**
@@ -53,6 +55,11 @@ class Subscription extends Model
         return $this->belongsTo(Tier::class);
     }
 
+    /**
+     * Check if the subscription is active.
+     *
+     * @return bool
+     */
     public function getIsActiveAttribute(): bool
     {
         return $this->expires_at->greaterThanOrEqualTo(now());
