@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::transaction(function () {
+        // DB::transaction(function () {
             // Truncate the data.
             if (env('DB_CONNECTION') == 'mysql') {
                 Schema::disableForeignKeyConstraints();
@@ -245,6 +245,6 @@ class UserSeeder extends Seeder
                     'expires_at' => Carbon::now()->addMonth()
                 ])
             );
-        });
+        // });
     }
 }

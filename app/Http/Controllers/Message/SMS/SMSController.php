@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Message\BulkSMS;
+namespace App\Http\Controllers\Message\SMS;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
@@ -8,7 +8,6 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Validator;
 
 class SMSController extends Controller
 {
@@ -34,26 +33,22 @@ class SMSController extends Controller
      */
     public function analyse(Request $request, Project $project): Response
     {
+        // Authorise the request.
+        // $this->authorise('create', '')
+
+        // Validate the data.
+        $request->validate([
+            'title' => ['sometimes', 'required', 'string'],
+            'content' => ['sometimes', 'required', 'string'],
+            'recipients' => ['sometimes', 'required', 'array'],
+            'messages' => ['sometimes', 'required', 'array'],
+            'scheduled_for' => [
+                'sometimes', 'required',
+                'date', 'after_or_equal:today'
+            ]
+        ]);
+
         try {
-            // Authorise the request.
-            // $this->authorise('create', '')
-
-            // Validate the data.
-            $validator = Validator::make($request->all(), [
-                'title' => ['sometimes', 'required', 'string'],
-                'content' => ['required', 'string'],
-                'recipients' => ['required', 'array'],
-                'scheduled_for' => [
-                    'sometimes', 'required',
-                    'date', 'after_or_equal:today'
-                ]
-            ]);
-
-            // Throw an error if the validation fails.
-            if ($validator->fails()) {
-                throw new Exception($validator->errors(), 422);
-            }
-
             // Get the sender ID.
             if ($project->senderId === null) {
                 throw new Exception("No Sender ID has been registered.", 401);
@@ -67,7 +62,7 @@ class SMSController extends Controller
 
             // Submit the request to the microservice.
             $response = Http::withToken($this->token)
-                ->post("$this->uri/bulk-sms/analyse", $data)
+                ->post("$this->uri/sms/analyse", $data)
                 ->json();
 
             // Process that a request was made.
@@ -78,7 +73,7 @@ class SMSController extends Controller
             $status = 201;
         } catch (Exception $e) {
             $payload = $e->getMessage();
-            $status = $e->getCode() !== 0 ? $e->getCode() : 404;
+            $status = in_array($e->getCode(), range(400, 599)) ? $e->getCode() : 404;
         } finally {
             return response($payload, $status);
         }
@@ -103,7 +98,7 @@ class SMSController extends Controller
 
             // Submit the request to the microservice.
             $response = Http::withToken($this->token)
-                ->post("$this->uri/bulk-sms/send/$messageId")
+                ->post("$this->uri/sms/send/$messageId")
                 ->json();
 
             // Process that a request was made.
@@ -114,7 +109,7 @@ class SMSController extends Controller
             $status = 201;
         } catch (Exception $e) {
             $payload = $e->getMessage();
-            $status = $e->getCode() !== 0 ? $e->getCode() : 404;
+            $status = in_array($e->getCode(), range(400, 599)) ? $e->getCode() : 404;
         } finally {
             return response($payload, $status);
         }
