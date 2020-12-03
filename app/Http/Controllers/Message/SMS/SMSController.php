@@ -42,10 +42,7 @@ class SMSController extends Controller
             'content' => ['sometimes', 'required', 'string'],
             'recipients' => ['sometimes', 'required', 'array'],
             'messages' => ['sometimes', 'required', 'array'],
-            'scheduled_for' => [
-                'sometimes', 'required',
-                'date', 'after_or_equal:today'
-            ]
+            'scheduled_for' => ['nullable', 'date', 'after_or_equal:today']
         ]);
 
         try {
