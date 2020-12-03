@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Message\BulkSMS\SMSController;
+use App\Http\Controllers\Message\SMS\SMSController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 // Version the endpoints.
 Route::prefix('v1')->group(function () {
     // Prefix the routes for bulk sms.
-    Route::prefix('bulk-sms')->group(function () {
+    Route::prefix('sms')->name('sms.')->group(function () {
         // Ensure only subscribed users can call these endpoints.
         Route::middleware(['subscribed:message'])->group(function () {
             // Prefix all routes with the project identifier.
