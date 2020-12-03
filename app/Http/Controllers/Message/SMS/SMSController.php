@@ -63,6 +63,7 @@ class SMSController extends Controller
             // Submit the request to the microservice.
             $response = Http::withToken($this->token)
                 ->post("$this->uri/sms/analyse", $data)
+                ->throw()
                 ->json();
 
             // Process that a request was made.
@@ -101,6 +102,7 @@ class SMSController extends Controller
             // Submit the request to the microservice.
             $response = Http::withToken($this->token)
                 ->post("$this->uri/sms/send/$messageId")
+                ->throw()
                 ->json();
 
             // Process that a request was made.
