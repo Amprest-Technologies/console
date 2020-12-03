@@ -73,7 +73,9 @@ class SMSController extends Controller
             $status = 201;
         } catch (Exception $e) {
             $payload = $e->getMessage();
-            $status = in_array($e->getCode(), range(400, 599)) ? $e->getCode() : 404;
+            $status = in_array($e->getCode(), range(400, 600))
+                ? $e->getCode()
+                : 404;
         } finally {
             return response($payload, $status);
         }
@@ -106,10 +108,12 @@ class SMSController extends Controller
 
             // Return the results.
             $payload = $response;
-            $status = 201;
+            $status = 200;
         } catch (Exception $e) {
             $payload = $e->getMessage();
-            $status = in_array($e->getCode(), range(400, 599)) ? $e->getCode() : 404;
+            $status = in_array($e->getCode(), range(400, 600))
+                ? $e->getCode()
+                : 404;
         } finally {
             return response($payload, $status);
         }
