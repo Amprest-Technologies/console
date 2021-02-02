@@ -42,10 +42,7 @@ class SMSController extends Controller
             'content' => ['sometimes', 'required', 'string'],
             'recipients' => ['sometimes', 'required', 'array'],
             'messages' => ['sometimes', 'required', 'array'],
-            'scheduled_for' => [
-                'sometimes', 'required',
-                'date', 'after_or_equal:today'
-            ]
+            'scheduled_for' => ['nullable', 'date', 'after_or_equal:today']
         ]);
 
         try {
@@ -63,6 +60,7 @@ class SMSController extends Controller
             // Submit the request to the microservice.
             $response = Http::withToken($this->token)
                 ->post("$this->uri/sms/analyse", $data)
+                ->throw()
                 ->json();
 
             // Process that a request was made.
@@ -73,7 +71,9 @@ class SMSController extends Controller
             $status = 201;
         } catch (Exception $e) {
             $payload = $e->getMessage();
-            $status = in_array($e->getCode(), range(400, 599)) ? $e->getCode() : 404;
+            $status = in_array($e->getCode(), range(400, 600))
+                ? $e->getCode()
+                : 404;
         } finally {
             return response($payload, $status);
         }
@@ -99,6 +99,7 @@ class SMSController extends Controller
             // Submit the request to the microservice.
             $response = Http::withToken($this->token)
                 ->post("$this->uri/sms/send/$messageId")
+                ->throw()
                 ->json();
 
             // Process that a request was made.
@@ -106,10 +107,12 @@ class SMSController extends Controller
 
             // Return the results.
             $payload = $response;
-            $status = 201;
+            $status = 200;
         } catch (Exception $e) {
             $payload = $e->getMessage();
-            $status = in_array($e->getCode(), range(400, 599)) ? $e->getCode() : 404;
+            $status = in_array($e->getCode(), range(400, 600))
+                ? $e->getCode()
+                : 404;
         } finally {
             return response($payload, $status);
         }
