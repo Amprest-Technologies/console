@@ -22,6 +22,54 @@ class SMSController extends Controller
     }
 
     /**
+     * Receive an incoming request and send it to the
+     * Amprest Messaging Microservice to retrieve a project's analytics.
+     *
+     * @param Request $request
+     * @param Project $project
+     * @return Response
+     * @author Brian K. Kiragu <brian@amprest.co.ke>
+     * @author Alvin G. Kaburu <geekaburu@amprest.co.ke>
+     */
+    public function analytics(Request $request, Project $project): Response
+    {
+        // Authorise the request.
+        // $this->authorise('create', '')
+
+        try {
+            // Get the sender ID.
+            if ($project->senderId === null) {
+                throw new Exception("No Sender ID has been registered.", 401);
+            }
+
+            // Prepare the data.
+            $request->merge([
+                'senderId' => $project->senderId,
+            ]);
+
+            // Submit the request to the microservice.
+            $response = Http::withToken($this->token)
+                ->post("$this->uri/sms/analytics", $request->all())
+                ->throw()
+                ->json();
+
+            // Process that a request was made.
+            //
+
+            // Return the results.
+            $payload = $response;
+            $status = 201;
+        } catch (Exception $e) {
+            $payload = $e->getMessage();
+            $status = in_array($e->getCode(), range(400, 600))
+                ? $e->getCode()
+                : 404;
+        } finally {
+            return response($payload, $status);
+        }
+    }
+
+    /**
      * Receive an incoming request and send it to
      * the Amprest Messaging Microservice to analyse a message.
      *
@@ -42,7 +90,7 @@ class SMSController extends Controller
             'content' => ['sometimes', 'required', 'string'],
             'recipients' => ['sometimes', 'required', 'array'],
             'messages' => ['sometimes', 'required', 'array'],
-            'scheduled_for' => ['nullable', 'date', 'after_or_equal:today']
+            'scheduled_for' => ['nullable', 'date', 'after_or_equal:today'],
         ]);
 
         try {
