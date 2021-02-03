@@ -44,7 +44,7 @@ class SMSController extends Controller
 
             // Prepare the data.
             $request->merge([
-                'senderId' => $project->senderId,
+                'sender_id' => $project->senderId,
             ]);
 
             // Submit the request to the microservice.
