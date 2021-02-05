@@ -32,7 +32,7 @@ class SMSController extends Controller
      * @author Brian K. Kiragu <brian@amprest.co.ke>
      * @author Alvin G. Kaburu <geekaburu@amprest.co.ke>
      */
-    public function analytics(Request $request, Project $project): Response
+    public function index(Request $request, Project $project): Response
     {
         // Authorise the request.
         // $this->authorise('create', '')
@@ -44,12 +44,7 @@ class SMSController extends Controller
                 'sometimes', 'date',
                 // 'before_or_equal:today'
             ],
-            'period' => [
-                'sometimes', Rule::in([
-                    'hour', 'day', 'week',
-                    'month', 'quarter', 'year',
-                ])
-            ]
+            'limit' => ['sometimes', 'required', 'integer', 'max:1000'],
         ]);
 
         try {
@@ -65,7 +60,7 @@ class SMSController extends Controller
 
             // Submit the request to the microservice.
             $response = Http::withToken($this->token)
-                ->post("$this->uri/sms/analytics", $data)
+                ->post("$this->uri/sms", $data)
                 ->throw()
                 ->json();
 
