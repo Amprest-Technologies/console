@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Validation\Rule;
 
 class SMSController extends Controller
 {
@@ -36,6 +37,21 @@ class SMSController extends Controller
         // Authorise the request.
         // $this->authorise('create', '')
 
+        // Validate the request
+        $data = $this->validate($request, [
+            'start_date' => ['sometimes', 'date', 'before_or_equal:today'],
+            'end_date' => [
+                'sometimes', 'date',
+                // 'before_or_equal:today'
+            ],
+            'period' => [
+                'sometimes', Rule::in([
+                    'hour', 'day', 'week',
+                    'month', 'quarter', 'year',
+                ])
+            ]
+        ]);
+
         try {
             // Get the sender ID.
             if ($project->senderId === null) {
@@ -43,13 +59,13 @@ class SMSController extends Controller
             }
 
             // Prepare the data.
-            $request->merge([
-                'sender_id' => $project->senderId,
+            $data = array_merge($data, [
+                'sender_id' => $project->senderId->code,
             ]);
 
             // Submit the request to the microservice.
             $response = Http::withToken($this->token)
-                ->post("$this->uri/sms/analytics", $request->all())
+                ->post("$this->uri/sms/analytics", $data)
                 ->throw()
                 ->json();
 
