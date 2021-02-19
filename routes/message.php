@@ -22,6 +22,7 @@ Route::prefix('v1')->group(function () {
         Route::middleware(['subscribed:message'])->group(function () {
             // Prefix all routes with the project identifier.
             Route::prefix('{project:uuid}')->group(function () {
+                Route::post('/', [SMSController::class, 'index'])->name('index');
                 Route::post('/analyse', [SMSController::class, 'analyse'])->name('analyse');
                 Route::post('/send/{id}', [SMSController::class, 'send'])->name('send');
             });

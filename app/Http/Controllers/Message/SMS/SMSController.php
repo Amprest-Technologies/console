@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Validation\Rule;
 
 class SMSController extends Controller
 {
@@ -19,6 +20,64 @@ class SMSController extends Controller
         // Get the base URI and headers
         $this->uri = env('AMPREST_MESSAGING_API_URI');
         $this->token =  env('AMPREST_MESSAGING_API_TOKEN');
+    }
+
+    /**
+     * Receive an incoming request and send it to the
+     * Amprest Messaging Microservice to retrieve a project's analytics.
+     *
+     * @param Request $request
+     * @param Project $project
+     * @return Response
+     * @author Brian K. Kiragu <brian@amprest.co.ke>
+     * @author Alvin G. Kaburu <geekaburu@amprest.co.ke>
+     */
+    public function index(Request $request, Project $project): Response
+    {
+        // Authorise the request.
+        // $this->authorise('create', '')
+
+        // Validate the request
+        $data = $this->validate($request, [
+            'start_date' => ['sometimes', 'date', 'before_or_equal:today'],
+            'end_date' => [
+                'sometimes', 'date',
+                // 'before_or_equal:today'
+            ],
+            'limit' => ['sometimes', 'required', 'integer', 'max:1000'],
+        ]);
+
+        try {
+            // Get the sender ID.
+            if ($project->senderId === null) {
+                throw new Exception("No Sender ID has been registered.", 401);
+            }
+
+            // Prepare the data.
+            $data = array_merge($data, [
+                'sender_id' => $project->senderId->code,
+            ]);
+
+            // Submit the request to the microservice.
+            $response = Http::withToken($this->token)
+                ->post("$this->uri/sms", $data)
+                ->throw()
+                ->json();
+
+            // Process that a request was made.
+            //
+
+            // Return the results.
+            $payload = $response;
+            $status = 201;
+        } catch (Exception $e) {
+            $payload = $e->getMessage();
+            $status = in_array($e->getCode(), range(400, 600))
+                ? $e->getCode()
+                : 404;
+        } finally {
+            return response($payload, $status);
+        }
     }
 
     /**
@@ -42,7 +101,7 @@ class SMSController extends Controller
             'content' => ['sometimes', 'required', 'string'],
             'recipients' => ['sometimes', 'required', 'array'],
             'messages' => ['sometimes', 'required', 'array'],
-            'scheduled_for' => ['nullable', 'date', 'after_or_equal:today']
+            'scheduled_for' => ['nullable', 'date', 'after_or_equal:today'],
         ]);
 
         try {
