@@ -51,8 +51,8 @@ class Project extends Model
 
         // When the model is being created.
         self::creating(function ($model) {
-            $model->uuid = mt_rand(10000000, 99999999);
-            $model->api_key = bin2hex(random_bytes(16));
+            $model->uuid = $model->uuid ?: mt_rand(10000000, 99999999);
+            $model->api_key = $model->api_key ?: bin2hex(random_bytes(16));
         });
     }
 
