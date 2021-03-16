@@ -88,8 +88,10 @@ class UserSeeder extends Seeder
         ]);
         $masomo = Project::create([
             'team_id' => $amprest->id,
-            'name' => 'Masomo by Transact',
-            'description' => 'Amprest Technologies Masomo Education Platform'
+            'name' => 'Masomo by Amprest',
+            'description' => 'Amprest Technologies Masomo Education Platform',
+            'uuid' => '48236419',
+            'api_key' => '329ac8c2a9901864f9bab2c4603de9ba',
         ]);
         $saimun = Project::create([
             'team_id' => $amprest->id,

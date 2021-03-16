@@ -103,7 +103,7 @@ class SMSController extends Controller
             'messages' => ['sometimes', 'required', 'array'],
             'scheduled_for' => ['nullable', 'date', 'after_or_equal:today'],
         ]);
-
+        
         try {
             // Get the sender ID.
             if ($project->senderId === null) {
