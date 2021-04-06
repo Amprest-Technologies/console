@@ -56,9 +56,9 @@
     <meta name="msapplication-square310x310logo" content="{{ asset('img/favicon/faviconmstile-310x310.webp')}}" />
 
     <!-- Styles -->
-    <link rel="preload" href="{{ asset('css/app.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="{{ mix('css/app.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
-      <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+      <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     </noscript>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"></script>
