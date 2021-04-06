@@ -28,7 +28,8 @@ class VerifySubscription
 
         // Get the project.
         $project = Project::withActiveSubscriptions()
-            ->where('api_key', $apiKey)->first();
+            ->where('api_key', $apiKey)
+            ->first();
 
         // If the API key does not match an existing project,
         // return a failed response.

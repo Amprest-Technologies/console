@@ -103,7 +103,7 @@ class SMSController extends Controller
             'messages' => ['sometimes', 'required', 'array'],
             'scheduled_for' => ['nullable', 'date', 'after_or_equal:today'],
         ]);
-        
+
         try {
             // Get the sender ID.
             if ($project->senderId === null) {
@@ -149,7 +149,7 @@ class SMSController extends Controller
      * @author Brian K. Kiragu <brian@amprest.co.ke>
      * @author Alvin G. Kaburu <geekaburu@amprest.co.ke>
      */
-    public function send(Request $request, int $uuid, string $messageId): Response
+    public function send(Request $request, Project $project, string $messageId): Response
     {
         try {
             // Authorise the request.
