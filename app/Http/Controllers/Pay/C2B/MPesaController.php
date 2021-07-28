@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Pay\C2B;
 
 use App\Http\Controllers\Controller;
+use App\Models\MPesaCredentials;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Http;
 
 class MPesaController extends Controller
@@ -87,6 +89,40 @@ class MPesaController extends Controller
             $response = Http::withHeaders($this->headers)
                 ->post("$this->uri/mobile-money/safaricom/c2b/retrieve", $data)
                 ->json();
+
+            // Set the response.
+            $payload = $response;
+            $status = 200;
+        } catch (Exception $e) {
+            $payload = $e->getMessage();
+            $status = 404;
+        } finally {
+            return response($payload, $status);
+        }
+    }
+
+    /**
+     * Broadcast a confirmed transaction.
+     *
+     * @param Request $request
+     * @return Response
+     * @author Brian K. Kiragu <brian@amprest.co.ke>
+     */
+    protected function broadcast(Request $request, string $shortCode): Response
+    {
+        try {
+            // Get the project from the M-Pesa Credentials.
+            $credentials = MPesaCredentials::where('short_code', $shortCode)->first();
+
+            // Set the response.
+            $response = null;
+
+            // If M-Pesa credentials exist.
+            if ($credentials) {
+                // Send the request to the service.
+                $response = Http::post($credentials->project->pay_callback, $request->all())
+                    ->json();
+            }
 
             // Set the response.
             $payload = $response;

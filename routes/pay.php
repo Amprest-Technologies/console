@@ -24,9 +24,13 @@ Route::get('/express', [
 ])->name('express.checkout');
 
 // Ensure only subscribed users can call these endpoints.
-Route::middleware(['subscribed:pay'])->group(function () {
-    Route::prefix('c2b')->namespace('C2B')->name('c2b.')->group(function () {
-        Route::prefix('mpesa')->name('mpesa.')->group(function () {
+Route::prefix('c2b')->namespace('C2B')->name('c2b.')->group(function () {
+    Route::prefix('mpesa')->name('mpesa.')->group(function () {
+        // Listen for incoming transactions.
+        Route::post('broadcast/{shortCode}', [MPesaController::class, 'broadcast'])
+            ->name('broadcast');
+
+        Route::middleware(['subscribed:pay'])->group(function () {
             // Prepare an M-Pesa Transaction.
             Route::post('prepare', [MPesaController::class, 'prepare'])->name('prepare');
             // Check an M-Pesa Transaction.
