@@ -108,28 +108,41 @@ class MPesaController extends Controller
      * @return Response
      * @author Brian K. Kiragu <brian@amprest.co.ke>
      */
-    protected function broadcast(Request $request, string $shortCode): Response
+    protected function broadcast(Request $request, string $shortCode)
     {
         try {
-            // Get the project from the M-Pesa Credentials.
-            $credentials = MPesaCredentials::where('short_code', $shortCode)->first();
+            // Get the M-Pesa credentials.
+            $mpesaCredentials = MPesaCredentials::where('short_code', $shortCode)
+                ->first();
 
-            // Set the response.
-            $response = null;
-
-            // If M-Pesa credentials exist.
-            if ($credentials) {
-                // Send the request to the service.
-                $response = Http::post($credentials->project->pay_callback, $request->all())
-                    ->json();
+            // Throw an error if the credentials don't exist.
+            if (!$mpesaCredentials) {
+                throw new Exception("No credentials matching this short code were found", 404);
             }
 
-            // Set the response.
+            // Throw an error if a project does not exist.
+            if (!$mpesaCredentials->project) {
+                throw new Exception("No project is linked to these credentials", 404);
+            }
+
+            // Throw an error if the URL is not found.
+            if (!$mpesaCredentials->project->pay_callback) {
+                throw new Exception("No callback URL was provided for this project", 404);
+            }
+
+            // Send the request to the service.
+            $response = Http::post(
+                $mpesaCredentials->project->pay_callback,
+                $request->all()
+            )->throw()->json();
+
             $payload = $response;
             $status = 200;
         } catch (Exception $e) {
             $payload = $e->getMessage();
-            $status = 404;
+            $status = in_array($e->getCode(), range(400, 600))
+                ? $e->getCode()
+                : 404;
         } finally {
             return response($payload, $status);
         }

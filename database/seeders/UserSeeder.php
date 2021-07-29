@@ -84,7 +84,8 @@ class UserSeeder extends Seeder
         $transact = Project::create([
             'team_id' => $amprest->id,
             'name' => 'Amprest Transact',
-            'description' => 'Amprest Technologies Business Service'
+            'description' => 'Amprest Technologies Business Service',
+            'pay_callback' => 'https://transact.amprest.co.ke/transactions/listener'
         ]);
         $masomo = Project::create([
             'team_id' => $amprest->id,
