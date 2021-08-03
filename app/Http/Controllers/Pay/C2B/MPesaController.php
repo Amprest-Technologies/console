@@ -132,7 +132,7 @@ class MPesaController extends Controller
 
             // Send the request to the service.
             $response = Http::post(
-                $mpesaCredentials->project->pay_callback,
+                $mpesaCredentials->project->pay_callback, 
                 $request->all()
             )->throw()->json();
 

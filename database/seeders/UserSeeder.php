@@ -87,6 +87,7 @@ class UserSeeder extends Seeder
             'description' => 'Amprest Technologies Transact Service',
             'pay_callback' => ''
         ]);
+
         $masomo = Project::create([
             'team_id' => $amprest->id,
             'name' => 'Masomo by Amprest',
@@ -94,6 +95,7 @@ class UserSeeder extends Seeder
             'uuid' => '48236419',
             'api_key' => '329ac8c2a9901864f9bab2c4603de9ba',
         ]);
+
         $saimun = Project::create([
             'team_id' => $amprest->id,
             'name' => 'SAIMUN Registration',
@@ -101,22 +103,29 @@ class UserSeeder extends Seeder
             'uuid' => '31980374',
             'api_key' => '29210a4bcc93d3c1c4a7e316c04f1465',
         ]);
+
         $cakeUniverse = Project::create([
             'team_id' => $amprest->id,
             'name' => 'Cake Universe KE',
             'description' => 'Cake Universe Cake Resellers Kenya'
         ]);
+
         $minie = Project::create([
             'team_id' => $amprest->id,
             'name' => 'Minie By Amprest',
             'description' => 'Amprest Technologies Minie Application',
-            'pay_callback' => ''
+            'pay_callback' => '',
+            'uuid' => '10000001',
+            'api_key' => 'adcce7437dca604f4b4515397465c252',
         ]);
+
         $rms = Project::create([
             'team_id' => $amprest->id,
             'name' => 'Residents Management System',
             'description' => 'Amprest Technologies Residents Management System',
-            'pay_callback' => 'http://197.137.65.245/api/mpesa/transactions'
+            'pay_callback' => 'http://197.137.65.245/api/mpesa/transactions',
+            'uuid' => '10000002',
+            'api_key' => '46ce0d0fd8c4326c19fc9d1a4f90af78',
         ]);
 
         // Seed the M-Pesa credentials.
