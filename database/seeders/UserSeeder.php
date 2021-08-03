@@ -147,8 +147,8 @@ class UserSeeder extends Seeder
         $rms->mpesaCredentials()->save(
             MPesaCredentials::create([
                 'project_id' => $rms->id,
-                'short_code' => '204440',
-                'operating_short_code' => '204440',
+                'short_code' => '4020309',
+                'operating_short_code' => '4020309',
                 'short_code_type' => 'pay_bill',
                 'consumer_key' => 'aWhxai3dsFDUf09YbWnlpo334F9DhxR3',
                 'consumer_secret' => '6Xa1MMAGCMvSHQoi',
