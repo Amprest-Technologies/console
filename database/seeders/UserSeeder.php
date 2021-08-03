@@ -84,8 +84,8 @@ class UserSeeder extends Seeder
         $transact = Project::create([
             'team_id' => $amprest->id,
             'name' => 'Amprest Transact',
-            'description' => 'Amprest Technologies Business Service',
-            'pay_callback' => 'https://transact.amprest.co.ke/transactions/listener'
+            'description' => 'Amprest Technologies Transact Service',
+            'pay_callback' => ''
         ]);
         $masomo = Project::create([
             'team_id' => $amprest->id,
@@ -106,11 +106,53 @@ class UserSeeder extends Seeder
             'name' => 'Cake Universe KE',
             'description' => 'Cake Universe Cake Resellers Kenya'
         ]);
+        $minie = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'Minie By Amprest',
+            'description' => 'Amprest Technologies Minie Application',
+            'pay_callback' => ''
+        ]);
+        $rms = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'Residents Management System',
+            'description' => 'Amprest Technologies Residents Management System',
+            'pay_callback' => 'http://197.137.65.245/api/mpesa/transactions'
+        ]);
 
         // Seed the M-Pesa credentials.
         $transact->mpesaCredentials()->save(
             MPesaCredentials::create([
                 'project_id' => $transact->id,
+                'short_code' => '204440',
+                'operating_short_code' => '204440',
+                'short_code_type' => 'pay_bill',
+                'consumer_key' => 'aWhxai3dsFDUf09YbWnlpo334F9DhxR3',
+                'consumer_secret' => '6Xa1MMAGCMvSHQoi',
+                'pass_key' => '157374172682982e8e44847210d710d03136b8d01f955ef94f0ef3f614d51657',
+                'app_user_name' => 'amprest',
+                'app_user_password' => '#Amprest-1234!',
+            ])
+        );
+
+        //  Seed rms mpesa credentials
+        $rms->mpesaCredentials()->save(
+            MPesaCredentials::create([
+                'project_id' => $rms->id,
+                'short_code' => '204440',
+                'operating_short_code' => '204440',
+                'short_code_type' => 'pay_bill',
+                'consumer_key' => 'aWhxai3dsFDUf09YbWnlpo334F9DhxR3',
+                'consumer_secret' => '6Xa1MMAGCMvSHQoi',
+                'pass_key' => '157374172682982e8e44847210d710d03136b8d01f955ef94f0ef3f614d51657',
+                'app_user_name' => 'amprest',
+                'app_user_password' => '#Amprest-1234!',
+            ])
+        );
+
+        //  Seed rms mpesa credentials
+        $minie->mpesaCredentials()->save(
+            MPesaCredentials::create([
+                'project_id' => $minie->id,
                 'short_code' => '204440',
                 'operating_short_code' => '204440',
                 'short_code_type' => 'pay_bill',
@@ -141,6 +183,44 @@ class UserSeeder extends Seeder
                 ]),
             Subscription::create([
                 'project_id' => $transact->id,
+                'tier_id' => 5,
+                'usage_limit' => null,
+                'amount' => null,
+                'expires_at' => Carbon::now()->addMonth()
+            ])
+        );
+
+        // Seed the subscriptions.
+        $rms->subscriptions()->saveMany(
+            Subscription::factory()
+                ->times(mt_rand(3, 5))
+                ->create([
+                    'project_id' => $rms->id,
+                    'tier_id' => 1,
+                    'usage_limit' => null,
+                    'amount' => null,
+                ]),
+            Subscription::create([
+                'project_id' => $rms->id,
+                'tier_id' => 5,
+                'usage_limit' => null,
+                'amount' => null,
+                'expires_at' => Carbon::now()->addMonth()
+            ])
+        );
+
+        // Seed the subscriptions.
+        $minie->subscriptions()->saveMany(
+            Subscription::factory()
+                ->times(mt_rand(3, 5))
+                ->create([
+                    'project_id' => $minie->id,
+                    'tier_id' => 1,
+                    'usage_limit' => null,
+                    'amount' => null,
+                ]),
+            Subscription::create([
+                'project_id' => $minie->id,
                 'tier_id' => 5,
                 'usage_limit' => null,
                 'amount' => null,
