@@ -81,14 +81,6 @@ class UserSeeder extends Seeder
         );
 
         // Seed a project.
-        $transact = Project::create([
-            'team_id' => $amprest->id,
-            'name' => 'Amprest Transact',
-            'description' => 'Amprest Technologies Transact Service',
-            'pay_callback' => ''
-        ]);
-
-        // Seed a project.
         $masomo = Project::create([
             'team_id' => $amprest->id,
             'name' => 'Masomo by Amprest',
@@ -132,21 +124,6 @@ class UserSeeder extends Seeder
             'uuid' => '10000003',
             'api_key' => 'c0ef8bc5a007f00a9c534440ab1caa59',
         ]);
-
-        // Seed the M-Pesa credentials.
-        $transact->mpesaCredentials()->save(
-            MPesaCredentials::create([
-                'project_id' => $transact->id,
-                'short_code' => '4076235',
-                'operating_short_code' => '4076235',
-                'short_code_type' => 'pay_bill',
-                'consumer_key' => 'aWhxai3dsFDUf09YbWnlpo334F9DhxR3',
-                'consumer_secret' => '6Xa1MMAGCMvSHQoi',
-                'pass_key' => '157374172682982e8e44847210d710d03136b8d01f955ef94f0ef3f614d51657',
-                'app_user_name' => 'amprest',
-                'app_user_password' => '#Amprest-1234!',
-            ])
-        );
 
         // Seed the M-Pesa credentials.
         $cakeUniverse->mpesaCredentials()->save(
@@ -198,25 +175,6 @@ class UserSeeder extends Seeder
             SenderID::create([
                 'project_id' => $masomo->id,
                 'code' => 'KNDSCHOOL',
-            ])
-        );
-
-        // Seed the subscriptions.
-        $transact->subscriptions()->saveMany(
-            Subscription::factory()
-                ->times(mt_rand(3, 5))
-                ->create([
-                    'project_id' => $transact->id,
-                    'tier_id' => 1,
-                    'usage_limit' => null,
-                    'amount' => null,
-                ]),
-            Subscription::create([
-                'project_id' => $transact->id,
-                'tier_id' => 5,
-                'usage_limit' => null,
-                'amount' => null,
-                'expires_at' => Carbon::now()->addMonth()
             ])
         );
 
