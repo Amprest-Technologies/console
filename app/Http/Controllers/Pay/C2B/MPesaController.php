@@ -110,7 +110,7 @@ class MPesaController extends Controller
      */
     protected function broadcast(Request $request, string $shortCode)
     {
-        dd($shortCode);
+        return $shortCode;
 
         try {
             // Get the M-Pesa credentials.
