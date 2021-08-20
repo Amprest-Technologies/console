@@ -128,7 +128,7 @@ class UserSeeder extends Seeder
             'team_id' => $amprest->id,
             'name' => 'Runda Gardens Residents Estate Association',
             'description' => 'Residents Management Project',
-            'pay_callback' => 'https://webhook.site/2c40fcbb-ebcb-4c4f-8080-d6108744b460',
+            'pay_callback' => 'https://nyumbanitech.co.ke/api/mpesa/transactions',
             'uuid' => '10000003',
             'api_key' => 'c0ef8bc5a007f00a9c534440ab1caa59',
         ]);
@@ -137,8 +137,8 @@ class UserSeeder extends Seeder
         $transact->mpesaCredentials()->save(
             MPesaCredentials::create([
                 'project_id' => $transact->id,
-                'short_code' => '204440',
-                'operating_short_code' => '204440',
+                'short_code' => '4076235',
+                'operating_short_code' => '4076235',
                 'short_code_type' => 'pay_bill',
                 'consumer_key' => 'aWhxai3dsFDUf09YbWnlpo334F9DhxR3',
                 'consumer_secret' => '6Xa1MMAGCMvSHQoi',
