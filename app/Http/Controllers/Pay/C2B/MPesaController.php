@@ -115,6 +115,8 @@ class MPesaController extends Controller
             $mpesaCredentials = MPesaCredentials::where('short_code', $shortCode)
                 ->first();
 
+            dd($mpesaCredentials);
+
             // Throw an error if the credentials don't exist.
             if (!$mpesaCredentials) {
                 throw new Exception("No credentials matching this short code were found", 404);
