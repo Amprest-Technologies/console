@@ -110,12 +110,12 @@ class MPesaController extends Controller
      */
     protected function broadcast(Request $request, string $shortCode)
     {
+        dd($shortCode);
+
         try {
             // Get the M-Pesa credentials.
             $mpesaCredentials = MPesaCredentials::where('short_code', $shortCode)
                 ->first();
-
-            dd($mpesaCredentials, $shortCode);
 
             // Throw an error if the credentials don't exist.
             if (!$mpesaCredentials) {
