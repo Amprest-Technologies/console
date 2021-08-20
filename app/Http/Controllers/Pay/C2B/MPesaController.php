@@ -113,8 +113,7 @@ class MPesaController extends Controller
         // Get the M-Pesa credentials.
         $mpesaCredentials = MPesaCredentials::where('short_code', $shortCode)
          ->first();
-
-        return $mpesaCredentials->project;
+        
         try {
             // Get the M-Pesa credentials.
             $mpesaCredentials = MPesaCredentials::where('short_code', $shortCode)
