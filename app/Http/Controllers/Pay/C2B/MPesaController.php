@@ -110,9 +110,11 @@ class MPesaController extends Controller
      */
     protected function broadcast(Request $request, string $shortCode)
     {
-        return $mpesaCredentials = MPesaCredentials::where('short_code', $shortCode)
-        ->first();
+        // Get the M-Pesa credentials.
+        $mpesaCredentials = MPesaCredentials::where('short_code', $shortCode)
+         ->first();
 
+        return $mpesaCredentials->project->pay_callback;
         try {
             // Get the M-Pesa credentials.
             $mpesaCredentials = MPesaCredentials::where('short_code', $shortCode)
