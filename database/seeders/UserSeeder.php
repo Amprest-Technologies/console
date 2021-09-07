@@ -125,6 +125,16 @@ class UserSeeder extends Seeder
             'api_key' => 'c0ef8bc5a007f00a9c534440ab1caa59',
         ]);
 
+        // Seed a project.
+        $enoque = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'Wambuafrikan Global',
+            'description' => 'Management of the wambuafrikan brand',
+            'pay_callback' => null,
+            'uuid' => '10000004',
+            'api_key' => 'e28d77fe328fd26f9f1d7afe6d4e2d47',
+        ]);
+
         // Seed the M-Pesa credentials.
         $cakeUniverse->mpesaCredentials()->save(
             MPesaCredentials::create([
@@ -166,6 +176,21 @@ class UserSeeder extends Seeder
                 'consumer_secret' => 'N2SZqnlKHN3GCxlQ',
                 'pass_key' => '74859e2c9ed8182acadbc2b6786a12e3ba0e1a8a7522d9cf6433ad130d29a402',
                 'app_user_name' => 'nyumbanitech',
+                'app_user_password' => '',
+            ])
+        );
+
+        // Seed the M-Pesa credentials.
+        $enoque->mpesaCredentials()->save(
+            MPesaCredentials::create([
+                'project_id' => $enoque->id,
+                'short_code' => '4077909',
+                'operating_short_code' => '4077909',
+                'short_code_type' => 'pay_bill',
+                'consumer_key' => 'yu6CIfVLQFpBeyRuELUSSZk3q0OQoXDe',
+                'consumer_secret' => 'v8fvK67lRGgGXGWo',
+                'pass_key' => '74859e2c9ed8182acadbc2b6786a12e3ba0e1a8a7522d9cf6433ad130d29a402',
+                'app_user_name' => 'geekaburu',
                 'app_user_password' => '',
             ])
         );
@@ -281,6 +306,25 @@ class UserSeeder extends Seeder
                 ]),
             Subscription::create([
                 'project_id' => $rundaGardens->id,
+                'tier_id' => 5,
+                'usage_limit' => null,
+                'amount' => null,
+                'expires_at' => Carbon::now()->addMonth()
+            ])
+        );
+
+        // Seed the subscriptions.
+        $enoque->subscriptions()->saveMany(
+            Subscription::factory()
+                ->times(mt_rand(3, 5))
+                ->create([
+                    'project_id' => $enoque->id,
+                    'tier_id' => 1,
+                    'usage_limit' => null,
+                    'amount' => null,
+                ]),
+            Subscription::create([
+                'project_id' => $enoque->id,
                 'tier_id' => 5,
                 'usage_limit' => null,
                 'amount' => null,
