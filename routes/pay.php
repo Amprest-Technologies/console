@@ -27,8 +27,7 @@ Route::get('/express', [
 Route::prefix('c2b')->namespace('C2B')->name('c2b.')->group(function () {
     Route::prefix('mpesa')->name('mpesa.')->group(function () {
         // Listen for incoming transactions.
-        Route::post('broadcast/{shortCode}', [MPesaController::class, 'broadcast'])
-            ->name('broadcast');
+        Route::post('broadcast', [MPesaController::class, 'broadcast'])->name('broadcast');
 
         Route::middleware(['subscribed:pay'])->group(function () {
             // Prepare an M-Pesa Transaction.

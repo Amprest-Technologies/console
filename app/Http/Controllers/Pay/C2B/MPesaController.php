@@ -109,11 +109,13 @@ class MPesaController extends Controller
      * @return Response
      * @author Brian K. Kiragu <brian@amprest.co.ke>
      */
-    protected function broadcast(Request $request, string $shortCode)
+    protected function broadcast(Request $request)
     {
+        //  Get the shortCode
+        $shortCode = $request->BusinessShortCode;
+
         //  Get the M-Pesa credentials.
-        $mpesaCredentials = MPesaCredentials::where('short_code', $shortCode)
-         ->first();
+        $mpesaCredentials = MPesaCredentials::where('short_code', $shortCode)->first();
         
         try {
             // Get the M-Pesa credentials.
@@ -140,7 +142,7 @@ class MPesaController extends Controller
                 $mpesaCredentials->project->pay_callback, $request->all()
             )->throw()->json();
 
-            $payload = 1;
+            $payload = $response;
             $status = 200;
         } catch (Exception $e) {
             $payload = $e->getMessage();

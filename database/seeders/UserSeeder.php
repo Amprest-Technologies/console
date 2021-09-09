@@ -140,7 +140,7 @@ class UserSeeder extends Seeder
             'team_id' => $amprest->id,
             'name' => 'Nyumbani Tech Solutions',
             'description' => 'Management of residents and tenants',
-            // 'pay_callback' => 'https://nyumbanitech.co.ke/api/mpesa/transactions',
+            'pay_callback' => 'https://nyumbanitech.co.ke/api/mpesa/transactions',
             'uuid' => '10000005',
             'api_key' => '02c5f213616f43615832027b69f4156d',
         ]);
