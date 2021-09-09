@@ -24,6 +24,8 @@ class CreateProjectsTable extends Migration
             $table->string('name');
             $table->string('description', 500)->nullable();
             $table->string('pay_callback')->nullable();
+            $table->string('pay_validation_hook')->nullable();
+            
             $table->enum('status', [
                 'inactive', 'suspended', 'active'
             ])->default('active');

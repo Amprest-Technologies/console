@@ -21,6 +21,7 @@ class Project extends Model
         'team_id', 'uuid', 'api_key',
         'name', 'description',
         'pay_callback',
+        'pay_validation_hook',
         'status',
     ];
 

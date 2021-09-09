@@ -85,11 +85,32 @@ class MPesaController extends Controller
      */
     protected function valid(Request $request)
     {
+        //  Get the shortCode
+        $shortCode = $request->BusinessShortCode;
+
+        //  Get the M-Pesa credentials.
+        $mpesaCredentials = MPesaCredentials::where('short_code', $shortCode)->first();
+
         try{
-            $payload = [
-                'code' => 0,
-                'description' => 'Validation was successful'
-            ];
+            // Get the M-Pesa credentials.
+            $mpesaCredentials = MPesaCredentials::where('short_code', $shortCode)->first();
+
+            //  Get the url
+            $url = ($mpesaCredentials->project->pay_validation_hook ?? false);
+
+            //  Return a default true if no hook is defined
+            if (!$url) {
+                $payload = [
+                    'code' => 0,
+                    'description' => 'Validation was successful'
+                ];
+            } else {
+                $payload = [
+                    'code' => 1,
+                    'description' => 'Validation has failed'
+                ];
+            }
+
         } catch (Exception $e) {
             $payload = $e->getMessage();
             $status = 404;
