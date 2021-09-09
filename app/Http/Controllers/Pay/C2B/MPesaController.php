@@ -105,8 +105,12 @@ class MPesaController extends Controller
                     'description' => 'Validation was successful'
                 ];
             } else {
+                // Send the request to the service.
+                $response = Http::post($url, $request->all())->json();
+
+                //  Define the payload
                 $payload = [
-                    'code' => 1,
+                    'code' => ($response['payload']['code'] ?? null) == 0 ? 0 : 1,
                     'description' => 'Validation has failed'
                 ];
             }
