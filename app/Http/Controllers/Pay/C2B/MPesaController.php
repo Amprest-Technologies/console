@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Pay\C2B;
 
+use App\Events\MobileMoney\Mpesa\TransactionCompleted;
 use App\Http\Controllers\Controller;
 use App\Models\MPesaCredentials;
 use Exception;
@@ -110,7 +111,7 @@ class MPesaController extends Controller
      */
     protected function broadcast(Request $request, string $shortCode)
     {
-        // Get the M-Pesa credentials.
+        //  Get the M-Pesa credentials.
         $mpesaCredentials = MPesaCredentials::where('short_code', $shortCode)
          ->first();
         
@@ -136,11 +137,10 @@ class MPesaController extends Controller
 
             // Send the request to the service.
             $response = Http::post(
-                $mpesaCredentials->project->pay_callback, 
-                $request->all()
+                $mpesaCredentials->project->pay_callback, $request->all()
             )->throw()->json();
 
-            $payload = $response;
+            $payload = 1;
             $status = 200;
         } catch (Exception $e) {
             $payload = $e->getMessage();
@@ -148,6 +148,12 @@ class MPesaController extends Controller
                 ? $e->getCode()
                 : 404;
         } finally {
+            //  Throw an mpesa completed event
+            event(new TransactionCompleted(
+                $request->all(), $mpesaCredentials->project ?? null
+            ));
+
+            //  Return the response
             return response($payload, $status);
         }
     }

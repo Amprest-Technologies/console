@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Listeners\MobileMoney\Mpesa\C2BTransactionEventSubscriber;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -21,12 +22,11 @@ class EventServiceProvider extends ServiceProvider
     ];
 
     /**
-     * Register any events for your application.
+     * The subscriber classes to register.
      *
-     * @return void
+     * @var $subscribe
      */
-    public function boot()
-    {
-        //
-    }
+    protected $subscribe = [
+        C2BTransactionEventSubscriber::class
+    ];
 }

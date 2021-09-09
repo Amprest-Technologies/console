@@ -58,4 +58,16 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+     * Define the webhook to receive the slack notification
+     *
+     * @param $notification
+     * @return string
+     * @author Alvin G. Kaburu <geekaburu@amprest.co.ke>
+     */
+    public function routeNotificationForSlack($notification): string
+    {
+        return 'https://hooks.slack.com/services/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';
+    }
 }
