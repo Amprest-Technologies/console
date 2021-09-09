@@ -26,6 +26,9 @@ Route::get('/express', [
 // Ensure only subscribed users can call these endpoints.
 Route::prefix('c2b')->namespace('C2B')->name('c2b.')->group(function () {
     Route::prefix('mpesa')->name('mpesa.')->group(function () {
+        // Listen for incoming validation transactions
+        Route::post('validate', [MPesaController::class, 'valid'])->name('validate');
+
         // Listen for incoming transactions.
         Route::post('broadcast', [MPesaController::class, 'broadcast'])->name('broadcast');
 

@@ -77,6 +77,28 @@ class MPesaController extends Controller
     }
 
     /**
+     * Validate a transaction.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return void
+     * @author Alvin G. Kaburu <geekaburu@amprest.co.ke>
+     */
+    protected function valid(Request $request)
+    {
+        try{
+            $payload = [
+                'code' => 0,
+                'description' => 'Validation was successful'
+            ];
+        } catch (Exception $e) {
+            $payload = $e->getMessage();
+            $status = 404;
+        } finally {
+            return response($payload, $status);
+        }
+    }
+
+    /**
      * Mark a transaction as retrieved.
      *
      * @param array $data
