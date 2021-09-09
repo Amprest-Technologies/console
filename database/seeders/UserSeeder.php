@@ -135,6 +135,16 @@ class UserSeeder extends Seeder
             'api_key' => 'e28d77fe328fd26f9f1d7afe6d4e2d47',
         ]);
 
+        // Seed a project.
+        $nyumbani = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'Nyumbani Tech Solutions',
+            'description' => 'Management of residents and tenants',
+            'pay_callback' => null,
+            'uuid' => '10000005',
+            'api_key' => '02c5f213616f43615832027b69f4156d',
+        ]);
+
         // Seed the M-Pesa credentials.
         $cakeUniverse->mpesaCredentials()->save(
             MPesaCredentials::create([
@@ -189,7 +199,22 @@ class UserSeeder extends Seeder
                 'short_code_type' => 'pay_bill',
                 'consumer_key' => 'yu6CIfVLQFpBeyRuELUSSZk3q0OQoXDe',
                 'consumer_secret' => 'v8fvK67lRGgGXGWo',
-                'pass_key' => '74859e2c9ed8182acadbc2b6786a12e3ba0e1a8a7522d9cf6433ad130d29a402',
+                'pass_key' => '0cb85be2d3f47bf63975bcd800bdf04f04c04e5af95e67d4a29c19c173f5f670',
+                'app_user_name' => 'geekaburu',
+                'app_user_password' => '',
+            ])
+        );
+
+        // Seed the M-Pesa credentials.
+        $nyumbani->mpesaCredentials()->save(
+            MPesaCredentials::create([
+                'project_id' => $nyumbani->id,
+                'short_code' => '4077493',
+                'operating_short_code' => '4077493',
+                'short_code_type' => 'pay_bill',
+                'consumer_key' => 'JE4DeZ8w1RBAN5Tr6EPyL6e5LGiwGVqv',
+                'consumer_secret' => 'nMA99NqXjxi4mWkX',
+                'pass_key' => '0cb85be2d3f47bf63975bcd800bdf04f04c04e5af95e67d4a29c19c173f5f670',
                 'app_user_name' => 'geekaburu',
                 'app_user_password' => '',
             ])
@@ -325,6 +350,25 @@ class UserSeeder extends Seeder
                 ]),
             Subscription::create([
                 'project_id' => $enoque->id,
+                'tier_id' => 5,
+                'usage_limit' => null,
+                'amount' => null,
+                'expires_at' => Carbon::now()->addMonth()
+            ])
+        );
+
+        // Seed the subscriptions.
+        $nyumbani->subscriptions()->saveMany(
+            Subscription::factory()
+                ->times(mt_rand(3, 5))
+                ->create([
+                    'project_id' => $nyumbani->id,
+                    'tier_id' => 1,
+                    'usage_limit' => null,
+                    'amount' => null,
+                ]),
+            Subscription::create([
+                'project_id' => $nyumbani->id,
                 'tier_id' => 5,
                 'usage_limit' => null,
                 'amount' => null,
