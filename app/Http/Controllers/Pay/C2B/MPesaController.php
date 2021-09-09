@@ -92,15 +92,12 @@ class MPesaController extends Controller
         $mpesaCredentials = MPesaCredentials::where('short_code', $shortCode)->first();
 
         try{
-            // Get the M-Pesa credentials.
-            $mpesaCredentials = MPesaCredentials::where('short_code', $shortCode)->first();
-
             //  Get the url
             $url = ($mpesaCredentials->project->pay_validation_hook ?? false);
 
             //  Return a default true if no hook is defined
             if (!$url) {
-                $payload = [
+                $response = [
                     'code' => 0,
                     'description' => 'Validation was successful'
                 ];
@@ -108,13 +105,19 @@ class MPesaController extends Controller
                 // Send the request to the service.
                 $response = Http::post($url, $request->all())->json();
 
+                //  Determine if request is valid
+                $valid = ($response['payload']['code'] ?? 1);
+
                 //  Define the payload
-                $payload = [
-                    'code' => ($response['payload']['code'] ?? null) == 0 ? 0 : 1,
-                    'description' => 'Validation has failed'
+                $response = [
+                    'code' => (int) $valid,
+                    'description' => (int) $valid === 0 ? 'Validation was successful' : 'Validation has failed'
                 ];
             }
 
+            //  Determine the response
+            $payload = $response;
+            $status = 200;
         } catch (Exception $e) {
             $payload = $e->getMessage();
             $status = 404;
