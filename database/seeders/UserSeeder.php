@@ -130,7 +130,7 @@ class UserSeeder extends Seeder
             'team_id' => $amprest->id,
             'name' => 'Wambuafrikan Global',
             'description' => 'Management of the wambuafrikan brand',
-            'pay_callback' => null,
+            'pay_callback' => 'https://minie.amprest.co.ke/api/mpesa/transactions',
             'pay_validation_hook' => 'https://minie.amprest.co.ke/api/mpesa/transactions/validate',
             'uuid' => '10000004',
             'api_key' => 'e28d77fe328fd26f9f1d7afe6d4e2d47',
