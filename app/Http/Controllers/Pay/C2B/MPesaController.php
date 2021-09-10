@@ -106,7 +106,7 @@ class MPesaController extends Controller
                 $response = Http::post($url, $request->all())->json();
 
                 //  Determine if request is valid
-                $valid = ($response['code'] ?? 1);
+                $valid = $response['code'] ?? 1;
 
                 //  Define the payload
                 $response = [
