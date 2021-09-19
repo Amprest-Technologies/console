@@ -141,7 +141,7 @@ class UserSeeder extends Seeder
             'team_id' => $amprest->id,
             'name' => 'Nyumbani Tech Solutions',
             'description' => 'Management of residents and tenants',
-            'pay_callback' => 'https://nyumbanitech.co.ke/api/mpesa/transactions',
+            'pay_callback' => 'https://demo.nyumbanitech.co.ke/api/mpesa/transactions',
             'uuid' => '10000005',
             'api_key' => '02c5f213616f43615832027b69f4156d',
         ]);
@@ -215,7 +215,7 @@ class UserSeeder extends Seeder
                 'short_code_type' => 'pay_bill',
                 'consumer_key' => 'JE4DeZ8w1RBAN5Tr6EPyL6e5LGiwGVqv',
                 'consumer_secret' => 'nMA99NqXjxi4mWkX',
-                'pass_key' => '0cb85be2d3f47bf63975bcd800bdf04f04c04e5af95e67d4a29c19c173f5f670',
+                'pass_key' => '7920e6cd06da5721e7472e335843c3287cdcf585d780957d94f14c03b7e7fd1b',
                 'app_user_name' => 'geekaburu',
                 'app_user_password' => '',
             ])
