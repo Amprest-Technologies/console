@@ -166,7 +166,7 @@ class MPesaController extends Controller
 
         //  Get the M-Pesa credentials.
         $mpesaCredentials = MPesaCredentials::where('short_code', $shortCode)->first();
-        
+
         try {
             // Get the M-Pesa credentials.
             $mpesaCredentials = MPesaCredentials::where('short_code', $shortCode)
@@ -206,6 +206,82 @@ class MPesaController extends Controller
             ));
 
             //  Return the response
+            return response($payload, $status);
+        }
+    }
+
+    /**
+     * Check an account's balance
+     *
+     * @param Request $request
+     * @return Response
+     * @author Brian K. Kiragu <brian@amprest.co.ke>
+     */
+    public function balance(Request $request)
+    {
+        try {
+            // Send the request to the service.
+            $response = Http::withHeaders($this->headers)
+                ->post("$this->uri/mobile-money/safaricom/c2b/balance", $request->all())
+                ->json();
+
+            // Set the response.
+            $payload = $response;
+            $status = 201;
+        } catch (Exception $e) {
+            $payload = $e->getMessage();
+            $status = 404;
+        } finally {
+            return response($payload, $status);
+        }
+    }
+
+    /**
+     * Check an account's balance callback
+     *
+     * @param Request $request
+     * @return Response
+     * @author Brian K. Kiragu <brian@amprest.co.ke>
+     */
+    public function balanceCallback(Request $request)
+    {
+        //  Get the shortCode
+        $shortCode = $request->business_short_code;
+
+        //  Get the M-Pesa credentials.
+        $mpesaCredentials = MPesaCredentials::where('short_code', $shortCode)->first();
+
+        try {
+            // Get the M-Pesa credentials.
+            $mpesaCredentials = MPesaCredentials::where('short_code', $shortCode)
+                ->first();
+
+            // Throw an error if the credentials don't exist.
+            if (!$mpesaCredentials) {
+                throw new Exception("No credentials matching this short code were found", 404);
+            }
+
+            // Throw an error if a project does not exist.
+            if (!$mpesaCredentials->project) {
+                throw new Exception("No project is linked to these credentials", 404);
+            }
+
+            // Throw an error if the URL is not found.
+            if (!$mpesaCredentials->project->balance_callback) {
+                throw new Exception("No callback URL was provided for this project", 404);
+            }
+
+            // Send the request to the service.
+            $response = Http::post(
+                $mpesaCredentials->project->balance_callback, $request->all()
+            )->throw()->json();
+
+            $payload = $response;
+            $status = 200;
+        } catch (Exception $e) {
+            $payload = $e->getMessage();
+            $status = 404;
+        } finally {
             return response($payload, $status);
         }
     }

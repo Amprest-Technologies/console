@@ -31,12 +31,15 @@ Route::prefix('c2b')->namespace('C2B')->name('c2b.')->group(function () {
 
         // Listen for incoming transactions.
         Route::post('broadcast', [MPesaController::class, 'broadcast'])->name('broadcast');
+        Route::post('balance-callback', [MPesaController::class, 'balanceCallback'])->name('balanceCallback');
 
         Route::middleware(['subscribed:pay'])->group(function () {
             // Prepare an M-Pesa Transaction.
             Route::post('prepare', [MPesaController::class, 'prepare'])->name('prepare');
             // Check an M-Pesa Transaction.
             Route::post('check', [MPesaController::class, 'check'])->name('check');
+            // Account Balance Query
+            Route::post('balance', [MPesaController::class, 'balance'])->name('balance');
         });
     });
 });
