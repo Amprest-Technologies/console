@@ -31,7 +31,6 @@ Route::prefix('c2b')->namespace('C2B')->name('c2b.')->group(function () {
 
         // Listen for incoming transactions.
         Route::post('broadcast', [MPesaController::class, 'broadcast'])->name('broadcast');
-        Route::post('balance-callback', [MPesaController::class, 'balanceCallback'])->name('balanceCallback');
 
         Route::middleware(['subscribed:pay'])->group(function () {
             // Prepare an M-Pesa Transaction.
