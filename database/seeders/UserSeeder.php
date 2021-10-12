@@ -80,6 +80,13 @@ class UserSeeder extends Seeder
             ['role' => 'administrator']
         );
 
+        // Seed the projects.
+        $amprestProject = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'Amprest Official Project',
+            'description' => 'Amprest Technologies Official Project'
+        ]);
+
         // Seed a project.
         $masomo = Project::create([
             'team_id' => $amprest->id,
@@ -135,6 +142,21 @@ class UserSeeder extends Seeder
             'uuid' => '10000005',
             'api_key' => '02c5f213616f43615832027b69f4156d',
         ]);
+
+         // Seed the M-Pesa credentials.
+        $amprestProject->mpesaCredentials()->save(
+            MPesaCredentials::create([
+                'project_id' => $amprestProject->id,
+                'short_code' => '204440',
+                'operating_short_code' => '204440',
+                'short_code_type' => 'pay_bill',
+                'consumer_key' => 'aWhxai3dsFDUf09YbWnlpo334F9DhxR3',
+                'consumer_secret' => '6Xa1MMAGCMvSHQoi',
+                'pass_key' => '157374172682982e8e44847210d710d03136b8d01f955ef94f0ef3f614d51657',
+                'app_user_name' => 'amprest',
+                'app_user_password' => '#Amprest-1234!',
+            ])
+        );
 
         // Seed the M-Pesa credentials.
         $cakeUniverse->mpesaCredentials()->save(
@@ -217,6 +239,18 @@ class UserSeeder extends Seeder
                 'project_id' => $masomo->id,
                 'code' => 'KNDSCHOOL',
             ])
+        );
+
+        // Seed the subscriptions.
+        $amprestProject->subscriptions()->saveMany(
+            Subscription::factory()
+                ->times(mt_rand(3, 5))
+                ->create([
+                    'project_id' => $amprestProject->id,
+                    'tier_id' => 1,
+                    'usage_limit' => null,
+                    'amount' => null,
+                ])
         );
 
         // Seed the subscriptions.
