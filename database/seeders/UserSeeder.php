@@ -80,6 +80,13 @@ class UserSeeder extends Seeder
             ['role' => 'administrator']
         );
 
+        // Seed the projects.
+        $amprestProject = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'Amprest Official Project',
+            'description' => 'Amprest Technologies Official Project'
+        ]);
+
         // Seed a project.
         $masomo = Project::create([
             'team_id' => $amprest->id,
@@ -103,16 +110,6 @@ class UserSeeder extends Seeder
             'team_id' => $amprest->id,
             'name' => 'Cake Universe KE',
             'description' => 'Cake Universe Cake Resellers Kenya'
-        ]);
-
-        // Seed a project.
-        $rms = Project::create([
-            'team_id' => $amprest->id,
-            'name' => 'Residents Management System',
-            'description' => 'Amprest Technologies Residents Management System',
-            'pay_callback' => 'http://197.137.65.245/api/mpesa/transactions',
-            'uuid' => '10000002',
-            'api_key' => '46ce0d0fd8c4326c19fc9d1a4f90af78',
         ]);
 
         // Seed a project.
@@ -145,6 +142,21 @@ class UserSeeder extends Seeder
             'uuid' => '10000005',
             'api_key' => '02c5f213616f43615832027b69f4156d',
         ]);
+
+         // Seed the M-Pesa credentials.
+        $amprestProject->mpesaCredentials()->save(
+            MPesaCredentials::create([
+                'project_id' => $amprestProject->id,
+                'short_code' => '204440',
+                'operating_short_code' => '204440',
+                'short_code_type' => 'pay_bill',
+                'consumer_key' => 'aWhxai3dsFDUf09YbWnlpo334F9DhxR3',
+                'consumer_secret' => '6Xa1MMAGCMvSHQoi',
+                'pass_key' => '157374172682982e8e44847210d710d03136b8d01f955ef94f0ef3f614d51657',
+                'app_user_name' => 'amprest',
+                'app_user_password' => '#Amprest-1234!',
+            ])
+        );
 
         // Seed the M-Pesa credentials.
         $cakeUniverse->mpesaCredentials()->save(
@@ -186,8 +198,8 @@ class UserSeeder extends Seeder
                 'consumer_key' => 'vnJbsrtt0PD97FvpOLMA5mJljsLWpRgD',
                 'consumer_secret' => 'N2SZqnlKHN3GCxlQ',
                 'pass_key' => '74859e2c9ed8182acadbc2b6786a12e3ba0e1a8a7522d9cf6433ad130d29a402',
-                'app_user_name' => 'nyumbanitech',
-                'app_user_password' => '',
+                'app_user_name' => 'rgeaapi',
+                'app_user_password' => '#RGEAAPI1234',
             ])
         );
 
@@ -216,8 +228,8 @@ class UserSeeder extends Seeder
                 'consumer_key' => 'JE4DeZ8w1RBAN5Tr6EPyL6e5LGiwGVqv',
                 'consumer_secret' => 'nMA99NqXjxi4mWkX',
                 'pass_key' => '7920e6cd06da5721e7472e335843c3287cdcf585d780957d94f14c03b7e7fd1b',
-                'app_user_name' => 'geekaburu',
-                'app_user_password' => '',
+                'app_user_name' => 'nyumbaniapi',
+                'app_user_password' => '#NYUMBANIAPI1234',
             ])
         );
 
@@ -230,22 +242,15 @@ class UserSeeder extends Seeder
         );
 
         // Seed the subscriptions.
-        $rms->subscriptions()->saveMany(
+        $amprestProject->subscriptions()->saveMany(
             Subscription::factory()
                 ->times(mt_rand(3, 5))
                 ->create([
-                    'project_id' => $rms->id,
+                    'project_id' => $amprestProject->id,
                     'tier_id' => 1,
                     'usage_limit' => null,
                     'amount' => null,
-                ]),
-            Subscription::create([
-                'project_id' => $rms->id,
-                'tier_id' => 5,
-                'usage_limit' => null,
-                'amount' => null,
-                'expires_at' => Carbon::now()->addMonth()
-            ])
+                ])
         );
 
         // Seed the subscriptions.
