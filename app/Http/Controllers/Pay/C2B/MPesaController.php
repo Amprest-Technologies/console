@@ -98,8 +98,7 @@ class MPesaController extends Controller
             //  Return a default true if no hook is defined
             if (!$url) {
                 $response = [
-                    'code' => 0,
-                    'description' => 'Validation was successful'
+                    'code' => 0, 'description' => 'Validation was successful'
                 ];
             } else {
                 // Send the request to the service.
@@ -168,21 +167,21 @@ class MPesaController extends Controller
         $mpesaCredentials = MPesaCredentials::where('short_code', $shortCode)->first();
         
         try {
-            // Get the M-Pesa credentials.
+            //  Get the M-Pesa credentials.
             $mpesaCredentials = MPesaCredentials::where('short_code', $shortCode)
                 ->first();
 
-            // Throw an error if the credentials don't exist.
+            //  Throw an error if the credentials don't exist.
             if (!$mpesaCredentials) {
                 throw new Exception("No credentials matching this short code were found", 404);
             }
 
-            // Throw an error if a project does not exist.
+            //  Throw an error if a project does not exist.
             if (!$mpesaCredentials->project) {
                 throw new Exception("No project is linked to these credentials", 404);
             }
 
-            // Throw an error if the URL is not found.
+            //  Throw an error if the URL is not found.
             if (!$mpesaCredentials->project->pay_callback) {
                 throw new Exception("No callback URL was provided for this project", 404);
             }
