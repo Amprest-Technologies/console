@@ -22,6 +22,7 @@ class Project extends Model
         'name', 'description',
         'pay_callback',
         'pay_validation_hook',
+        'balance_callback',
         'status',
     ];
 
