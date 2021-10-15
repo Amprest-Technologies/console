@@ -237,8 +237,13 @@ class MPesaController extends Controller
                 throw new Exception("No balance callback URL was provided for this project", 404);
             }
 
+            //  Append missing headers
+            $headers = array_merge($this->headers, [
+                'Encoded-Keys' => base64_encode("{$mpesaCredentials->consumer_key}:{$mpesaCredentials->consumer_secret}")
+            ]);
+
             // Send the request to the service.
-            $response = Http::withHeaders($this->headers)
+            $response = Http::withHeaders($headers)
                 ->post("$this->uri/mobile-money/safaricom/c2b/balance", [
                     'business_short_code' => $shortCode,
                     'identifier_type' => match($mpesaCredentials->short_code_type){
