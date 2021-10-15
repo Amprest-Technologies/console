@@ -140,7 +140,7 @@ class UserSeeder extends Seeder
             'name' => 'Nyumbani Tech Solutions',
             'description' => 'Management of residents and tenants',
             'pay_transaction_callback' => 'https://demo.nyumbanitech.co.ke/api/mpesa/transactions',
-            'pay_balance_callback' => 'https://webhook.site/fd060e2b-06bc-49fb-9379-2d4f84e37c61',
+            'pay_balance_callback' => 'https://demo.nyumbanitech.co.ke/api/mpesa/01c47b7a-d94f-427d-8c38-8f2c65dee4dc/balance',
             'uuid' => '10000005',
             'api_key' => '02c5f213616f43615832027b69f4156d',
         ]);
