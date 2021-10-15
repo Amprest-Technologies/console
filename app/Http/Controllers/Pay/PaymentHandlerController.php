@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Pay;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Response;
 use Inertia\Inertia;
 

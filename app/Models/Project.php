@@ -20,9 +20,9 @@ class Project extends Model
     protected $fillable = [
         'team_id', 'uuid', 'api_key',
         'name', 'description',
-        'pay_callback',
-        'pay_validation_hook',
-        'balance_callback',
+        'pay_transaction_callback',
+        'pay_validation_callback',
+        'pay_balance_callback',
         'status',
     ];
 

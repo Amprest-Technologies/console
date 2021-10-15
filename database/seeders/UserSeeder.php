@@ -80,7 +80,7 @@ class UserSeeder extends Seeder
             ['role' => 'administrator']
         );
 
-        // Seed the projects.
+        // Seed a project.
         $amprestProject = Project::create([
             'team_id' => $amprest->id,
             'name' => 'Amprest Official Project',
@@ -117,7 +117,8 @@ class UserSeeder extends Seeder
             'team_id' => $amprest->id,
             'name' => 'Runda Gardens Residents Estate Association',
             'description' => 'Residents Management Project',
-            'pay_callback' => 'https://nyumbanitech.co.ke/api/mpesa/transactions',
+            'pay_transaction_callback' => 'https://nyumbanitech.co.ke/api/mpesa/transactions',
+            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/mpesa/b1b429b3-aac5-42ef-bcb3-da15d861ca54/balance',
             'uuid' => '10000003',
             'api_key' => 'c0ef8bc5a007f00a9c534440ab1caa59',
         ]);
@@ -127,8 +128,8 @@ class UserSeeder extends Seeder
             'team_id' => $amprest->id,
             'name' => 'Wambuafrikan Global',
             'description' => 'Management of the wambuafrikan brand',
-            'pay_callback' => 'https://minie.amprest.co.ke/api/mpesa/transactions',
-            'pay_validation_hook' => 'https://minie.amprest.co.ke/api/mpesa/transactions/validate',
+            'pay_transaction_callback' => 'https://minie.amprest.co.ke/api/mpesa/transactions',
+            'pay_validation_callback' => 'https://minie.amprest.co.ke/api/mpesa/transactions/validate',
             'uuid' => '10000004',
             'api_key' => 'e28d77fe328fd26f9f1d7afe6d4e2d47',
         ]);
@@ -138,12 +139,13 @@ class UserSeeder extends Seeder
             'team_id' => $amprest->id,
             'name' => 'Nyumbani Tech Solutions',
             'description' => 'Management of residents and tenants',
-            'pay_callback' => 'https://demo.nyumbanitech.co.ke/api/mpesa/transactions',
+            'pay_transaction_callback' => 'https://demo.nyumbanitech.co.ke/api/mpesa/transactions',
+            'pay_balance_callback' => 'https://webhook.site/fd060e2b-06bc-49fb-9379-2d4f84e37c61',
             'uuid' => '10000005',
             'api_key' => '02c5f213616f43615832027b69f4156d',
         ]);
 
-         // Seed the M-Pesa credentials.
+        // Seed the M-Pesa credentials.
         $amprestProject->mpesaCredentials()->save(
             MPesaCredentials::create([
                 'project_id' => $amprestProject->id,
