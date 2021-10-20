@@ -145,6 +145,17 @@ class UserSeeder extends Seeder
             'api_key' => '02c5f213616f43615832027b69f4156d',
         ]);
 
+        // Seed a project.
+        $bestcare = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'Bestcare Property Consultant Ltd',
+            'description' => 'Management of residents and tenants',
+            'pay_transaction_callback' => 'https://nyumbanitech.co.ke/api/mpesa/transactions',
+            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/mpesa/01c47b7a-d94f-427d-8c38-8f2c65dee4dc/balance',
+            'uuid' => '10000006',
+            'api_key' => '45ec72179026023d8ed0d6202f081f83',
+        ]);
+
         // Seed the M-Pesa credentials.
         $amprestProject->mpesaCredentials()->save(
             MPesaCredentials::create([
@@ -232,6 +243,21 @@ class UserSeeder extends Seeder
                 'pass_key' => '7920e6cd06da5721e7472e335843c3287cdcf585d780957d94f14c03b7e7fd1b',
                 'app_user_name' => 'nyumbaniapi',
                 'app_user_password' => '#NYUMBANIAPI1234',
+            ])
+        );
+
+        // Seed the M-Pesa credentials.
+        $bestcare->mpesaCredentials()->save(
+            MPesaCredentials::create([
+                'project_id' => $bestcare->id,
+                'short_code' => '4078251',
+                'operating_short_code' => '4078251',
+                'short_code_type' => 'pay_bill',
+                'consumer_key' => 'cX9KKMIdjCoMDoT4sJSlm5sYgfPG1JLA',
+                'consumer_secret' => 'ZVW8bMxFbC93ARAl',
+                'pass_key' => '7920e6cd06da5721e7472e335843c3287cdcf585d780957d94f14c03b7e7fd1b',
+                'app_user_name' => 'BestcareAPI',
+                'app_user_password' => 'SDHSHDS3747434!!',
             ])
         );
 
@@ -377,6 +403,25 @@ class UserSeeder extends Seeder
                 ]),
             Subscription::create([
                 'project_id' => $nyumbani->id,
+                'tier_id' => 5,
+                'usage_limit' => null,
+                'amount' => null,
+                'expires_at' => Carbon::now()->addMonth()
+            ])
+        );
+
+         // Seed the subscriptions.
+        $bestcare->subscriptions()->saveMany(
+            Subscription::factory()
+                ->times(mt_rand(3, 5))
+                ->create([
+                    'project_id' => $bestcare->id,
+                    'tier_id' => 1,
+                    'usage_limit' => null,
+                    'amount' => null,
+                ]),
+            Subscription::create([
+                'project_id' => $bestcare->id,
                 'tier_id' => 5,
                 'usage_limit' => null,
                 'amount' => null,
