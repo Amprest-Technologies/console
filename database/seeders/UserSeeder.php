@@ -156,6 +156,28 @@ class UserSeeder extends Seeder
             'api_key' => '45ec72179026023d8ed0d6202f081f83',
         ]);
 
+        //  Seed a project
+        $augustino = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'Augustino Ltd',
+            'description' => 'Management of residents and tenants',
+            'pay_transaction_callback' => 'https://nyumbanitech.co.ke/api/mpesa/transactions',
+            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/mpesa/01c47b7a-d94f-427d-8c38-8f2c65dee4dc/balance',
+            'uuid' => '10000007',
+            'api_key' => '834adb5c1446f05ff4434757e1618f18',
+        ]);
+
+        //  Seed a project
+        $centralClose = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'Central Close Thome',
+            'description' => 'Management of residents and tenants',
+            'pay_transaction_callback' => 'https://nyumbanitech.co.ke/api/mpesa/transactions',
+            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/mpesa/01c47b7a-d94f-427d-8c38-8f2c65dee4dc/balance',
+            'uuid' => '10000008',
+            'api_key' => 'cd4269811d52c5534f267aab6b5eb5a5',
+        ]);
+
         // Seed the M-Pesa credentials.
         $amprestProject->mpesaCredentials()->save(
             MPesaCredentials::create([
@@ -258,6 +280,36 @@ class UserSeeder extends Seeder
                 'pass_key' => '7920e6cd06da5721e7472e335843c3287cdcf585d780957d94f14c03b7e7fd1b',
                 'app_user_name' => 'BestcareAPI',
                 'app_user_password' => 'SDHSHDS3747434!!',
+            ])
+        );
+
+        // Seed the M-Pesa credentials.
+        $augustino->mpesaCredentials()->save(
+            MPesaCredentials::create([
+                'project_id' => $augustino->id,
+                'short_code' => '4085035',
+                'operating_short_code' => '4085035',
+                'short_code_type' => 'pay_bill',
+                'consumer_key' => 'TGgfx1XA1A78Nm1rNR8A1mFjSruP5OAU',
+                'consumer_secret' => 'bS1hOF9qMZGOY6r5',
+                'pass_key' => '7920e6cd06da5721e7472e335843c3287cdcf585d780957d94f14c03b7e7fd1b',
+                'app_user_name' => 'NYUMBANIAPI',
+                'app_user_password' => 'AUGUSTINO@2022',
+            ])
+        );
+
+        // Seed the M-Pesa credentials.
+        $centralClose->mpesaCredentials()->save(
+            MPesaCredentials::create([
+                'project_id' => $centralClose->id,
+                'short_code' => '4084931',
+                'operating_short_code' => '4084931',
+                'short_code_type' => 'pay_bill',
+                'consumer_key' => 'AqcPv5YH2aldGcGq9xCxAoBCYnsWj5db',
+                'consumer_secret' => '6DWckDvM29W5bo73',
+                'pass_key' => '7920e6cd06da5721e7472e335843c3287cdcf585d780957d94f14c03b7e7fd1b',
+                'app_user_name' => 'CENTRALCLOSEAPI',
+                'app_user_password' => 'CENTRALCLOSE@2022',
             ])
         );
 
@@ -410,7 +462,7 @@ class UserSeeder extends Seeder
             ])
         );
 
-         // Seed the subscriptions.
+        // Seed the subscriptions.
         $bestcare->subscriptions()->saveMany(
             Subscription::factory()
                 ->times(mt_rand(3, 5))
@@ -422,6 +474,44 @@ class UserSeeder extends Seeder
                 ]),
             Subscription::create([
                 'project_id' => $bestcare->id,
+                'tier_id' => 5,
+                'usage_limit' => null,
+                'amount' => null,
+                'expires_at' => Carbon::now()->addMonth()
+            ])
+        );
+
+        // Seed the subscriptions.
+        $augustino->subscriptions()->saveMany(
+            Subscription::factory()
+                ->times(mt_rand(3, 5))
+                ->create([
+                    'project_id' => $augustino->id,
+                    'tier_id' => 1,
+                    'usage_limit' => null,
+                    'amount' => null,
+                ]),
+            Subscription::create([
+                'project_id' => $augustino->id,
+                'tier_id' => 5,
+                'usage_limit' => null,
+                'amount' => null,
+                'expires_at' => Carbon::now()->addMonth()
+            ])
+        );
+
+        // Seed the subscriptions.
+        $centralClose->subscriptions()->saveMany(
+            Subscription::factory()
+                ->times(mt_rand(3, 5))
+                ->create([
+                    'project_id' => $centralClose->id,
+                    'tier_id' => 1,
+                    'usage_limit' => null,
+                    'amount' => null,
+                ]),
+            Subscription::create([
+                'project_id' => $centralClose->id,
                 'tier_id' => 5,
                 'usage_limit' => null,
                 'amount' => null,
