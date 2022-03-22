@@ -139,8 +139,8 @@ class UserSeeder extends Seeder
             'team_id' => $amprest->id,
             'name' => 'Nyumbani Tech Solutions',
             'description' => 'Management of residents and tenants',
-            'pay_transaction_callback' => 'https://demo.nyumbanitech.co.ke/api/mpesa/transactions',
-            'pay_balance_callback' => 'https://demo.nyumbanitech.co.ke/api/mpesa/01c47b7a-d94f-427d-8c38-8f2c65dee4dc/balance',
+            'pay_transaction_callback' => 'https://demo.nyumbanitech.co.ke/api/v1/mpesa/transactions',
+            'pay_balance_callback' => 'https://demo.nyumbanitech.co.ke/api/v1/mpesa/01c47b7a-d94f-427d-8c38-8f2c65dee4dc/balance',
             'uuid' => '10000005',
             'api_key' => '02c5f213616f43615832027b69f4156d',
         ]);
@@ -292,8 +292,8 @@ class UserSeeder extends Seeder
                 'short_code_type' => 'pay_bill',
                 'consumer_key' => 'TGgfx1XA1A78Nm1rNR8A1mFjSruP5OAU',
                 'consumer_secret' => 'bS1hOF9qMZGOY6r5',
-                'pass_key' => '7920e6cd06da5721e7472e335843c3287cdcf585d780957d94f14c03b7e7fd1b',
-                'app_user_name' => 'NYUMBANIAPI',
+                'pass_key' => '1b380772934a647e93bb6c5df7c0796a3ebb25d9c9300baafc3a9b398f569923',
+                'app_user_name' => 'AUGUSTINOAPI',
                 'app_user_password' => 'AUGUSTINO@2022',
             ])
         );
@@ -307,7 +307,7 @@ class UserSeeder extends Seeder
                 'short_code_type' => 'pay_bill',
                 'consumer_key' => 'AqcPv5YH2aldGcGq9xCxAoBCYnsWj5db',
                 'consumer_secret' => '6DWckDvM29W5bo73',
-                'pass_key' => '7920e6cd06da5721e7472e335843c3287cdcf585d780957d94f14c03b7e7fd1b',
+                'pass_key' => 'a113e3c8c11e218e45a7cba9d82ec3a7e84596516fcddbe996726191a7927083',
                 'app_user_name' => 'CENTRALCLOSEAPI',
                 'app_user_password' => 'CENTRALCLOSE@2022',
             ])
