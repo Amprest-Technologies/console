@@ -117,8 +117,8 @@ class UserSeeder extends Seeder
             'team_id' => $amprest->id,
             'name' => 'Runda Gardens Residents Estate Association',
             'description' => 'Residents Management Project',
-            'pay_transaction_callback' => 'https://nyumbanitech.co.ke/api/mpesa/transactions',
-            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/mpesa/b1b429b3-aac5-42ef-bcb3-da15d861ca54/balance',
+            'pay_transaction_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/transactions',
+            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/b1b429b3-aac5-42ef-bcb3-da15d861ca54/balance',
             'uuid' => '10000003',
             'api_key' => 'c0ef8bc5a007f00a9c534440ab1caa59',
         ]);
@@ -150,8 +150,8 @@ class UserSeeder extends Seeder
             'team_id' => $amprest->id,
             'name' => 'Bestcare Property Consultant Ltd',
             'description' => 'Management of residents and tenants',
-            'pay_transaction_callback' => 'https://nyumbanitech.co.ke/api/mpesa/transactions',
-            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/mpesa/01c47b7a-d94f-427d-8c38-8f2c65dee4dc/balance',
+            'pay_transaction_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/transactions',
+            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/01c47b7a-d94f-427d-8c38-8f2c65dee4dc/balance',
             'uuid' => '10000006',
             'api_key' => '45ec72179026023d8ed0d6202f081f83',
         ]);
@@ -161,8 +161,8 @@ class UserSeeder extends Seeder
             'team_id' => $amprest->id,
             'name' => 'Augustino Ltd',
             'description' => 'Management of residents and tenants',
-            'pay_transaction_callback' => 'https://nyumbanitech.co.ke/api/mpesa/transactions',
-            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/mpesa/01c47b7a-d94f-427d-8c38-8f2c65dee4dc/balance',
+            'pay_transaction_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/transactions',
+            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/01c47b7a-d94f-427d-8c38-8f2c65dee4dc/balance',
             'uuid' => '10000007',
             'api_key' => '834adb5c1446f05ff4434757e1618f18',
         ]);
@@ -172,8 +172,8 @@ class UserSeeder extends Seeder
             'team_id' => $amprest->id,
             'name' => 'Central Close Thome',
             'description' => 'Management of residents and tenants',
-            'pay_transaction_callback' => 'https://nyumbanitech.co.ke/api/mpesa/transactions',
-            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/mpesa/01c47b7a-d94f-427d-8c38-8f2c65dee4dc/balance',
+            'pay_transaction_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/transactions',
+            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/01c47b7a-d94f-427d-8c38-8f2c65dee4dc/balance',
             'uuid' => '10000008',
             'api_key' => 'cd4269811d52c5534f267aab6b5eb5a5',
         ]);
