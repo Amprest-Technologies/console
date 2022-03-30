@@ -328,8 +328,8 @@ class UserSeeder extends Seeder
         $muthaigaParkside->mpesaCredentials()->save(
             MPesaCredentials::create([
                 'project_id' => $muthaigaParkside->id,
-                'short_code' => '4085951',
-                'operating_short_code' => '4085951',
+                'short_code' => '4085961',
+                'operating_short_code' => '4085961',
                 'short_code_type' => 'pay_bill',
                 'consumer_key' => 'wPEE6mM4DXHSAA8Vrvgzsc1BfFMoEBed',
                 'consumer_secret' => 'TlB2AF6YsFPMQase',

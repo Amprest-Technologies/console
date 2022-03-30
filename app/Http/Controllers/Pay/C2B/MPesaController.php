@@ -198,7 +198,8 @@ class MPesaController extends Controller
         } finally {
             //  Throw an mpesa completed event
             event(new TransactionCompleted(
-                $request->all(), $mpesaCredentials->project ?? null
+                $request->all(), 
+                $mpesaCredentials->project ?? null
             ));
 
             //  Return the response
