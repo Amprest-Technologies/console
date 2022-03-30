@@ -162,7 +162,7 @@ class UserSeeder extends Seeder
             'name' => 'Augustino Ltd',
             'description' => 'Management of residents and tenants',
             'pay_transaction_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/transactions',
-            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/01c47b7a-d94f-427d-8c38-8f2c65dee4dc/balance',
+            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/3bda3860-210e-47df-a3c9-0a0a79ed67c7/balance',
             'uuid' => '10000007',
             'api_key' => '834adb5c1446f05ff4434757e1618f18',
         ]);
@@ -176,6 +176,17 @@ class UserSeeder extends Seeder
             'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/01c47b7a-d94f-427d-8c38-8f2c65dee4dc/balance',
             'uuid' => '10000008',
             'api_key' => 'cd4269811d52c5534f267aab6b5eb5a5',
+        ]);
+
+        //  Seed a project
+        $muthaigaParkside = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'Muthaiga North Parkside Residents Association',
+            'description' => 'Management of residents and tenants',
+            'pay_transaction_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/transactions',
+            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/01c47b7a-d94f-427d-8c38-8f2c65dee4dc/balance',
+            'uuid' => '10000009',
+            'api_key' => 'fe32b6a3b5f1734d001420927e339eec',
         ]);
 
         // Seed the M-Pesa credentials.
@@ -310,6 +321,21 @@ class UserSeeder extends Seeder
                 'pass_key' => 'a113e3c8c11e218e45a7cba9d82ec3a7e84596516fcddbe996726191a7927083',
                 'app_user_name' => 'CENTRALCLOSEAPI',
                 'app_user_password' => 'CENTRALCLOSE@2022',
+            ])
+        );
+
+        // Seed the M-Pesa credentials.
+        $muthaigaParkside->mpesaCredentials()->save(
+            MPesaCredentials::create([
+                'project_id' => $muthaigaParkside->id,
+                'short_code' => '4085951',
+                'operating_short_code' => '4085951',
+                'short_code_type' => 'pay_bill',
+                'consumer_key' => 'wPEE6mM4DXHSAA8Vrvgzsc1BfFMoEBed',
+                'consumer_secret' => 'TlB2AF6YsFPMQase',
+                'pass_key' => 'a113e3c8c11e218e45a7cba9d82ec3a7e84596516fcddbe996726191a7927083',
+                'app_user_name' => 'PARKSIDEAPI',
+                'app_user_password' => 'Parkside@2022',
             ])
         );
 
@@ -512,6 +538,25 @@ class UserSeeder extends Seeder
                 ]),
             Subscription::create([
                 'project_id' => $centralClose->id,
+                'tier_id' => 5,
+                'usage_limit' => null,
+                'amount' => null,
+                'expires_at' => Carbon::now()->addMonth()
+            ])
+        );
+
+        // Seed the subscriptions.
+        $muthaigaParkside->subscriptions()->saveMany(
+            Subscription::factory()
+                ->times(mt_rand(3, 5))
+                ->create([
+                    'project_id' => $muthaigaParkside->id,
+                    'tier_id' => 1,
+                    'usage_limit' => null,
+                    'amount' => null,
+                ]),
+            Subscription::create([
+                'project_id' => $muthaigaParkside->id,
                 'tier_id' => 5,
                 'usage_limit' => null,
                 'amount' => null,
