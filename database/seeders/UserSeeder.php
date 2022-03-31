@@ -333,7 +333,7 @@ class UserSeeder extends Seeder
                 'short_code_type' => 'pay_bill',
                 'consumer_key' => 'wPEE6mM4DXHSAA8Vrvgzsc1BfFMoEBed',
                 'consumer_secret' => 'TlB2AF6YsFPMQase',
-                'pass_key' => 'a113e3c8c11e218e45a7cba9d82ec3a7e84596516fcddbe996726191a7927083',
+                'pass_key' => '6ac97e164a863c240ee11ba3a9d0266f377c1a6485197f87315a01fac6eb6f87',
                 'app_user_name' => 'PARKSIDEAPI',
                 'app_user_password' => 'Parkside@2022',
             ])
