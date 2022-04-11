@@ -197,10 +197,12 @@ class MPesaController extends Controller
                 : 404;
         } finally {
             //  Throw an mpesa completed event
-            event(new TransactionCompleted(
-                $request->all(), 
-                $mpesaCredentials->project ?? null
-            ));
+            if($shortCode != 204440) {
+                event(new TransactionCompleted(
+                    $request->all(), 
+                    $mpesaCredentials->project ?? null
+                ));
+            }
 
             //  Return the response
             return response($payload, $status);

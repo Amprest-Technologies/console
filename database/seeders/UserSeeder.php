@@ -84,7 +84,8 @@ class UserSeeder extends Seeder
         $amprestProject = Project::create([
             'team_id' => $amprest->id,
             'name' => 'Amprest Official Project',
-            'description' => 'Amprest Technologies Official Project'
+            'description' => 'Amprest Technologies Official Project',
+            'pay_transaction_callback' => 'https://botman.amprest.co.ke/api/botman/mpesa/confirm',
         ]);
 
         // Seed a project.
