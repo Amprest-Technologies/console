@@ -39,6 +39,8 @@ Route::prefix('c2b')->namespace('C2B')->name('c2b.')->group(function () {
             Route::post('check', [MPesaController::class, 'check'])->name('check');
             // Account Balance Query
             Route::post('balance', [MPesaController::class, 'balance'])->name('balance');
+            //  Trigger an STK Push
+            Route::post('trigger-stk', [MPesaController::class, 'triggerStk'])->name('triggerStk');
         });
     });
 });

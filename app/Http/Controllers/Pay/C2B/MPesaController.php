@@ -20,7 +20,9 @@ class MPesaController extends Controller
         // Get the base URI and headers
         $this->uri = env('AMPREST_PAYMENT_API_URI');
         $this->headers = [
-            'Api-Token' => env('AMPREST_PAYMENT_API_TOKEN')
+            'Api-Token' => env('AMPREST_PAYMENT_API_TOKEN'),
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json',
         ];
     }
 
@@ -143,6 +145,53 @@ class MPesaController extends Controller
             // Set the response.
             $payload = $response;
             $status = 200;
+        } catch (Exception $e) {
+            $payload = $e->getMessage();
+            $status = 404;
+        } finally {
+            return response($payload, $status);
+        }
+    }
+
+    /**
+     * Trigger an STK push
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return void
+     * @author Alvin G. Kaburu <geekaburu@amprest.co.ke>
+     */
+    public function triggerSTK(Request $request)
+    {
+        //  Get the M-Pesa credentials.
+        try {
+            //  Get the mpesa credentials
+            $mpesaCredentials = MPesaCredentials::where('short_code', $request->short_code)
+                ->firstOrFail();
+
+            // Build the payload
+            $payload = [
+                'business_short_code' => $mpesaCredentials->short_code,
+                'bill_ref_number' => $request->bill_ref_number,
+                'msisdn' => $request->phone_number,
+                'transaction_amount' => $request->amount,
+                'transaction_desc' => $request->transaction_desc,
+                'business_short_code_type' => $mpesaCredentials->short_code_type
+            ];
+
+            //  Append missing headers
+            $headers = array_merge($this->headers, [
+                'Pass-Key' => $mpesaCredentials->pass_key,
+                'Encoded-Keys' => base64_encode("{$mpesaCredentials->consumer_key}:{$mpesaCredentials->consumer_secret}")
+            ]);
+
+            // Send the request to the pay service.
+            $response = Http::withHeaders($headers)
+                ->post("$this->uri/mobile-money/safaricom/c2b/trigger-stk", $payload)
+                ->json();
+
+            // Set the response.
+            $payload = $response;
+            $status = 201;
         } catch (Exception $e) {
             $payload = $e->getMessage();
             $status = 404;

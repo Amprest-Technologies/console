@@ -86,6 +86,7 @@ class UserSeeder extends Seeder
             'name' => 'Amprest Official Project',
             'description' => 'Amprest Technologies Official Project',
             'pay_transaction_callback' => 'https://botman.amprest.co.ke/api/botman/mpesa/confirm',
+            'api_key' => '4af06203465217ea0b27038c18cdb4d2'
         ]);
 
         // Seed a project.
