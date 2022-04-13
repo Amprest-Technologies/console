@@ -62,7 +62,7 @@ class MPesaController extends Controller
     public function check(Request $request)
     {
         //  Get the shortCode
-        $shortCode = $request->shortCode;
+        $shortCode = $request->short_code;
 
         //  Get the M-Pesa credentials.
         $mpesaCredentials = MPesaCredentials::where('short_code', $shortCode)->first();
