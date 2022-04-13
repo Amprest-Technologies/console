@@ -140,12 +140,12 @@ class MPesaController extends Controller
      * @return Response
      * @author Brian K. Kiragu <brian@amprest.co.ke>
      */
-    protected function retrieve(array $data)
+    public function retrieve(Request $request)
     {
         try {
             // Send the request to the service.
             $response = Http::withHeaders($this->headers)
-                ->post("$this->uri/mobile-money/safaricom/c2b/retrieve", $data)
+                ->post("$this->uri/mobile-money/safaricom/c2b/retrieve", $request->all())
                 ->json();
 
             // Set the response.
