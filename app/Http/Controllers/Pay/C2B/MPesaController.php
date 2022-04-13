@@ -61,11 +61,21 @@ class MPesaController extends Controller
      */
     public function check(Request $request)
     {
+        //  Get the shortCode
+        $shortCode = $request->shortCode;
+
+        //  Get the M-Pesa credentials.
+        $mpesaCredentials = MPesaCredentials::where('short_code', $shortCode)->first();
+
         try {
             // Send the request to the service.
             $response = Http::withHeaders($this->headers)
-                ->post("$this->uri/mobile-money/safaricom/c2b/check", $request->all())
-                ->json();
+                ->post("$this->uri/mobile-money/safaricom/c2b/check", [
+                    'business_short_code' => $shortCode,
+                    'transaction_amount' => $request->amount,
+                    'transaction_type' => $mpesaCredentials->short_code_type,
+                    'transaction_id' => $request->transaction_id
+                ])->json();
 
             // Set the response.
             $payload = $response;

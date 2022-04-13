@@ -37,6 +37,8 @@ Route::prefix('c2b')->namespace('C2B')->name('c2b.')->group(function () {
             Route::post('prepare', [MPesaController::class, 'prepare'])->name('prepare');
             // Check an M-Pesa Transaction.
             Route::post('check', [MPesaController::class, 'check'])->name('check');
+            // Check an M-Pesa Transaction.
+            Route::post('retrieve', [MPesaController::class, 'retrieve'])->name('retrieve');
             // Account Balance Query
             Route::post('balance', [MPesaController::class, 'balance'])->name('balance');
             //  Trigger an STK Push
