@@ -172,10 +172,10 @@ class UserSeeder extends Seeder
         //  Seed a project
         $centralClose = Project::create([
             'team_id' => $amprest->id,
-            'name' => 'Central Close Thome',
+            'name' => 'Central Close Residents Association',
             'description' => 'Management of residents and tenants',
             'pay_transaction_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/transactions',
-            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/01c47b7a-d94f-427d-8c38-8f2c65dee4dc/balance',
+            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/a9d5944a-9799-4924-a622-6e560417645e/balance',
             'uuid' => '10000008',
             'api_key' => 'cd4269811d52c5534f267aab6b5eb5a5',
         ]);
