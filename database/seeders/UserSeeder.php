@@ -191,6 +191,17 @@ class UserSeeder extends Seeder
             'api_key' => 'fe32b6a3b5f1734d001420927e339eec',
         ]);
 
+        //  Seed a project
+        $kihuwan = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'Kihuwan Investements Limited',
+            'description' => 'Management of residents and tenants',
+            'pay_transaction_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/transactions',
+            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/01c47b7a-d94f-427d-8c38-8f2c65dee4dc/balance',
+            'uuid' => '10000010',
+            'api_key' => '0778696ea7ce437a2bdadb3966754093',
+        ]);
+
         // Seed the M-Pesa credentials.
         $amprestProject->mpesaCredentials()->save(
             MPesaCredentials::create([
@@ -338,6 +349,21 @@ class UserSeeder extends Seeder
                 'pass_key' => '6ac97e164a863c240ee11ba3a9d0266f377c1a6485197f87315a01fac6eb6f87',
                 'app_user_name' => 'PARKSIDEAPI',
                 'app_user_password' => 'Parkside@2022',
+            ])
+        );
+
+        // Seed the M-Pesa credentials.
+        $kihuwan->mpesaCredentials()->save(
+            MPesaCredentials::create([
+                'project_id' => $kihuwan->id,
+                'short_code' => '597097',
+                'operating_short_code' => '597097',
+                'short_code_type' => 'pay_bill',
+                'consumer_key' => '6PONQqO7OzoCzI0OLHgw2FORv2qJkhMY',
+                'consumer_secret' => 'DqAUBgYKgJuqJ6cN',
+                'pass_key' => '6ac97e164a863c240ee11ba3a9d0266f377c1a6485197f87315a01fac6eb6f87',
+                'app_user_name' => 'NyumbaniKihuwan',
+                'app_user_password' => 'TechSoln@2022!',
             ])
         );
 
@@ -559,6 +585,25 @@ class UserSeeder extends Seeder
                 ]),
             Subscription::create([
                 'project_id' => $muthaigaParkside->id,
+                'tier_id' => 5,
+                'usage_limit' => null,
+                'amount' => null,
+                'expires_at' => Carbon::now()->addMonth()
+            ])
+        );
+
+        // Seed the subscriptions.
+        $kihuwan->subscriptions()->saveMany(
+            Subscription::factory()
+                ->times(mt_rand(3, 5))
+                ->create([
+                    'project_id' => $kihuwan->id,
+                    'tier_id' => 1,
+                    'usage_limit' => null,
+                    'amount' => null,
+                ]),
+            Subscription::create([
+                'project_id' => $kihuwan->id,
                 'tier_id' => 5,
                 'usage_limit' => null,
                 'amount' => null,
