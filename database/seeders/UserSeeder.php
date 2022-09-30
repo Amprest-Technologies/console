@@ -197,7 +197,7 @@ class UserSeeder extends Seeder
             'name' => 'Kihuwan Investements Limited',
             'description' => 'Management of residents and tenants',
             'pay_transaction_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/transactions',
-            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/01c47b7a-d94f-427d-8c38-8f2c65dee4dc/balance',
+            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/f201b434-6347-4679-9afe-81fbcb1d52ed/balance',
             'uuid' => '10000010',
             'api_key' => '0778696ea7ce437a2bdadb3966754093',
         ]);
