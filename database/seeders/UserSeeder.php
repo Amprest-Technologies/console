@@ -202,6 +202,17 @@ class UserSeeder extends Seeder
             'api_key' => '0778696ea7ce437a2bdadb3966754093',
         ]);
 
+        //  Seed a project
+        $warira = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'Warira Court Management Limited',
+            'description' => 'Management of residents and tenants',
+            'pay_transaction_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/transactions',
+            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/f201b434-6347-4679-9afe-81fbcb1d52ed/balance',
+            'uuid' => '10000011',
+            'api_key' => '8566d7f8898d20a39b7da8b5545bc6c8',
+        ]);
+
         // Seed the M-Pesa credentials.
         $amprestProject->mpesaCredentials()->save(
             MPesaCredentials::create([
@@ -361,9 +372,24 @@ class UserSeeder extends Seeder
                 'short_code_type' => 'pay_bill',
                 'consumer_key' => '6PONQqO7OzoCzI0OLHgw2FORv2qJkhMY',
                 'consumer_secret' => 'DqAUBgYKgJuqJ6cN',
-                'pass_key' => '6ac97e164a863c240ee11ba3a9d0266f377c1a6485197f87315a01fac6eb6f87',
+                'pass_key' => '8b0bc3ca70d7325a563f945c1e3e8985eda7069ac6fcd6c0a6e5078ca6841738',
                 'app_user_name' => 'NyumbaniKihuwan',
                 'app_user_password' => 'TechSoln@2022!',
+            ])
+        );
+
+        // Seed the M-Pesa credentials.
+        $warira->mpesaCredentials()->save(
+            MPesaCredentials::create([
+                'project_id' => $warira->id,
+                'short_code' => '4106603',
+                'operating_short_code' => '4106603',
+                'short_code_type' => 'pay_bill',
+                'consumer_key' => 'tF8IfchzUv2s4hTM9uZOPnjIRpBBeqpE',
+                'consumer_secret' => 'qjW7ift6B9Nlr2yX',
+                'pass_key' => '8b0bc3ca70d7325a563f945c1e3e8985eda7069ac6fcd6c0a6e5078ca6841738',
+                'app_user_name' => 'WARIRAAPI',
+                'app_user_password' => 'Warira@2022',
             ])
         );
 
