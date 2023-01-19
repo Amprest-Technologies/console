@@ -387,7 +387,7 @@ class UserSeeder extends Seeder
                 'short_code_type' => 'pay_bill',
                 'consumer_key' => 'tF8IfchzUv2s4hTM9uZOPnjIRpBBeqpE',
                 'consumer_secret' => 'qjW7ift6B9Nlr2yX',
-                'pass_key' => '8b0bc3ca70d7325a563f945c1e3e8985eda7069ac6fcd6c0a6e5078ca6841738',
+                'pass_key' => '22532e4db366f53c3c6d80a667e61ee6c1b2c307fde0056825f9598922a5f1a8',
                 'app_user_name' => 'WARIRAAPI',
                 'app_user_password' => 'Warira@2022',
             ])
