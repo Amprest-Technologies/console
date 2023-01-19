@@ -208,7 +208,7 @@ class UserSeeder extends Seeder
             'name' => 'Warira Court Management Limited',
             'description' => 'Management of residents and tenants',
             'pay_transaction_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/transactions',
-            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/f201b434-6347-4679-9afe-81fbcb1d52ed/balance',
+            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/fda9809c-8279-448f-8354-5dbbc3c669fe/balance',
             'uuid' => '10000011',
             'api_key' => '8566d7f8898d20a39b7da8b5545bc6c8',
         ]);
