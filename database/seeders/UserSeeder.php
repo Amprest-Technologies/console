@@ -213,6 +213,39 @@ class UserSeeder extends Seeder
             'api_key' => '8566d7f8898d20a39b7da8b5545bc6c8',
         ]);
 
+        //  Seed a project
+        $waburugu1 = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'Waburugu Enterprises',
+            'description' => 'Management of residents and tenants',
+            'pay_transaction_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/transactions',
+            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/fda9809c-8279-448f-8354-5dbbc3c669fe/balance',
+            'uuid' => '10000012',
+            'api_key' => '2d3ae33c0072a28a1c01fe7666677a08',
+        ]);
+
+        //  Seed a project
+        $waburugu2 = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'Waburugu Enterprises',
+            'description' => 'Management of residents and tenants',
+            'pay_transaction_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/transactions',
+            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/fda9809c-8279-448f-8354-5dbbc3c669fe/balance',
+            'uuid' => '10000013',
+            'api_key' => 'c3ba9c80e35f7fcf6985a0b4f2a5562e',
+        ]);
+
+        //  Seed a project
+        $royalHostels = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'Royal Ladies Hostels Limited',
+            'description' => 'Management of residents and tenants',
+            'pay_transaction_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/transactions',
+            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/663c7162-ee79-467f-8d59-216981f8cee0/balance',
+            'uuid' => '10000014',
+            'api_key' => '970f12bfa2cf2e1080ea467fadfc45b4',
+        ]);
+
         // Seed the M-Pesa credentials.
         $amprestProject->mpesaCredentials()->save(
             MPesaCredentials::create([
@@ -390,6 +423,51 @@ class UserSeeder extends Seeder
                 'pass_key' => '22532e4db366f53c3c6d80a667e61ee6c1b2c307fde0056825f9598922a5f1a8',
                 'app_user_name' => 'WARIRAAPI',
                 'app_user_password' => 'Warira@2022',
+            ])
+        );
+
+        // Seed the M-Pesa credentials.
+        $waburugu1->mpesaCredentials()->save(
+            MPesaCredentials::create([
+                'project_id' => $waburugu1->id,
+                'short_code' => '4068455',
+                'operating_short_code' => '4068455',
+                'short_code_type' => 'pay_bill',
+                'consumer_key' => 'dtcBynS4fZwuMtWPnrMtH3Y5QPY0uVGa',
+                'consumer_secret' => 'tUj0amGTD04ZY6kb',
+                'pass_key' => '09e8d7f755d95308dc61ffd0063d6bdd0680bce7ee34348489558ac2c75a0a35',
+                'app_user_name' => 'NYUMBANIAPI',
+                'app_user_password' => '#Nyumbaniapi@2022',
+            ])
+        );
+
+        // Seed the M-Pesa credentials.
+        $waburugu2->mpesaCredentials()->save(
+            MPesaCredentials::create([
+                'project_id' => $waburugu2->id,
+                'short_code' => '4068461',
+                'operating_short_code' => '4068461',
+                'short_code_type' => 'pay_bill',
+                'consumer_key' => 'LwAfYONAb1uL4GU3xiIxCfrz8oGBXwEX',
+                'consumer_secret' => '9gDHnPHPlQisgHUL',
+                'pass_key' => '4ed2d73c720aa01a3bce326b928cf1f6b6c1c442526e02600ba3a897e3a0db0d',
+                'app_user_name' => 'NYUMBANIAPI',
+                'app_user_password' => '#Nyumbaniapi@2022',
+            ])
+        );
+
+        // Seed the M-Pesa credentials.
+        $royalHostels->mpesaCredentials()->save(
+            MPesaCredentials::create([
+                'project_id' => $royalHostels->id,
+                'short_code' => '4108279',
+                'operating_short_code' => '4108279',
+                'short_code_type' => 'pay_bill',
+                'consumer_key' => 'IOkKtLfBXcrOJqr3Wq7DPKsp8ALF4lsp',
+                'consumer_secret' => 'elMMeb8PtEoNFTCf',
+                'pass_key' => '56e0357839a71eb2870c5e11dc7425cea678625a218f2e682a20b26d35af1f86',
+                'app_user_name' => 'NYUMBANIAPI',
+                'app_user_password' => '#NyumbaniAPI@2022',
             ])
         );
 
