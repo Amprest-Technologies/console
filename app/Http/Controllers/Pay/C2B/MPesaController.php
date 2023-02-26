@@ -14,6 +14,7 @@ class MPesaController extends Controller
 {
     protected $baseURI;
     protected $headers;
+    protected $uri;
 
     public function __construct()
     {
@@ -305,7 +306,7 @@ class MPesaController extends Controller
                     'initiator' => $mpesaCredentials->app_user_name,
                     'initiator_password' => $mpesaCredentials->app_user_password,
                     'remarks' => $request->remarks,
-                    'result_callback' => $mpesaCredentials->project->pay_balance_callback
+                    'result_callback' => $mpesaCredentials->balance_callback
                 ])
                 ->json();
 

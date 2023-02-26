@@ -120,7 +120,6 @@ class UserSeeder extends Seeder
             'name' => 'Runda Gardens Residents Estate Association',
             'description' => 'Residents Management Project',
             'pay_transaction_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/transactions',
-            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/b1b429b3-aac5-42ef-bcb3-da15d861ca54/balance',
             'uuid' => '10000003',
             'api_key' => 'c0ef8bc5a007f00a9c534440ab1caa59',
         ]);
@@ -142,7 +141,6 @@ class UserSeeder extends Seeder
             'name' => 'Nyumbani Tech Solutions',
             'description' => 'Management of residents and tenants',
             'pay_transaction_callback' => 'https://demo.nyumbanitech.co.ke/api/v1/mpesa/transactions',
-            'pay_balance_callback' => 'https://demo.nyumbanitech.co.ke/api/v1/mpesa/01c47b7a-d94f-427d-8c38-8f2c65dee4dc/balance',
             'uuid' => '10000005',
             'api_key' => '02c5f213616f43615832027b69f4156d',
         ]);
@@ -153,7 +151,6 @@ class UserSeeder extends Seeder
             'name' => 'Bestcare Property Consultant Ltd',
             'description' => 'Management of residents and tenants',
             'pay_transaction_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/transactions',
-            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/01c47b7a-d94f-427d-8c38-8f2c65dee4dc/balance',
             'uuid' => '10000006',
             'api_key' => '45ec72179026023d8ed0d6202f081f83',
         ]);
@@ -164,7 +161,6 @@ class UserSeeder extends Seeder
             'name' => 'Augustino Ltd',
             'description' => 'Management of residents and tenants',
             'pay_transaction_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/transactions',
-            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/3bda3860-210e-47df-a3c9-0a0a79ed67c7/balance',
             'uuid' => '10000007',
             'api_key' => '834adb5c1446f05ff4434757e1618f18',
         ]);
@@ -175,7 +171,6 @@ class UserSeeder extends Seeder
             'name' => 'Central Close Residents Association',
             'description' => 'Management of residents and tenants',
             'pay_transaction_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/transactions',
-            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/a9d5944a-9799-4924-a622-6e560417645e/balance',
             'uuid' => '10000008',
             'api_key' => 'cd4269811d52c5534f267aab6b5eb5a5',
         ]);
@@ -186,7 +181,6 @@ class UserSeeder extends Seeder
             'name' => 'Muthaiga North Parkside Residents Association',
             'description' => 'Management of residents and tenants',
             'pay_transaction_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/transactions',
-            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/01c47b7a-d94f-427d-8c38-8f2c65dee4dc/balance',
             'uuid' => '10000009',
             'api_key' => 'fe32b6a3b5f1734d001420927e339eec',
         ]);
@@ -197,7 +191,6 @@ class UserSeeder extends Seeder
             'name' => 'Kihuwan Investements Limited',
             'description' => 'Management of residents and tenants',
             'pay_transaction_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/transactions',
-            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/f201b434-6347-4679-9afe-81fbcb1d52ed/balance',
             'uuid' => '10000010',
             'api_key' => '0778696ea7ce437a2bdadb3966754093',
         ]);
@@ -208,7 +201,6 @@ class UserSeeder extends Seeder
             'name' => 'Warira Court Management Limited',
             'description' => 'Management of residents and tenants',
             'pay_transaction_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/transactions',
-            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/fda9809c-8279-448f-8354-5dbbc3c669fe/balance',
             'uuid' => '10000011',
             'api_key' => '8566d7f8898d20a39b7da8b5545bc6c8',
         ]);
@@ -219,7 +211,6 @@ class UserSeeder extends Seeder
             'name' => 'Waburugu Enterprises',
             'description' => 'Management of residents and tenants',
             'pay_transaction_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/transactions',
-            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/fda9809c-8279-448f-8354-5dbbc3c669fe/balance',
             'uuid' => '10000012',
             'api_key' => '2d3ae33c0072a28a1c01fe7666677a08',
         ]);
@@ -230,7 +221,6 @@ class UserSeeder extends Seeder
             'name' => 'Waburugu Enterprises',
             'description' => 'Management of residents and tenants',
             'pay_transaction_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/transactions',
-            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/fda9809c-8279-448f-8354-5dbbc3c669fe/balance',
             'uuid' => '10000013',
             'api_key' => 'c3ba9c80e35f7fcf6985a0b4f2a5562e',
         ]);
@@ -241,7 +231,6 @@ class UserSeeder extends Seeder
             'name' => 'Royal Ladies Hostels Limited',
             'description' => 'Management of residents and tenants',
             'pay_transaction_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/transactions',
-            'pay_balance_callback' => 'https://nyumbanitech.co.ke/api/v1/mpesa/663c7162-ee79-467f-8d59-216981f8cee0/balance',
             'uuid' => '10000014',
             'api_key' => '970f12bfa2cf2e1080ea467fadfc45b4',
         ]);
@@ -251,7 +240,6 @@ class UserSeeder extends Seeder
             MPesaCredentials::create([
                 'project_id' => $amprestProject->id,
                 'short_code' => '204440',
-                'operating_short_code' => '204440',
                 'short_code_type' => 'pay_bill',
                 'consumer_key' => 'aWhxai3dsFDUf09YbWnlpo334F9DhxR3',
                 'consumer_secret' => '6Xa1MMAGCMvSHQoi',
@@ -266,7 +254,6 @@ class UserSeeder extends Seeder
             MPesaCredentials::create([
                 'project_id' => $cakeUniverse->id,
                 'short_code' => '950112',
-                'operating_short_code' => '929074',
                 'short_code_type' => 'buy_goods',
                 'consumer_key' => 'ogbDR2Ez6d0ewFkiGeFH2fRdA6oWf826',
                 'consumer_secret' => 'RMftl00KOFTAs098',
@@ -281,7 +268,6 @@ class UserSeeder extends Seeder
             MPesaCredentials::create([
                 'project_id' => $saimun->id,
                 'short_code' => '657531',
-                'operating_short_code' => '657531',
                 'short_code_type' => 'pay_bill',
                 'consumer_key' => 'DU3ZARknazFuQFE6O0ksm9U650QARTQO',
                 'consumer_secret' => 'KfMpbohT8of2ElBC',
@@ -296,13 +282,13 @@ class UserSeeder extends Seeder
             MPesaCredentials::create([
                 'project_id' => $rundaGardens->id,
                 'short_code' => '4076235',
-                'operating_short_code' => '4076235',
                 'short_code_type' => 'pay_bill',
                 'consumer_key' => 'vnJbsrtt0PD97FvpOLMA5mJljsLWpRgD',
                 'consumer_secret' => 'N2SZqnlKHN3GCxlQ',
                 'pass_key' => '74859e2c9ed8182acadbc2b6786a12e3ba0e1a8a7522d9cf6433ad130d29a402',
                 'app_user_name' => 'rgeaapi',
                 'app_user_password' => '#RGEAAPI1234',
+                'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/4076235/balance',
             ])
         );
 
@@ -311,7 +297,6 @@ class UserSeeder extends Seeder
             MPesaCredentials::create([
                 'project_id' => $enoque->id,
                 'short_code' => '4077909',
-                'operating_short_code' => '4077909',
                 'short_code_type' => 'pay_bill',
                 'consumer_key' => 'yu6CIfVLQFpBeyRuELUSSZk3q0OQoXDe',
                 'consumer_secret' => 'v8fvK67lRGgGXGWo',
@@ -326,13 +311,13 @@ class UserSeeder extends Seeder
             MPesaCredentials::create([
                 'project_id' => $nyumbani->id,
                 'short_code' => '4077493',
-                'operating_short_code' => '4077493',
                 'short_code_type' => 'pay_bill',
                 'consumer_key' => 'JE4DeZ8w1RBAN5Tr6EPyL6e5LGiwGVqv',
                 'consumer_secret' => 'nMA99NqXjxi4mWkX',
                 'pass_key' => '7920e6cd06da5721e7472e335843c3287cdcf585d780957d94f14c03b7e7fd1b',
                 'app_user_name' => 'nyumbaniapi',
                 'app_user_password' => '#NYUMBANIAPI1234',
+                'balance_callback' => 'https://demo.nyumbanitech.co.ke/api/v1/mpesa/4077493/balance',
             ])
         );
 
@@ -341,13 +326,13 @@ class UserSeeder extends Seeder
             MPesaCredentials::create([
                 'project_id' => $bestcare->id,
                 'short_code' => '4078251',
-                'operating_short_code' => '4078251',
                 'short_code_type' => 'pay_bill',
                 'consumer_key' => 'cX9KKMIdjCoMDoT4sJSlm5sYgfPG1JLA',
                 'consumer_secret' => 'ZVW8bMxFbC93ARAl',
                 'pass_key' => '7920e6cd06da5721e7472e335843c3287cdcf585d780957d94f14c03b7e7fd1b',
                 'app_user_name' => 'BestcareAPI',
                 'app_user_password' => 'SDHSHDS3747434!!',
+                'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/4078251/balance',
             ])
         );
 
@@ -356,13 +341,13 @@ class UserSeeder extends Seeder
             MPesaCredentials::create([
                 'project_id' => $augustino->id,
                 'short_code' => '4085035',
-                'operating_short_code' => '4085035',
                 'short_code_type' => 'pay_bill',
                 'consumer_key' => 'TGgfx1XA1A78Nm1rNR8A1mFjSruP5OAU',
                 'consumer_secret' => 'bS1hOF9qMZGOY6r5',
                 'pass_key' => '1b380772934a647e93bb6c5df7c0796a3ebb25d9c9300baafc3a9b398f569923',
                 'app_user_name' => 'AUGUSTINOAPI',
                 'app_user_password' => 'AUGUSTINO@2022',
+                'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/4085035/balance',
             ])
         );
 
@@ -371,13 +356,13 @@ class UserSeeder extends Seeder
             MPesaCredentials::create([
                 'project_id' => $centralClose->id,
                 'short_code' => '4084931',
-                'operating_short_code' => '4084931',
                 'short_code_type' => 'pay_bill',
                 'consumer_key' => 'AqcPv5YH2aldGcGq9xCxAoBCYnsWj5db',
                 'consumer_secret' => '6DWckDvM29W5bo73',
                 'pass_key' => 'a113e3c8c11e218e45a7cba9d82ec3a7e84596516fcddbe996726191a7927083',
                 'app_user_name' => 'CENTRALCLOSEAPI',
                 'app_user_password' => 'CENTRALCLOSE@2022',
+                'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/4084931/balance',
             ])
         );
 
@@ -386,13 +371,13 @@ class UserSeeder extends Seeder
             MPesaCredentials::create([
                 'project_id' => $muthaigaParkside->id,
                 'short_code' => '4085961',
-                'operating_short_code' => '4085961',
                 'short_code_type' => 'pay_bill',
                 'consumer_key' => 'wPEE6mM4DXHSAA8Vrvgzsc1BfFMoEBed',
                 'consumer_secret' => 'TlB2AF6YsFPMQase',
                 'pass_key' => '6ac97e164a863c240ee11ba3a9d0266f377c1a6485197f87315a01fac6eb6f87',
                 'app_user_name' => 'PARKSIDEAPI',
                 'app_user_password' => 'Parkside@2022',
+                'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/4085961/balance',
             ])
         );
 
@@ -401,13 +386,13 @@ class UserSeeder extends Seeder
             MPesaCredentials::create([
                 'project_id' => $kihuwan->id,
                 'short_code' => '597097',
-                'operating_short_code' => '597097',
                 'short_code_type' => 'pay_bill',
                 'consumer_key' => '6PONQqO7OzoCzI0OLHgw2FORv2qJkhMY',
                 'consumer_secret' => 'DqAUBgYKgJuqJ6cN',
                 'pass_key' => '8b0bc3ca70d7325a563f945c1e3e8985eda7069ac6fcd6c0a6e5078ca6841738',
                 'app_user_name' => 'NyumbaniKihuwan',
                 'app_user_password' => 'TechSoln@2022!',
+                'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/597097/balance',
             ])
         );
 
@@ -416,13 +401,13 @@ class UserSeeder extends Seeder
             MPesaCredentials::create([
                 'project_id' => $warira->id,
                 'short_code' => '4106603',
-                'operating_short_code' => '4106603',
                 'short_code_type' => 'pay_bill',
                 'consumer_key' => 'tF8IfchzUv2s4hTM9uZOPnjIRpBBeqpE',
                 'consumer_secret' => 'qjW7ift6B9Nlr2yX',
                 'pass_key' => '22532e4db366f53c3c6d80a667e61ee6c1b2c307fde0056825f9598922a5f1a8',
                 'app_user_name' => 'WARIRAAPI',
                 'app_user_password' => 'Warira@2022',
+                'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/4106603/balance',
             ])
         );
 
@@ -431,13 +416,13 @@ class UserSeeder extends Seeder
             MPesaCredentials::create([
                 'project_id' => $waburugu1->id,
                 'short_code' => '4068455',
-                'operating_short_code' => '4068455',
                 'short_code_type' => 'pay_bill',
                 'consumer_key' => 'dtcBynS4fZwuMtWPnrMtH3Y5QPY0uVGa',
                 'consumer_secret' => 'tUj0amGTD04ZY6kb',
                 'pass_key' => '09e8d7f755d95308dc61ffd0063d6bdd0680bce7ee34348489558ac2c75a0a35',
                 'app_user_name' => 'NYUMBANIAPI',
                 'app_user_password' => '#Nyumbaniapi@2022',
+                'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/4068455/balance',
             ])
         );
 
@@ -446,13 +431,13 @@ class UserSeeder extends Seeder
             MPesaCredentials::create([
                 'project_id' => $waburugu2->id,
                 'short_code' => '4068461',
-                'operating_short_code' => '4068461',
                 'short_code_type' => 'pay_bill',
                 'consumer_key' => 'LwAfYONAb1uL4GU3xiIxCfrz8oGBXwEX',
                 'consumer_secret' => '9gDHnPHPlQisgHUL',
                 'pass_key' => '4ed2d73c720aa01a3bce326b928cf1f6b6c1c442526e02600ba3a897e3a0db0d',
                 'app_user_name' => 'NYUMBANIAPI',
                 'app_user_password' => '#Nyumbaniapi@2022',
+                'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/4068461/balance',
             ])
         );
 
@@ -461,13 +446,13 @@ class UserSeeder extends Seeder
             MPesaCredentials::create([
                 'project_id' => $royalHostels->id,
                 'short_code' => '4108279',
-                'operating_short_code' => '4108279',
                 'short_code_type' => 'pay_bill',
                 'consumer_key' => 'IOkKtLfBXcrOJqr3Wq7DPKsp8ALF4lsp',
                 'consumer_secret' => 'elMMeb8PtEoNFTCf',
                 'pass_key' => '56e0357839a71eb2870c5e11dc7425cea678625a218f2e682a20b26d35af1f86',
                 'app_user_name' => 'NYUMBANIAPI',
                 'app_user_password' => '#NyumbaniAPI@2022',
+                'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/4108279/balance',
             ])
         );
 

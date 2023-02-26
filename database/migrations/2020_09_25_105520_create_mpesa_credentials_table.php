@@ -18,7 +18,6 @@ class CreateMPesaCredentialsTable extends Migration
             $table->unsignedBigInteger('project_id');
 
             $table->string('short_code');
-            $table->string('operating_short_code');
             $table->enum('short_code_type', [
                 'pay_bill', 'buy_goods'
             ])->default('pay_bill');
@@ -29,6 +28,8 @@ class CreateMPesaCredentialsTable extends Migration
 
             $table->string('app_user_name')->nullable();
             $table->string('app_user_password')->nullable();
+
+            $table->string('balance_callback')->nullable();
 
             $table->timestamps();
 
