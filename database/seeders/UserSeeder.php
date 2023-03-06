@@ -85,6 +85,7 @@ class UserSeeder extends Seeder
             'team_id' => $amprest->id,
             'name' => 'Amprest Official Project',
             'description' => 'Amprest Technologies Official Project',
+            'pay_transaction_callback' => 'https://tickets.wambuafrikan.co.ke/api/v1/mpesa/callback',
             'api_key' => '4af06203465217ea0b27038c18cdb4d2'
         ]);
 
@@ -128,7 +129,7 @@ class UserSeeder extends Seeder
             'team_id' => $amprest->id,
             'name' => 'Wambuafrikan Global',
             'description' => 'Management of the wambuafrikan brand',
-            'pay_transaction_callback' => 'https://ticktes.wambuafrikan.co.ke/api/v1/mpesa/callback',
+            'pay_transaction_callback' => 'https://tickets.wambuafrikan.co.ke/api/v1/mpesa/callback',
             'uuid' => '10000004',
             'api_key' => 'e28d77fe328fd26f9f1d7afe6d4e2d47',
         ]);
