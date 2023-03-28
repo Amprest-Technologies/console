@@ -85,7 +85,7 @@ class UserSeeder extends Seeder
             'team_id' => $amprest->id,
             'name' => 'Amprest Official Project',
             'description' => 'Amprest Technologies Official Project',
-            'pay_transaction_callback' => 'https://tickets.wambuafrikan.co.ke/api/v1/mpesa/callback',
+            'pay_transaction_callback' => 'https://wagtickets.co.ke/api/v1/mpesa/callback',
             'api_key' => '4af06203465217ea0b27038c18cdb4d2'
         ]);
 
@@ -119,7 +119,7 @@ class UserSeeder extends Seeder
             'team_id' => $amprest->id,
             'name' => 'Runda Gardens Residents Estate Association',
             'description' => 'Residents Management Project',
-            'pay_transaction_callback' => 'https:app.nyumbani.ke/api/v1/mpesa/transactions',
+            'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
             'uuid' => '10000003',
             'api_key' => 'c0ef8bc5a007f00a9c534440ab1caa59',
         ]);
@@ -129,7 +129,7 @@ class UserSeeder extends Seeder
             'team_id' => $amprest->id,
             'name' => 'Wambuafrikan Global',
             'description' => 'Management of the wambuafrikan brand',
-            'pay_transaction_callback' => 'https://tickets.wambuafrikan.co.ke/api/v1/mpesa/callback',
+            'pay_transaction_callback' => 'https://wagtickets.co.ke/api/v1/mpesa/callback',
             'uuid' => '10000004',
             'api_key' => 'e28d77fe328fd26f9f1d7afe6d4e2d47',
         ]);
@@ -139,7 +139,7 @@ class UserSeeder extends Seeder
             'team_id' => $amprest->id,
             'name' => 'Nyumbani Tech Solutions',
             'description' => 'Management of residents and tenants',
-            'pay_transaction_callback' => 'https://demo.nyumbanitech.co.ke/api/v1/mpesa/transactions',
+            'pay_transaction_callback' => 'https://demo.nyumbani.ke/api/v1/mpesa/transactions',
             'uuid' => '10000005',
             'api_key' => '02c5f213616f43615832027b69f4156d',
         ]);
@@ -149,7 +149,7 @@ class UserSeeder extends Seeder
             'team_id' => $amprest->id,
             'name' => 'Bestcare Property Consultant Ltd',
             'description' => 'Management of residents and tenants',
-            'pay_transaction_callback' => 'https:app.nyumbani.ke/api/v1/mpesa/transactions',
+            'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
             'uuid' => '10000006',
             'api_key' => '45ec72179026023d8ed0d6202f081f83',
         ]);
@@ -159,7 +159,7 @@ class UserSeeder extends Seeder
             'team_id' => $amprest->id,
             'name' => 'Augustino Ltd',
             'description' => 'Management of residents and tenants',
-            'pay_transaction_callback' => 'https:app.nyumbani.ke/api/v1/mpesa/transactions',
+            'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
             'uuid' => '10000007',
             'api_key' => '834adb5c1446f05ff4434757e1618f18',
         ]);
@@ -169,7 +169,7 @@ class UserSeeder extends Seeder
             'team_id' => $amprest->id,
             'name' => 'Central Close Residents Association',
             'description' => 'Management of residents and tenants',
-            'pay_transaction_callback' => 'https:app.nyumbani.ke/api/v1/mpesa/transactions',
+            'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
             'uuid' => '10000008',
             'api_key' => 'cd4269811d52c5534f267aab6b5eb5a5',
         ]);
@@ -179,7 +179,7 @@ class UserSeeder extends Seeder
             'team_id' => $amprest->id,
             'name' => 'Muthaiga North Parkside Residents Association',
             'description' => 'Management of residents and tenants',
-            'pay_transaction_callback' => 'https:app.nyumbani.ke/api/v1/mpesa/transactions',
+            'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
             'uuid' => '10000009',
             'api_key' => 'fe32b6a3b5f1734d001420927e339eec',
         ]);
@@ -189,7 +189,7 @@ class UserSeeder extends Seeder
             'team_id' => $amprest->id,
             'name' => 'Kihuwan Investements Limited',
             'description' => 'Management of residents and tenants',
-            'pay_transaction_callback' => 'https:app.nyumbani.ke/api/v1/mpesa/transactions',
+            'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
             'uuid' => '10000010',
             'api_key' => '0778696ea7ce437a2bdadb3966754093',
         ]);
@@ -199,7 +199,7 @@ class UserSeeder extends Seeder
             'team_id' => $amprest->id,
             'name' => 'Warira Court Management Limited',
             'description' => 'Management of residents and tenants',
-            'pay_transaction_callback' => 'https:app.nyumbani.ke/api/v1/mpesa/transactions',
+            'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
             'uuid' => '10000011',
             'api_key' => '8566d7f8898d20a39b7da8b5545bc6c8',
         ]);
@@ -209,7 +209,7 @@ class UserSeeder extends Seeder
             'team_id' => $amprest->id,
             'name' => 'Waburugu Enterprises',
             'description' => 'Management of residents and tenants',
-            'pay_transaction_callback' => 'https:app.nyumbani.ke/api/v1/mpesa/transactions',
+            'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
             'uuid' => '10000012',
             'api_key' => '2d3ae33c0072a28a1c01fe7666677a08',
         ]);
@@ -219,7 +219,7 @@ class UserSeeder extends Seeder
             'team_id' => $amprest->id,
             'name' => 'Waburugu Enterprises',
             'description' => 'Management of residents and tenants',
-            'pay_transaction_callback' => 'https:app.nyumbani.ke/api/v1/mpesa/transactions',
+            'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
             'uuid' => '10000013',
             'api_key' => 'c3ba9c80e35f7fcf6985a0b4f2a5562e',
         ]);
@@ -229,9 +229,19 @@ class UserSeeder extends Seeder
             'team_id' => $amprest->id,
             'name' => 'Royal Ladies Hostels Limited',
             'description' => 'Management of residents and tenants',
-            'pay_transaction_callback' => 'https:app.nyumbani.ke/api/v1/mpesa/transactions',
+            'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
             'uuid' => '10000014',
             'api_key' => '970f12bfa2cf2e1080ea467fadfc45b4',
+        ]);
+
+         // Seed a project.
+        $nyumbani2 = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'Nyumbani Tech Solutions',
+            'description' => 'Management of residents and tenants',
+            'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
+            'uuid' => '10000015',
+            'api_key' => '8ddc36dae71ce7ee1c2eee4ff2a5eb38',
         ]);
 
         // Seed the M-Pesa credentials.
@@ -316,7 +326,22 @@ class UserSeeder extends Seeder
                 'pass_key' => '7920e6cd06da5721e7472e335843c3287cdcf585d780957d94f14c03b7e7fd1b',
                 'app_user_name' => 'nyumbaniapi',
                 'app_user_password' => '#NYUMBANIAPI1234',
-                'balance_callback' => 'https://demo.nyumbanitech.co.ke/api/v1/mpesa/4077493/balance',
+                'balance_callback' => 'https://demo.nyumbani.ke/api/v1/mpesa/4077493/balance',
+            ])
+        );
+
+        // Seed the M-Pesa credentials.
+        $nyumbani2->mpesaCredentials()->save(
+            MPesaCredentials::create([
+                'project_id' => $nyumbani2->id,
+                'short_code' => '4095211',
+                'short_code_type' => 'pay_bill',
+                'consumer_key' => 'yGFqAcKDTNc7CdOmKyGc6jBO7Fud8pP9',
+                'consumer_secret' => 'lFU09OdMPNlXOzZn',
+                'pass_key' => '37fdf7ebb042ed54911a7aacb7ccd04687d2d2b6ef6cb9ee7a1e3e0da2f0c536',
+                'app_user_name' => 'NYUMBANIAPI',
+                'app_user_password' => '#Nyumbaniapi@2022',
+                'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/4068461/balance',
             ])
         );
 
@@ -597,6 +622,25 @@ class UserSeeder extends Seeder
                 ]),
             Subscription::create([
                 'project_id' => $nyumbani->id,
+                'tier_id' => 5,
+                'usage_limit' => null,
+                'amount' => null,
+                'expires_at' => Carbon::now()->addMonth()
+            ])
+        );
+
+        // Seed the subscriptions.
+        $nyumbani2->subscriptions()->saveMany(
+            Subscription::factory()
+                ->times(mt_rand(3, 5))
+                ->create([
+                    'project_id' => $nyumbani2->id,
+                    'tier_id' => 1,
+                    'usage_limit' => null,
+                    'amount' => null,
+                ]),
+            Subscription::create([
+                'project_id' => $nyumbani2->id,
                 'tier_id' => 5,
                 'usage_limit' => null,
                 'amount' => null,

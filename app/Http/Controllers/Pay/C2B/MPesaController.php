@@ -215,8 +215,15 @@ class MPesaController extends Controller
 
         try {
             //  Get the M-Pesa credentials.
-            $mpesaCredentials = MPesaCredentials::where('short_code', $shortCode)
+            $mpesaCredentials = MPesaCredentials::query()
+                ->where('short_code', $shortCode)
                 ->first();
+
+            //  Get the project
+            $project = $mpesaCredentials->project;
+
+            //  Get the call back
+            $callback = $project->pay_transaction_callback;
 
             //  Throw an error if the credentials don't exist.
             if (!$mpesaCredentials) {
@@ -224,20 +231,17 @@ class MPesaController extends Controller
             }
 
             //  Throw an error if a project does not exist.
-            if (!$mpesaCredentials->project) {
+            if (!$project) {
                 throw new Exception("No project is linked to these credentials", 404);
             }
 
             //  Throw an error if the URL is not found.
-            if (!$mpesaCredentials->project->pay_transaction_callback) {
+            if (!$callback) {
                 throw new Exception("No callback URL was provided for this project", 404);
             }
 
             // Send the request to the service.
-            $response = Http::post(
-                $mpesaCredentials->project->pay_transaction_callback, $request->all()
-            )->throw()->json();
-
+            $response = Http::post($callback, $request->all())->throw()->json();
             $payload = $response;
             $status = 200;
         } catch (Exception $e) {
