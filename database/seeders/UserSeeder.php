@@ -234,7 +234,7 @@ class UserSeeder extends Seeder
             'api_key' => '970f12bfa2cf2e1080ea467fadfc45b4',
         ]);
 
-         // Seed a project.
+        //  Seed a project.
         $nyumbani2 = Project::create([
             'team_id' => $amprest->id,
             'name' => 'Nyumbani Tech Solutions',
@@ -244,7 +244,27 @@ class UserSeeder extends Seeder
             'api_key' => '8ddc36dae71ce7ee1c2eee4ff2a5eb38',
         ]);
 
-        // Seed the M-Pesa credentials.
+        //  Seed a project.
+        $uniqueHomes1 = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'Unique Homes Management LTD',
+            'description' => 'Management of residents and tenants',
+            'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
+            'uuid' => '10000016',
+            'api_key' => 'f108f1d44edcbc5fb3a67a6cd1b11de2',
+        ]);
+
+        //  Seed a project.
+        $uniqueHomes2 = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'Unique Homes Management LTD',
+            'description' => 'Management of residents and tenants',
+            'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
+            'uuid' => '10000017',
+            'api_key' => 'ef5c9bbe8e8c0006f9f7b7f293386b3f',
+        ]);
+
+        //  Seed the M-Pesa credentials.
         $amprestProject->mpesaCredentials()->save(
             MPesaCredentials::create([
                 'project_id' => $amprestProject->id,
@@ -477,6 +497,36 @@ class UserSeeder extends Seeder
                 'app_user_name' => 'NYUMBANIAPI',
                 'app_user_password' => '#NyumbaniAPI@2022',
                 'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/4108279/balance',
+            ])
+        );
+
+        // Seed the M-Pesa credentials.
+        $uniqueHomes1->mpesaCredentials()->save(
+            MPesaCredentials::create([
+                'project_id' => $uniqueHomes1->id,
+                'short_code' => '4113687',
+                'short_code_type' => 'pay_bill',
+                'consumer_key' => 'Ql0mGCWHmZmPiZAQ1ONk4LOhxDDDyFgp',
+                'consumer_secret' => 'pFJJ7mAAe8iHNLhU',
+                'pass_key' => '0998207e85646929cfb274284df79a027cfba9b17bb27285d6551c3332b0213c',
+                'app_user_name' => 'NYUMBANIAPI',
+                'app_user_password' => '#Nyumbaniapi@2022',
+                'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/4113687/balance',
+            ])
+        );
+
+        // Seed the M-Pesa credentials.
+        $uniqueHomes2->mpesaCredentials()->save(
+            MPesaCredentials::create([
+                'project_id' => $uniqueHomes2->id,
+                'short_code' => '4114037',
+                'short_code_type' => 'pay_bill',
+                'consumer_key' => '6kBfqHbwzhBPKjKVflLFmsnWA2qGdPqV',
+                'consumer_secret' => 'csBHtKu4ROKvrTPW',
+                'pass_key' => '8b1faf5e4662ba7ff330d05c5df3f411c04d27ddbd252508b0f64a342c23b9d9',
+                'app_user_name' => 'NYUMBANIAPI',
+                'app_user_password' => '#Nyumbaniapi@2022',
+                'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/4068461/balance',
             ])
         );
 
