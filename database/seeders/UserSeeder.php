@@ -264,6 +264,16 @@ class UserSeeder extends Seeder
             'api_key' => 'ef5c9bbe8e8c0006f9f7b7f293386b3f',
         ]);
 
+        //  Seed a project.
+        $balozi = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'Mutahiga North Gardens Balozi Association',
+            'description' => 'Management of residents and tenants',
+            'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
+            'uuid' => '10000018',
+            'api_key' => '09f3e26071683115adca841674895248',
+        ]);
+
         //  Seed the M-Pesa credentials.
         $amprestProject->mpesaCredentials()->save(
             MPesaCredentials::create([
@@ -527,6 +537,21 @@ class UserSeeder extends Seeder
                 'app_user_name' => 'NYUMBANIAPI',
                 'app_user_password' => '#Nyumbaniapi@2022',
                 'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/4068461/balance',
+            ])
+        );
+
+        // Seed the M-Pesa credentials.
+        $balozi->mpesaCredentials()->save(
+            MPesaCredentials::create([
+                'project_id' => $balozi->id,
+                'short_code' => '4113815',
+                'short_code_type' => 'pay_bill',
+                'consumer_key' => '7KuMMopNZ8uJEOmtkHScKktq2PmFucJx',
+                'consumer_secret' => '2DkyUcIbzcGVMc7U',
+                'pass_key' => '9bcfacc4f9e6272e1b2e617eb148e45dad730ce43a3d649dd3633e6d37a1a5a7',
+                'app_user_name' => 'BALOZIAPI',
+                'app_user_password' => '#NyumbaniBalozi@2022',
+                'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/4113815/balance',
             ])
         );
 
