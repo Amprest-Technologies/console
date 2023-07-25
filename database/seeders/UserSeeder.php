@@ -274,6 +274,16 @@ class UserSeeder extends Seeder
             'api_key' => '09f3e26071683115adca841674895248',
         ]);
 
+        //  Seed a project.
+        $townview = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'Townview Hostels',
+            'description' => 'Management of residents and tenants',
+            'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
+            'uuid' => '10000019',
+            'api_key' => '139dca372febef5a28fed052e9e4196d',
+        ]);
+
         //  Seed the M-Pesa credentials.
         $amprestProject->mpesaCredentials()->save(
             MPesaCredentials::create([
@@ -552,6 +562,21 @@ class UserSeeder extends Seeder
                 'app_user_name' => 'BALOZIAPI',
                 'app_user_password' => '#NyumbaniBalozi@2022',
                 'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/4113815/balance',
+            ])
+        );
+
+        // Seed the M-Pesa credentials.
+        $townview->mpesaCredentials()->save(
+            MPesaCredentials::create([
+                'project_id' => $townview->id,
+                'short_code' => '4113689',
+                'short_code_type' => 'pay_bill',
+                'consumer_key' => 'PHPVBMVucSUhcFpG5T2WMoabXFW4TKAP',
+                'consumer_secret' => '42pXE6SNcL28tO83',
+                'pass_key' => '117beb4d061e2e6834402022217fa28c21aa94ff9cedb375fa8a54f68798594e',
+                'app_user_name' => 'TOWNVIEWAPI',
+                'app_user_password' => '#TownView@2022',
+                'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/4113689/balance',
             ])
         );
 
