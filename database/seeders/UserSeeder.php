@@ -5,11 +5,9 @@ namespace Database\Seeders;
 use App\Models\Membership;
 use App\Models\MPesaCredentials;
 use App\Models\Project;
-use App\Models\SenderID;
 use App\Models\Subscription;
 use App\Models\Team;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
@@ -87,15 +85,6 @@ class UserSeeder extends Seeder
             'description' => 'Amprest Technologies Official Project',
             'pay_transaction_callback' => 'https://wagtickets.co.ke/api/v1/mpesa/callback',
             'api_key' => '4af06203465217ea0b27038c18cdb4d2'
-        ]);
-
-        // Seed a project.
-        $masomo = Project::create([
-            'team_id' => $amprest->id,
-            'name' => 'Masomo by Amprest',
-            'description' => 'Amprest Technologies Masomo Education Platform',
-            'uuid' => '48236419',
-            'api_key' => '329ac8c2a9901864f9bab2c4603de9ba',
         ]);
 
         // Seed a project.
@@ -284,563 +273,262 @@ class UserSeeder extends Seeder
             'api_key' => '139dca372febef5a28fed052e9e4196d',
         ]);
 
+        //  Seed a project.
+        $nyumbaniBoysClub = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'Nyumbani - Boys Club',
+            'description' => 'Management of chama collections',
+            'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
+            'uuid' => '10000020',
+            'api_key' => '3b78324a2e617023cbbc04d6e4f8cbcf',
+        ]);
+
         //  Seed the M-Pesa credentials.
-        $amprestProject->mpesaCredentials()->save(
-            MPesaCredentials::create([
-                'project_id' => $amprestProject->id,
-                'short_code' => '204440',
-                'short_code_type' => 'pay_bill',
-                'consumer_key' => 'aWhxai3dsFDUf09YbWnlpo334F9DhxR3',
-                'consumer_secret' => '6Xa1MMAGCMvSHQoi',
-                'pass_key' => '157374172682982e8e44847210d710d03136b8d01f955ef94f0ef3f614d51657',
-                'app_user_name' => 'amprest',
-                'app_user_password' => '#Amprest-1234!',
-            ])
-        );
+        $amprestProject->mpesaCredentials()->create([
+            'short_code' => $shortCode = '204440',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => 'aWhxai3dsFDUf09YbWnlpo334F9DhxR3',
+            'consumer_secret' => '6Xa1MMAGCMvSHQoi',
+            'pass_key' => '157374172682982e8e44847210d710d03136b8d01f955ef94f0ef3f614d51657',
+            'app_user_name' => 'amprest',
+            'app_user_password' => '#Amprest-1234!',
+        ]);
 
         // Seed the M-Pesa credentials.
-        $cakeUniverse->mpesaCredentials()->save(
-            MPesaCredentials::create([
-                'project_id' => $cakeUniverse->id,
-                'short_code' => '950112',
-                'short_code_type' => 'buy_goods',
-                'consumer_key' => 'ogbDR2Ez6d0ewFkiGeFH2fRdA6oWf826',
-                'consumer_secret' => 'RMftl00KOFTAs098',
-                'pass_key' => '032b52504854cd5f21429fff627dd23d4bb5e692b125d4f3ffe83b8aa6d8a63b',
-                'app_user_name' => 'AmprestAPI',
-                'app_user_password' => '#Amprest-1234',
-            ])
-        );
+        $cakeUniverse->mpesaCredentials()->create([
+            'short_code' => $shortCode = '950112',
+            'short_code_type' => 'buy_goods',
+            'consumer_key' => 'ogbDR2Ez6d0ewFkiGeFH2fRdA6oWf826',
+            'consumer_secret' => 'RMftl00KOFTAs098',
+            'pass_key' => '032b52504854cd5f21429fff627dd23d4bb5e692b125d4f3ffe83b8aa6d8a63b',
+            'app_user_name' => 'AmprestAPI',
+            'app_user_password' => '#Amprest-1234',
+        ]);
 
         // Seed the M-Pesa credentials.
-        $saimun->mpesaCredentials()->save(
-            MPesaCredentials::create([
-                'project_id' => $saimun->id,
-                'short_code' => '657531',
-                'short_code_type' => 'pay_bill',
-                'consumer_key' => 'DU3ZARknazFuQFE6O0ksm9U650QARTQO',
-                'consumer_secret' => 'KfMpbohT8of2ElBC',
-                'pass_key' => '74859e2c9ed8182acadbc2b6786a12e3ba0e1a8a7522d9cf6433ad130d29a402',
-                'app_user_name' => 'AmprestAPI',
-                'app_user_password' => '#Amprest-1234',
-            ])
-        );
+        $saimun->mpesaCredentials()->create([
+            'short_code' => $shortCode = '657531',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => 'DU3ZARknazFuQFE6O0ksm9U650QARTQO',
+            'consumer_secret' => 'KfMpbohT8of2ElBC',
+            'pass_key' => '74859e2c9ed8182acadbc2b6786a12e3ba0e1a8a7522d9cf6433ad130d29a402',
+            'app_user_name' => 'AmprestAPI',
+            'app_user_password' => '#Amprest-1234',
+        ]);
 
         // Seed the M-Pesa credentials.
-        $rundaGardens->mpesaCredentials()->save(
-            MPesaCredentials::create([
-                'project_id' => $rundaGardens->id,
-                'short_code' => '4076235',
-                'short_code_type' => 'pay_bill',
-                'consumer_key' => 'vnJbsrtt0PD97FvpOLMA5mJljsLWpRgD',
-                'consumer_secret' => 'N2SZqnlKHN3GCxlQ',
-                'pass_key' => '74859e2c9ed8182acadbc2b6786a12e3ba0e1a8a7522d9cf6433ad130d29a402',
-                'app_user_name' => 'rgeaapi',
-                'app_user_password' => '#RGEAAPI1234',
-                'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/4076235/balance',
-            ])
-        );
+        $rundaGardens->mpesaCredentials()->create([
+            'short_code' => $shortCode = '4076235',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => 'vnJbsrtt0PD97FvpOLMA5mJljsLWpRgD',
+            'consumer_secret' => 'N2SZqnlKHN3GCxlQ',
+            'pass_key' => '74859e2c9ed8182acadbc2b6786a12e3ba0e1a8a7522d9cf6433ad130d29a402',
+            'app_user_name' => 'rgeaapi',
+            'app_user_password' => '#RGEAAPI1234',
+            'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
+        ]);
 
         // Seed the M-Pesa credentials.
-        $enoque->mpesaCredentials()->save(
-            MPesaCredentials::create([
-                'project_id' => $enoque->id,
-                'short_code' => '4077909',
-                'short_code_type' => 'pay_bill',
-                'consumer_key' => 'yu6CIfVLQFpBeyRuELUSSZk3q0OQoXDe',
-                'consumer_secret' => 'v8fvK67lRGgGXGWo',
-                'pass_key' => '0cb85be2d3f47bf63975bcd800bdf04f04c04e5af95e67d4a29c19c173f5f670',
-                'app_user_name' => 'geekaburu',
-                'app_user_password' => '',
-            ])
-        );
+        $enoque->mpesaCredentials()->create([
+            'short_code' => $shortCode = '4077909',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => 'yu6CIfVLQFpBeyRuELUSSZk3q0OQoXDe',
+            'consumer_secret' => 'v8fvK67lRGgGXGWo',
+            'pass_key' => '0cb85be2d3f47bf63975bcd800bdf04f04c04e5af95e67d4a29c19c173f5f670',
+            'app_user_name' => 'geekaburu',
+            'app_user_password' => '',
+        ]);
 
         // Seed the M-Pesa credentials.
-        $nyumbani->mpesaCredentials()->save(
-            MPesaCredentials::create([
-                'project_id' => $nyumbani->id,
-                'short_code' => '4077493',
-                'short_code_type' => 'pay_bill',
-                'consumer_key' => 'JE4DeZ8w1RBAN5Tr6EPyL6e5LGiwGVqv',
-                'consumer_secret' => 'nMA99NqXjxi4mWkX',
-                'pass_key' => '7920e6cd06da5721e7472e335843c3287cdcf585d780957d94f14c03b7e7fd1b',
-                'app_user_name' => 'nyumbaniapi',
-                'app_user_password' => '#NYUMBANIAPI1234',
-                'balance_callback' => 'https://demo.nyumbani.ke/api/v1/mpesa/4077493/balance',
-            ])
-        );
+        $nyumbani->mpesaCredentials()->create([
+            'short_code' => $shortCode = '4077493',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => 'JE4DeZ8w1RBAN5Tr6EPyL6e5LGiwGVqv',
+            'consumer_secret' => 'nMA99NqXjxi4mWkX',
+            'pass_key' => '7920e6cd06da5721e7472e335843c3287cdcf585d780957d94f14c03b7e7fd1b',
+            'app_user_name' => 'nyumbaniapi',
+            'app_user_password' => '#NYUMBANIAPI1234',
+            'balance_callback' => "https://demo.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
+        ]);
 
         // Seed the M-Pesa credentials.
-        $nyumbani2->mpesaCredentials()->save(
-            MPesaCredentials::create([
-                'project_id' => $nyumbani2->id,
-                'short_code' => '4095211',
-                'short_code_type' => 'pay_bill',
-                'consumer_key' => 'yGFqAcKDTNc7CdOmKyGc6jBO7Fud8pP9',
-                'consumer_secret' => 'lFU09OdMPNlXOzZn',
-                'pass_key' => '37fdf7ebb042ed54911a7aacb7ccd04687d2d2b6ef6cb9ee7a1e3e0da2f0c536',
-                'app_user_name' => 'NYUMBANIAPI',
-                'app_user_password' => '#Nyumbaniapi@2022',
-                'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/4068461/balance',
-            ])
-        );
+        $nyumbani2->mpesaCredentials()->create([
+            'short_code' => $shortCode = '4095211',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => 'yGFqAcKDTNc7CdOmKyGc6jBO7Fud8pP9',
+            'consumer_secret' => 'lFU09OdMPNlXOzZn',
+            'pass_key' => '37fdf7ebb042ed54911a7aacb7ccd04687d2d2b6ef6cb9ee7a1e3e0da2f0c536',
+            'app_user_name' => 'NYUMBANIAPI',
+            'app_user_password' => '#Nyumbaniapi@2022',
+            'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
+        ]);
 
         // Seed the M-Pesa credentials.
-        $bestcare->mpesaCredentials()->save(
-            MPesaCredentials::create([
-                'project_id' => $bestcare->id,
-                'short_code' => '4078251',
-                'short_code_type' => 'pay_bill',
-                'consumer_key' => 'cX9KKMIdjCoMDoT4sJSlm5sYgfPG1JLA',
-                'consumer_secret' => 'ZVW8bMxFbC93ARAl',
-                'pass_key' => '7920e6cd06da5721e7472e335843c3287cdcf585d780957d94f14c03b7e7fd1b',
-                'app_user_name' => 'BestcareAPI',
-                'app_user_password' => 'SDHSHDS3747434!!',
-                'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/4078251/balance',
-            ])
-        );
+        $bestcare->mpesaCredentials()->create([
+            'short_code' => $shortCode = '4078251',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => 'cX9KKMIdjCoMDoT4sJSlm5sYgfPG1JLA',
+            'consumer_secret' => 'ZVW8bMxFbC93ARAl',
+            'pass_key' => '7920e6cd06da5721e7472e335843c3287cdcf585d780957d94f14c03b7e7fd1b',
+            'app_user_name' => 'BestcareAPI',
+            'app_user_password' => 'SDHSHDS3747434!!',
+            'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
+        ]);
 
         // Seed the M-Pesa credentials.
-        $augustino->mpesaCredentials()->save(
-            MPesaCredentials::create([
-                'project_id' => $augustino->id,
-                'short_code' => '4085035',
-                'short_code_type' => 'pay_bill',
-                'consumer_key' => 'TGgfx1XA1A78Nm1rNR8A1mFjSruP5OAU',
-                'consumer_secret' => 'bS1hOF9qMZGOY6r5',
-                'pass_key' => '1b380772934a647e93bb6c5df7c0796a3ebb25d9c9300baafc3a9b398f569923',
-                'app_user_name' => 'AUGUSTINOAPI',
-                'app_user_password' => 'AUGUSTINO@2022',
-                'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/4085035/balance',
-            ])
-        );
+        $augustino->mpesaCredentials()->create([
+            'short_code' => $shortCode = '4085035',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => 'TGgfx1XA1A78Nm1rNR8A1mFjSruP5OAU',
+            'consumer_secret' => 'bS1hOF9qMZGOY6r5',
+            'pass_key' => '1b380772934a647e93bb6c5df7c0796a3ebb25d9c9300baafc3a9b398f569923',
+            'app_user_name' => 'AUGUSTINOAPI',
+            'app_user_password' => 'AUGUSTINO@2022',
+            'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
+        ]);
 
         // Seed the M-Pesa credentials.
-        $centralClose->mpesaCredentials()->save(
-            MPesaCredentials::create([
-                'project_id' => $centralClose->id,
-                'short_code' => '4084931',
-                'short_code_type' => 'pay_bill',
-                'consumer_key' => 'AqcPv5YH2aldGcGq9xCxAoBCYnsWj5db',
-                'consumer_secret' => '6DWckDvM29W5bo73',
-                'pass_key' => 'a113e3c8c11e218e45a7cba9d82ec3a7e84596516fcddbe996726191a7927083',
-                'app_user_name' => 'CENTRALCLOSEAPI',
-                'app_user_password' => 'CENTRALCLOSE@2022',
-                'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/4084931/balance',
-            ])
-        );
+        $centralClose->mpesaCredentials()->create([
+            'short_code' => $shortCode = '4084931',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => 'AqcPv5YH2aldGcGq9xCxAoBCYnsWj5db',
+            'consumer_secret' => '6DWckDvM29W5bo73',
+            'pass_key' => 'a113e3c8c11e218e45a7cba9d82ec3a7e84596516fcddbe996726191a7927083',
+            'app_user_name' => 'CENTRALCLOSEAPI',
+            'app_user_password' => 'CENTRALCLOSE@2022',
+            'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
+        ]);
 
         // Seed the M-Pesa credentials.
-        $muthaigaParkside->mpesaCredentials()->save(
-            MPesaCredentials::create([
-                'project_id' => $muthaigaParkside->id,
-                'short_code' => '4085961',
-                'short_code_type' => 'pay_bill',
-                'consumer_key' => 'wPEE6mM4DXHSAA8Vrvgzsc1BfFMoEBed',
-                'consumer_secret' => 'TlB2AF6YsFPMQase',
-                'pass_key' => '6ac97e164a863c240ee11ba3a9d0266f377c1a6485197f87315a01fac6eb6f87',
-                'app_user_name' => 'PARKSIDEAPI',
-                'app_user_password' => 'Parkside@2022',
-                'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/4085961/balance',
-            ])
-        );
+        $muthaigaParkside->mpesaCredentials()->create([
+            'short_code' => $shortCode = '4085961',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => 'wPEE6mM4DXHSAA8Vrvgzsc1BfFMoEBed',
+            'consumer_secret' => 'TlB2AF6YsFPMQase',
+            'pass_key' => '6ac97e164a863c240ee11ba3a9d0266f377c1a6485197f87315a01fac6eb6f87',
+            'app_user_name' => 'PARKSIDEAPI',
+            'app_user_password' => 'Parkside@2022',
+            'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
+        ]);
 
         // Seed the M-Pesa credentials.
-        $kihuwan->mpesaCredentials()->save(
-            MPesaCredentials::create([
-                'project_id' => $kihuwan->id,
-                'short_code' => '597097',
-                'short_code_type' => 'pay_bill',
-                'consumer_key' => '6PONQqO7OzoCzI0OLHgw2FORv2qJkhMY',
-                'consumer_secret' => 'DqAUBgYKgJuqJ6cN',
-                'pass_key' => '8b0bc3ca70d7325a563f945c1e3e8985eda7069ac6fcd6c0a6e5078ca6841738',
-                'app_user_name' => 'NyumbaniKihuwan',
-                'app_user_password' => 'TechSoln@2022!',
-                'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/597097/balance',
-            ])
-        );
+        $kihuwan->mpesaCredentials()->create([
+            'short_code' => $shortCode = '597097',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => '6PONQqO7OzoCzI0OLHgw2FORv2qJkhMY',
+            'consumer_secret' => 'DqAUBgYKgJuqJ6cN',
+            'pass_key' => '8b0bc3ca70d7325a563f945c1e3e8985eda7069ac6fcd6c0a6e5078ca6841738',
+            'app_user_name' => 'NyumbaniKihuwan',
+            'app_user_password' => 'TechSoln@2022!',
+            'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa$shortCode/balance",
+        ]);
 
         // Seed the M-Pesa credentials.
-        $warira->mpesaCredentials()->save(
-            MPesaCredentials::create([
-                'project_id' => $warira->id,
-                'short_code' => '4106603',
-                'short_code_type' => 'pay_bill',
-                'consumer_key' => 'tF8IfchzUv2s4hTM9uZOPnjIRpBBeqpE',
-                'consumer_secret' => 'qjW7ift6B9Nlr2yX',
-                'pass_key' => '22532e4db366f53c3c6d80a667e61ee6c1b2c307fde0056825f9598922a5f1a8',
-                'app_user_name' => 'WARIRAAPI',
-                'app_user_password' => 'Warira@2022',
-                'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/4106603/balance',
-            ])
-        );
+        $warira->mpesaCredentials()->create([
+            'short_code' => $shortCode = '4106603',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => 'tF8IfchzUv2s4hTM9uZOPnjIRpBBeqpE',
+            'consumer_secret' => 'qjW7ift6B9Nlr2yX',
+            'pass_key' => '22532e4db366f53c3c6d80a667e61ee6c1b2c307fde0056825f9598922a5f1a8',
+            'app_user_name' => 'WARIRAAPI',
+            'app_user_password' => 'Warira@2022',
+            'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
+        ]);
 
         // Seed the M-Pesa credentials.
-        $waburugu1->mpesaCredentials()->save(
-            MPesaCredentials::create([
-                'project_id' => $waburugu1->id,
-                'short_code' => '4068455',
-                'short_code_type' => 'pay_bill',
-                'consumer_key' => 'dtcBynS4fZwuMtWPnrMtH3Y5QPY0uVGa',
-                'consumer_secret' => 'tUj0amGTD04ZY6kb',
-                'pass_key' => '09e8d7f755d95308dc61ffd0063d6bdd0680bce7ee34348489558ac2c75a0a35',
-                'app_user_name' => 'NYUMBANIAPI',
-                'app_user_password' => '#Nyumbaniapi@2022',
-                'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/4068455/balance',
-            ])
-        );
+        $waburugu1->mpesaCredentials()->create([
+            'short_code' => $shortCode = '4068455',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => 'dtcBynS4fZwuMtWPnrMtH3Y5QPY0uVGa',
+            'consumer_secret' => 'tUj0amGTD04ZY6kb',
+            'pass_key' => '09e8d7f755d95308dc61ffd0063d6bdd0680bce7ee34348489558ac2c75a0a35',
+            'app_user_name' => 'NYUMBANIAPI',
+            'app_user_password' => '#Nyumbaniapi@2022',
+            'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
+        ]);
 
         // Seed the M-Pesa credentials.
-        $waburugu2->mpesaCredentials()->save(
-            MPesaCredentials::create([
-                'project_id' => $waburugu2->id,
-                'short_code' => '4068461',
-                'short_code_type' => 'pay_bill',
-                'consumer_key' => 'LwAfYONAb1uL4GU3xiIxCfrz8oGBXwEX',
-                'consumer_secret' => '9gDHnPHPlQisgHUL',
-                'pass_key' => '4ed2d73c720aa01a3bce326b928cf1f6b6c1c442526e02600ba3a897e3a0db0d',
-                'app_user_name' => 'NYUMBANIAPI',
-                'app_user_password' => '#Nyumbaniapi@2022',
-                'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/4068461/balance',
-            ])
-        );
+        $waburugu2->mpesaCredentials()->create([
+            'short_code' => $shortCode = '4068461',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => 'LwAfYONAb1uL4GU3xiIxCfrz8oGBXwEX',
+            'consumer_secret' => '9gDHnPHPlQisgHUL',
+            'pass_key' => '4ed2d73c720aa01a3bce326b928cf1f6b6c1c442526e02600ba3a897e3a0db0d',
+            'app_user_name' => 'NYUMBANIAPI',
+            'app_user_password' => '#Nyumbaniapi@2022',
+            'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
+        ]);
 
         // Seed the M-Pesa credentials.
-        $royalHostels->mpesaCredentials()->save(
-            MPesaCredentials::create([
-                'project_id' => $royalHostels->id,
-                'short_code' => '4108279',
-                'short_code_type' => 'pay_bill',
-                'consumer_key' => 'IOkKtLfBXcrOJqr3Wq7DPKsp8ALF4lsp',
-                'consumer_secret' => 'elMMeb8PtEoNFTCf',
-                'pass_key' => '56e0357839a71eb2870c5e11dc7425cea678625a218f2e682a20b26d35af1f86',
-                'app_user_name' => 'NYUMBANIAPI',
-                'app_user_password' => '#NyumbaniAPI@2022',
-                'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/4108279/balance',
-            ])
-        );
+        $royalHostels->mpesaCredentials()->create([
+            'short_code' => $shortCode = '4108279',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => 'IOkKtLfBXcrOJqr3Wq7DPKsp8ALF4lsp',
+            'consumer_secret' => 'elMMeb8PtEoNFTCf',
+            'pass_key' => '56e0357839a71eb2870c5e11dc7425cea678625a218f2e682a20b26d35af1f86',
+            'app_user_name' => 'NYUMBANIAPI',
+            'app_user_password' => '#NyumbaniAPI@2022',
+            'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
+        ]);
 
         // Seed the M-Pesa credentials.
-        $uniqueHomes1->mpesaCredentials()->save(
-            MPesaCredentials::create([
-                'project_id' => $uniqueHomes1->id,
-                'short_code' => '4113687',
-                'short_code_type' => 'pay_bill',
-                'consumer_key' => 'Ql0mGCWHmZmPiZAQ1ONk4LOhxDDDyFgp',
-                'consumer_secret' => 'pFJJ7mAAe8iHNLhU',
-                'pass_key' => '0998207e85646929cfb274284df79a027cfba9b17bb27285d6551c3332b0213c',
-                'app_user_name' => 'NYUMBANIAPI',
-                'app_user_password' => '#Nyumbaniapi@2022',
-                'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/4113687/balance',
-            ])
-        );
+        $uniqueHomes1->mpesaCredentials()->create([
+            'short_code' => $shortCode = '4113687',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => 'Ql0mGCWHmZmPiZAQ1ONk4LOhxDDDyFgp',
+            'consumer_secret' => 'pFJJ7mAAe8iHNLhU',
+            'pass_key' => '0998207e85646929cfb274284df79a027cfba9b17bb27285d6551c3332b0213c',
+            'app_user_name' => 'NYUMBANIAPI',
+            'app_user_password' => '#Nyumbaniapi@2022',
+            'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
+        ]);
 
         // Seed the M-Pesa credentials.
-        $uniqueHomes2->mpesaCredentials()->save(
-            MPesaCredentials::create([
-                'project_id' => $uniqueHomes2->id,
-                'short_code' => '4114037',
-                'short_code_type' => 'pay_bill',
-                'consumer_key' => '6kBfqHbwzhBPKjKVflLFmsnWA2qGdPqV',
-                'consumer_secret' => 'csBHtKu4ROKvrTPW',
-                'pass_key' => '8b1faf5e4662ba7ff330d05c5df3f411c04d27ddbd252508b0f64a342c23b9d9',
-                'app_user_name' => 'NYUMBANIAPI',
-                'app_user_password' => '#Nyumbaniapi@2022',
-                'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/4068461/balance',
-            ])
-        );
+        $uniqueHomes2->mpesaCredentials()->create([
+            'short_code' => $shortCode = '4114037',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => '6kBfqHbwzhBPKjKVflLFmsnWA2qGdPqV',
+            'consumer_secret' => 'csBHtKu4ROKvrTPW',
+            'pass_key' => '8b1faf5e4662ba7ff330d05c5df3f411c04d27ddbd252508b0f64a342c23b9d9',
+            'app_user_name' => 'NYUMBANIAPI',
+            'app_user_password' => '#Nyumbaniapi@2022',
+            'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
+        ]);
 
         // Seed the M-Pesa credentials.
-        $balozi->mpesaCredentials()->save(
-            MPesaCredentials::create([
-                'project_id' => $balozi->id,
-                'short_code' => '4113815',
-                'short_code_type' => 'pay_bill',
-                'consumer_key' => '7KuMMopNZ8uJEOmtkHScKktq2PmFucJx',
-                'consumer_secret' => '2DkyUcIbzcGVMc7U',
-                'pass_key' => '9bcfacc4f9e6272e1b2e617eb148e45dad730ce43a3d649dd3633e6d37a1a5a7',
-                'app_user_name' => 'BALOZIAPI',
-                'app_user_password' => '#NyumbaniBalozi@2022',
-                'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/4113815/balance',
-            ])
-        );
+        $balozi->mpesaCredentials()->create([
+            'short_code' => $shortCode = '4113815',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => '7KuMMopNZ8uJEOmtkHScKktq2PmFucJx',
+            'consumer_secret' => '2DkyUcIbzcGVMc7U',
+            'pass_key' => '9bcfacc4f9e6272e1b2e617eb148e45dad730ce43a3d649dd3633e6d37a1a5a7',
+            'app_user_name' => 'BALOZIAPI',
+            'app_user_password' => '#NyumbaniBalozi@2022',
+            'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
+        ]);
 
         // Seed the M-Pesa credentials.
-        $townview->mpesaCredentials()->save(
-            MPesaCredentials::create([
-                'project_id' => $townview->id,
-                'short_code' => '4113689',
-                'short_code_type' => 'pay_bill',
-                'consumer_key' => 'PHPVBMVucSUhcFpG5T2WMoabXFW4TKAP',
-                'consumer_secret' => '42pXE6SNcL28tO83',
-                'pass_key' => '117beb4d061e2e6834402022217fa28c21aa94ff9cedb375fa8a54f68798594e',
-                'app_user_name' => 'TOWNVIEWAPI',
-                'app_user_password' => '#TownView@2022',
-                'balance_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/4113689/balance',
-            ])
-        );
+        $townview->mpesaCredentials()->create([
+            'short_code' => $shortCode = '4113689',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => 'PHPVBMVucSUhcFpG5T2WMoabXFW4TKAP',
+            'consumer_secret' => '42pXE6SNcL28tO83',
+            'pass_key' => '117beb4d061e2e6834402022217fa28c21aa94ff9cedb375fa8a54f68798594e',
+            'app_user_name' => 'TOWNVIEWAPI',
+            'app_user_password' => '#TownView@2022',
+            'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
+        ]);
 
-        //  Seed a sender ID
-        $masomo->senderId()->save(
-            SenderID::create([
-                'project_id' => $masomo->id,
-                'code' => 'KNDSCHOOL',
-            ])
-        );
-
-        // Seed the subscriptions.
-        $amprestProject->subscriptions()->saveMany(
-            Subscription::factory()
-                ->times(mt_rand(3, 5))
-                ->create([
-                    'project_id' => $amprestProject->id,
-                    'tier_id' => 1,
-                    'usage_limit' => null,
-                    'amount' => null,
-                ])
-        );
-
-        // Seed the subscriptions.
-        $masomo->subscriptions()->saveMany(
-            Subscription::factory()
-                ->times(mt_rand(3, 5))
-                ->create([
-                    'project_id' => $masomo->id,
-                    'tier_id' => 1,
-                    'usage_limit' => null,
-                    'amount' => null,
-                ]),
-            Subscription::factory()
-                ->times(mt_rand(3, 5))
-                ->create([
-                    'project_id' => $masomo->id,
-                    'tier_id' => 5,
-                    'usage_limit' => null,
-                    'amount' => null,
-                ]),
-            Subscription::create([
-                'project_id' => $masomo->id,
-                'tier_id' => 1,
-                'usage_limit' => null,
-                'amount' => null,
-                'expires_at' => Carbon::now()->addMonth()
-            ]),
-            Subscription::create([
-                'project_id' => $masomo->id,
-                'tier_id' => 5,
-                'usage_limit' => null,
-                'amount' => null,
-                'expires_at' => Carbon::now()->addMonth()
-            ])
-        );
-
-        // Seed the subscriptions.
-        $saimun->subscriptions()->saveMany(
-            Subscription::factory()
-                ->times(mt_rand(3, 5))
-                ->create([
-                    'project_id' => $saimun->id,
-                    'tier_id' => 1,
-                    'usage_limit' => null,
-                    'amount' => null,
-                ]),
-            Subscription::create([
-                'project_id' => $saimun->id,
-                'tier_id' => 1,
-                'usage_limit' => null,
-                'amount' => null,
-                'expires_at' => Carbon::now()->addYear()
-            ])
-        );
-
-        // Seed the subscriptions.
-        $cakeUniverse->subscriptions()->saveMany(
-            Subscription::factory()
-                ->times(mt_rand(3, 5))
-                ->create([
-                    'project_id' => $cakeUniverse->id,
-                    'tier_id' => 1,
-                    'usage_limit' => null,
-                    'amount' => null,
-                ]),
-            Subscription::create([
-                'project_id' => $cakeUniverse->id,
-                'tier_id' => 5,
-                'usage_limit' => null,
-                'amount' => null,
-                'expires_at' => Carbon::now()->addMonth()
-            ])
-        );
-
-        // Seed the subscriptions.
-        $rundaGardens->subscriptions()->saveMany(
-            Subscription::factory()
-                ->times(mt_rand(3, 5))
-                ->create([
-                    'project_id' => $rundaGardens->id,
-                    'tier_id' => 1,
-                    'usage_limit' => null,
-                    'amount' => null,
-                ]),
-            Subscription::create([
-                'project_id' => $rundaGardens->id,
-                'tier_id' => 5,
-                'usage_limit' => null,
-                'amount' => null,
-                'expires_at' => Carbon::now()->addMonth()
-            ])
-        );
-
-        // Seed the subscriptions.
-        $enoque->subscriptions()->saveMany(
-            Subscription::factory()
-                ->times(mt_rand(3, 5))
-                ->create([
-                    'project_id' => $enoque->id,
-                    'tier_id' => 1,
-                    'usage_limit' => null,
-                    'amount' => null,
-                ]),
-            Subscription::create([
-                'project_id' => $enoque->id,
-                'tier_id' => 5,
-                'usage_limit' => null,
-                'amount' => null,
-                'expires_at' => Carbon::now()->addMonth()
-            ])
-        );
-
-        // Seed the subscriptions.
-        $nyumbani->subscriptions()->saveMany(
-            Subscription::factory()
-                ->times(mt_rand(3, 5))
-                ->create([
-                    'project_id' => $nyumbani->id,
-                    'tier_id' => 1,
-                    'usage_limit' => null,
-                    'amount' => null,
-                ]),
-            Subscription::create([
-                'project_id' => $nyumbani->id,
-                'tier_id' => 5,
-                'usage_limit' => null,
-                'amount' => null,
-                'expires_at' => Carbon::now()->addMonth()
-            ])
-        );
-
-        // Seed the subscriptions.
-        $nyumbani2->subscriptions()->saveMany(
-            Subscription::factory()
-                ->times(mt_rand(3, 5))
-                ->create([
-                    'project_id' => $nyumbani2->id,
-                    'tier_id' => 1,
-                    'usage_limit' => null,
-                    'amount' => null,
-                ]),
-            Subscription::create([
-                'project_id' => $nyumbani2->id,
-                'tier_id' => 5,
-                'usage_limit' => null,
-                'amount' => null,
-                'expires_at' => Carbon::now()->addMonth()
-            ])
-        );
-
-        // Seed the subscriptions.
-        $bestcare->subscriptions()->saveMany(
-            Subscription::factory()
-                ->times(mt_rand(3, 5))
-                ->create([
-                    'project_id' => $bestcare->id,
-                    'tier_id' => 1,
-                    'usage_limit' => null,
-                    'amount' => null,
-                ]),
-            Subscription::create([
-                'project_id' => $bestcare->id,
-                'tier_id' => 5,
-                'usage_limit' => null,
-                'amount' => null,
-                'expires_at' => Carbon::now()->addMonth()
-            ])
-        );
-
-        // Seed the subscriptions.
-        $augustino->subscriptions()->saveMany(
-            Subscription::factory()
-                ->times(mt_rand(3, 5))
-                ->create([
-                    'project_id' => $augustino->id,
-                    'tier_id' => 1,
-                    'usage_limit' => null,
-                    'amount' => null,
-                ]),
-            Subscription::create([
-                'project_id' => $augustino->id,
-                'tier_id' => 5,
-                'usage_limit' => null,
-                'amount' => null,
-                'expires_at' => Carbon::now()->addMonth()
-            ])
-        );
-
-        // Seed the subscriptions.
-        $centralClose->subscriptions()->saveMany(
-            Subscription::factory()
-                ->times(mt_rand(3, 5))
-                ->create([
-                    'project_id' => $centralClose->id,
-                    'tier_id' => 1,
-                    'usage_limit' => null,
-                    'amount' => null,
-                ]),
-            Subscription::create([
-                'project_id' => $centralClose->id,
-                'tier_id' => 5,
-                'usage_limit' => null,
-                'amount' => null,
-                'expires_at' => Carbon::now()->addMonth()
-            ])
-        );
-
-        // Seed the subscriptions.
-        $muthaigaParkside->subscriptions()->saveMany(
-            Subscription::factory()
-                ->times(mt_rand(3, 5))
-                ->create([
-                    'project_id' => $muthaigaParkside->id,
-                    'tier_id' => 1,
-                    'usage_limit' => null,
-                    'amount' => null,
-                ]),
-            Subscription::create([
-                'project_id' => $muthaigaParkside->id,
-                'tier_id' => 5,
-                'usage_limit' => null,
-                'amount' => null,
-                'expires_at' => Carbon::now()->addMonth()
-            ])
-        );
-
-        // Seed the subscriptions.
-        $kihuwan->subscriptions()->saveMany(
-            Subscription::factory()
-                ->times(mt_rand(3, 5))
-                ->create([
-                    'project_id' => $kihuwan->id,
-                    'tier_id' => 1,
-                    'usage_limit' => null,
-                    'amount' => null,
-                ]),
-            Subscription::create([
-                'project_id' => $kihuwan->id,
-                'tier_id' => 5,
-                'usage_limit' => null,
-                'amount' => null,
-                'expires_at' => Carbon::now()->addMonth()
-            ])
-        );
+        // Seed the M-Pesa credentials.
+        $nyumbaniBoysClub->mpesaCredentials()->create([
+            'short_code' => $shortCode = '4119469',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => '22TCHKiJzQZzLemPA7rAjNuKPh43H7rI',
+            'consumer_secret' => 'E4vMmWBFzSKvCmIi',
+            'pass_key' => '117beb4d061e2e6834402022217fa28c21aa94ff9cedb375fa8a54f68798594e',
+            'app_user_name' => 'BOYSCLUBAP1',
+            'app_user_password' => '#BoysClub@2022',
+            'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
+        ]);
     }
 }
