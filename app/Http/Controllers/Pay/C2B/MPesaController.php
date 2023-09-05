@@ -352,7 +352,7 @@ class MPesaController extends Controller
                 ->first();
 
             //  Get the project
-            $project = $mpesaCredentials->project;
+            $project = $mpesaCredentials->project ?? null;
 
             //  Throw an error if the credentials don't exist.
             if (!$mpesaCredentials) {
