@@ -220,10 +220,10 @@ class MPesaController extends Controller
                 ->first();
 
             //  Get the project
-            $project = $mpesaCredentials->project;
+            $project = $mpesaCredentials->project ?? null;
 
             //  Get the call back
-            $callback = $project->pay_transaction_callback;
+            $callback = $project->pay_transaction_callback ?? null;
 
             //  Throw an error if the credentials don't exist.
             if (!$mpesaCredentials) {
@@ -275,7 +275,15 @@ class MPesaController extends Controller
 
         try {
             //  Get the M-Pesa credentials.
-            $mpesaCredentials = MPesaCredentials::where('short_code', $shortCode)->first();
+            $mpesaCredentials = MPesaCredentials::query()
+                ->where('short_code', $shortCode)
+                ->first();
+
+            //  Get the project
+            $project = $mpesaCredentials->project ?? null;
+
+            //  Get the callback 
+            $callback = $project->pay_balance_callback ?? null;
 
             //  Throw an error if the credentials don't exist.
             if (!$mpesaCredentials) {
@@ -283,12 +291,12 @@ class MPesaController extends Controller
             }
 
             //  Throw an error if a project does not exist.
-            if (!$mpesaCredentials->project) {
+            if (!$project) {
                 throw new Exception("No project is linked to these credentials", 404);
             }
 
             //  Throw an error if the URL is not found.
-            if (!$mpesaCredentials->project->pay_balance_callback) {
+            if (!$callback) {
                 throw new Exception("No balance callback URL was provided for this project", 404);
             }
 
@@ -309,6 +317,67 @@ class MPesaController extends Controller
                     'initiator_password' => $mpesaCredentials->app_user_password,
                     'remarks' => $request->remarks,
                     'result_callback' => $mpesaCredentials->balance_callback
+                ])
+                ->json();
+
+            // Set the response.
+            $payload = $response;
+            $status = 201;
+        } catch (Exception $e) {
+            $payload = $e->getMessage();
+            $status = 404;
+        } finally {
+            return response($payload, $status);
+        }
+    }
+
+    /**
+     * Pull a transaction from the pull api
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     *
+     * @author Alvin G. Kaburu <geekaburu@amprest.co.ke>
+     */
+    public function pull(Request $request): Response
+    {
+        //  Get the shortCode
+        $shortCode = $request->short_code ?? null;
+
+        //  Launch a try catch
+        try {
+            //  Get the M-Pesa credentials.
+            $mpesaCredentials = MPesaCredentials::query()
+                ->where('short_code', $shortCode)
+                ->first();
+
+            //  Get the project
+            $project = $mpesaCredentials->project;
+
+            //  Throw an error if the credentials don't exist.
+            if (!$mpesaCredentials) {
+                throw new Exception("No credentials matching this short code were found", 404);
+            }
+
+            //  Throw an error if a project does not exist.
+            if (!$project) {
+                throw new Exception("No project is linked to these credentials", 404);
+            }
+
+            //  Append missing headers
+            $headers = array_merge($this->headers, [
+                'Encoded-Keys' => base64_encode(
+                    "{$mpesaCredentials->consumer_key}:{$mpesaCredentials->consumer_secret}"
+                )
+            ]);
+
+            // Send the request to the service.
+            $response = Http::withHeaders($headers)
+                ->post("$this->uri/mobile-money/safaricom/c2b/pull", [
+                    'business_short_code' => $shortCode,
+                    'start_date' => $request->start_date,
+                    'end_date' => $request->end_date,
+                    'offset' => $request->offset,
                 ])
                 ->json();
 

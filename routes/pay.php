@@ -43,6 +43,8 @@ Route::prefix('c2b')->namespace('C2B')->name('c2b.')->group(function () {
             Route::post('balance', [MPesaController::class, 'balance'])->name('balance');
             //  Trigger an STK Push
             Route::post('trigger-stk', [MPesaController::class, 'triggerStk'])->name('triggerStk');
+            //  Launch a pull api transaction
+            Route::post('pull', [MPesaController::class, 'pull'])->name('pull');
         });
     });
 });
