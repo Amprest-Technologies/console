@@ -114,7 +114,7 @@ class UserSeeder extends Seeder
         ]);
 
         // Seed a project.
-        $enoque = Project::create([
+        $wambuAfrikan = Project::create([
             'team_id' => $amprest->id,
             'name' => 'Wambuafrikan Global',
             'description' => 'Management of the wambuafrikan brand',
@@ -256,7 +256,7 @@ class UserSeeder extends Seeder
         //  Seed a project.
         $balozi = Project::create([
             'team_id' => $amprest->id,
-            'name' => 'Mutahiga North Gardens Balozi Association',
+            'name' => 'Muthaiga North Gardens Balozi Association',
             'description' => 'Management of residents and tenants',
             'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
             'uuid' => '10000018',
@@ -281,6 +281,46 @@ class UserSeeder extends Seeder
             'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
             'uuid' => '10000020',
             'api_key' => '3b78324a2e617023cbbc04d6e4f8cbcf',
+        ]);
+
+        //  Seed a project.
+        $staroot1 = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'Staroot Residency Management Limited',
+            'description' => 'Management of resident collections',
+            'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
+            'uuid' => '10000021',
+            'api_key' => '7fe0488c3a93c8d657656c0199d146c0',
+        ]);
+
+        //  Seed a project.
+        $staroot2 = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'Staroot Residency Management Limited',
+            'description' => 'Management of resident collections',
+            'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
+            'uuid' => '10000022',
+            'api_key' => '1228ae7be41938a41f4221ca0c670b44',
+        ]);
+
+        //  Seed a project.
+        $mobiletaka = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'Mobile Taka Solutions',
+            'description' => 'Management of resident collections',
+            'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
+            'uuid' => '10000023',
+            'api_key' => '8c9544435e5b94186cfb085dcd2524b8',
+        ]);
+
+        //  Seed a project.
+        $goldPark = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'Goldpark Property Management Limited',
+            'description' => 'Management of resident collections',
+            'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
+            'uuid' => '10000024',
+            'api_key' => '201155ca8cf43ef1ad316396eeceefbb',
         ]);
 
         //  Seed the M-Pesa credentials.
@@ -329,7 +369,7 @@ class UserSeeder extends Seeder
         ]);
 
         // Seed the M-Pesa credentials.
-        $enoque->mpesaCredentials()->create([
+        $wambuAfrikan->mpesaCredentials()->create([
             'short_code' => $shortCode = '4077909',
             'short_code_type' => 'pay_bill',
             'consumer_key' => 'yu6CIfVLQFpBeyRuELUSSZk3q0OQoXDe',
@@ -528,6 +568,54 @@ class UserSeeder extends Seeder
             'pass_key' => '117beb4d061e2e6834402022217fa28c21aa94ff9cedb375fa8a54f68798594e',
             'app_user_name' => 'BOYSCLUBAP1',
             'app_user_password' => '#BoysClub@2022',
+            'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
+        ]);
+
+        // Seed the Staroot credentials.
+        $staroot1->mpesaCredentials()->create([
+            'short_code' => $shortCode = '4121711',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => 'HShhbL5gNy3Uo0gHUEVOB1l3YX5QXUaq',
+            'consumer_secret' => 'XFdBBPGNdjCu2bcF',
+            'pass_key' => '7664ca400772faa35467e454ae596c4eb70071549faca7948ef0cb0279831a6d',
+            'app_user_name' => 'STAROOTAPI',
+            'app_user_password' => '#NyumbaniStaroot@2022',
+            'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
+        ]);
+
+        // Seed the Staroot credentials.
+        $staroot2->mpesaCredentials()->create([
+            'short_code' => $shortCode = '4121291',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => 'P4reQICzOs33ZlRpLmtPAsMf7YAzAFxh',
+            'consumer_secret' => 'S88ZivseAZhiYnGl',
+            'pass_key' => '65105bf206fbf159658b6d6358c91c79df896a9d23679a06d00254647eda6f16',
+            'app_user_name' => 'STAROOTAPI',
+            'app_user_password' => '#NyumbaniStaroot@2022',
+            'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
+        ]);
+
+        // Seed the Mobile Take credentials.
+        $mobiletaka->mpesaCredentials()->create([
+            'short_code' => $shortCode = '4060083',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => 'XEVEGkO9E9tYdJWAaVkFAjbAI2s3syAz',
+            'consumer_secret' => 'F6S1pB1NIXu6whep',
+            'pass_key' => '7b26fdfd5e314400dac3907fd5027d4f37d6b52b2723e1b470df778d71a9e476',
+            'app_user_name' => 'MTAKAAPI',
+            'app_user_password' => '#NyumbaniMtaka@2022',
+            'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
+        ]);
+
+        //  Seed the Gold Park credentials.
+        $goldPark->mpesaCredentials()->create([
+            'short_code' => $shortCode = '4014773',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => 'RI47VGfOfJqQl9NW1AkxiQGTq6o1rKr9',
+            'consumer_secret' => 'brKlLyZ7tm4MnMyx',
+            'pass_key' => 'd90923f82b4b493696840b222e1fc7ffbb8bb71a10ac7aaad065a473f97c8266',
+            'app_user_name' => 'GOLDPARKAPI',
+            'app_user_password' => '#NyumbaniGoldpark@2022',
             'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
         ]);
     }
