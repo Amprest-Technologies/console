@@ -323,6 +323,26 @@ class UserSeeder extends Seeder
             'api_key' => '201155ca8cf43ef1ad316396eeceefbb',
         ]);
 
+        //  Seed a project.
+        $forhome1 = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'Forhome Court Management PLC',
+            'description' => 'Management of resident collections',
+            'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
+            'uuid' => '10000025',
+            'api_key' => '4ecd88d57f3482922cc0a47d99cba8df',
+        ]);
+
+        //  Seed a project.
+        $forhome2 = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'Forhome Court Management PLC',
+            'description' => 'Management of resident collections',
+            'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
+            'uuid' => '10000026',
+            'api_key' => 'fa793dc8dfb98f77228998b04ce80ec8',
+        ]);
+
         //  Seed the M-Pesa credentials.
         $amprestProject->mpesaCredentials()->create([
             'short_code' => $shortCode = '204440',
@@ -616,6 +636,30 @@ class UserSeeder extends Seeder
             'pass_key' => 'd90923f82b4b493696840b222e1fc7ffbb8bb71a10ac7aaad065a473f97c8266',
             'app_user_name' => 'GOLDPARKAPI',
             'app_user_password' => '#NyumbaniGoldpark@2022',
+            'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
+        ]);
+
+        //  Seed the Gold Park credentials.
+        $forhome1->mpesaCredentials()->create([
+            'short_code' => $shortCode = '4122037',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => 'CyvHWWOeOlIqftmRQMTdeLATE08kRRZs',
+            'consumer_secret' => 'TCLbNFXyAKtUfI8n',
+            'pass_key' => '86aa911fe13d76edecb4c7f064f9e24d8e02b450080dc8b06faac8151752c4e7',
+            'app_user_name' => 'FORHOMESAPI',
+            'app_user_password' => '#NyumbaniForhomes@2022',
+            'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
+        ]);
+
+        //  Seed the Gold Park credentials.
+        $forhome2->mpesaCredentials()->create([
+            'short_code' => $shortCode = '4122195',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => '4kGzzsR7eCaAgE6I6eVxeGgp2mumBnlD',
+            'consumer_secret' => 'eN7rS9Gjbbm7Z9oG',
+            'pass_key' => 'dddc14dba6f7e500272e0141604609ba168092c59301b12f3426a7afa3460841',
+            'app_user_name' => 'FORHOMESAPI',
+            'app_user_password' => '#NyumbaniForhomes@2022',
             'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
         ]);
     }
