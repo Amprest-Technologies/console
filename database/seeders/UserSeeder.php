@@ -343,6 +343,16 @@ class UserSeeder extends Seeder
             'api_key' => 'fa793dc8dfb98f77228998b04ce80ec8',
         ]);
 
+        //  Seed a project.
+        $whiteApartments = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'White Apartments',
+            'description' => 'Management of resident collections',
+            'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
+            'uuid' => '10000027',
+            'api_key' => '354689719058f71527a5eb7029f51c26',
+        ]);
+
         //  Seed the M-Pesa credentials.
         $amprestProject->mpesaCredentials()->create([
             'short_code' => $shortCode = '204440',
@@ -660,6 +670,18 @@ class UserSeeder extends Seeder
             'pass_key' => 'dddc14dba6f7e500272e0141604609ba168092c59301b12f3426a7afa3460841',
             'app_user_name' => 'FORHOMESAPI',
             'app_user_password' => '#NyumbaniForhomes@2022',
+            'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
+        ]);
+
+        //  Seed the Gold Park credentials.
+        $amprestProject->mpesaCredentials()->create([
+            'short_code' => $shortCode = '4125143',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => 'pDa4FGFk1mvk8oGvTGQzRbHlaar3jyYy',
+            'consumer_secret' => '9FOzDF3GKyPLJf5U',
+            'pass_key' => '552c51e776d63bdd121cc43e4cef43a2d2174ccff839f3e82c4d8b7a85facd29',
+            'app_user_name' => 'WHITEAPARTMENTSAPI',
+            'app_user_password' => '#NyumbaniWhite@2022',
             'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
         ]);
     }
