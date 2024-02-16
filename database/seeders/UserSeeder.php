@@ -118,7 +118,7 @@ class UserSeeder extends Seeder
             'team_id' => $amprest->id,
             'name' => 'Wambuafrikan Global',
             'description' => 'Management of the wambuafrikan brand',
-            'pay_transaction_callback' => 'https://wagtickets.co.ke/api/v1/mpesa/callback',
+            'pay_transaction_callback' => 'https://payments.wambuafrikan.co.ke/api/v1/transactions',
             'uuid' => '10000004',
             'api_key' => 'e28d77fe328fd26f9f1d7afe6d4e2d47',
         ]);
@@ -321,6 +321,16 @@ class UserSeeder extends Seeder
             'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
             'uuid' => '10000024',
             'api_key' => '201155ca8cf43ef1ad316396eeceefbb',
+        ]);
+
+        //  Seed a project.
+        $goldPark2 = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'Goldpark Property Management Limited',
+            'description' => 'Management of resident collections',
+            'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
+            'uuid' => '10000028',
+            'api_key' => '9b3db1d25cfddc7855beff88c2807946',
         ]);
 
         //  Seed a project.
@@ -650,6 +660,18 @@ class UserSeeder extends Seeder
         ]);
 
         //  Seed the Gold Park credentials.
+        $goldPark2->mpesaCredentials()->create([
+            'short_code' => $shortCode = '4107020',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => 'kGAM5wZKDtEB00dQdZxPw0AkkqgRhYeqb31lmHuIIrLNGLPB',
+            'consumer_secret' => 'asQJgyLdoGtB4EAACYy6uTYxj3IFcdNERwuSHPgiGk8XR690iICG7apTI0Fa26p6',
+            'pass_key' => '10ab89129bac90908e480e289a87d8f0191883a18b61ef7a0d32781086098b88',
+            'app_user_name' => 'GOLDPARKAPI',
+            'app_user_password' => '#NyumbaniGoldpark@2022',
+            'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
+        ]);
+
+        //  Seed the Gold Park credentials.
         $forhome1->mpesaCredentials()->create([
             'short_code' => $shortCode = '4122037',
             'short_code_type' => 'pay_bill',
@@ -674,7 +696,7 @@ class UserSeeder extends Seeder
         ]);
 
         //  Seed the Gold Park credentials.
-        $amprestProject->mpesaCredentials()->create([
+        $whiteApartments->mpesaCredentials()->create([
             'short_code' => $shortCode = '4125143',
             'short_code_type' => 'pay_bill',
             'consumer_key' => 'pDa4FGFk1mvk8oGvTGQzRbHlaar3jyYy',
