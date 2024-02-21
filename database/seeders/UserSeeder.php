@@ -369,7 +369,7 @@ class UserSeeder extends Seeder
             'name' => 'Kaisa Garden Management PLC',
             'description' => 'Management of resident collections',
             'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
-            'uuid' => '10000028',
+            'uuid' => '10000029',
             'api_key' => '3b9030066c61dfa51d09eaa8e9cc3c1e',
         ]);
 
@@ -379,7 +379,7 @@ class UserSeeder extends Seeder
             'name' => 'Kaisa Garden Management PLC',
             'description' => 'Management of resident collections',
             'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
-            'uuid' => '10000029',
+            'uuid' => '10000030',
             'api_key' => 'f9d49d06113079255c8568a7fc5fd912',
         ]);
 
@@ -744,7 +744,7 @@ class UserSeeder extends Seeder
             'short_code' => $shortCode = '401857',
             'short_code_type' => 'pay_bill',
             'consumer_key' => 'i5AMZBR3kG2AkWRXqjA2o5fU3U5AFFi48AMTNZEwIx19wXYA',
-            'consumer_secret' => 'cT0CnIFMUn2hf4IORsG6iyCec5e2e1Gjs18v8U5nj8z0kjRaNPOqbWC4tSp0pEBt',
+            'consumer_secret' => 'cT0CnIFMUn2hf4IORsG6iyCec5e2e1Gjs18v8U5nj8z0kjRaNPOqbWC4tSp0pEBtg',
             'pass_key' => '552c51e776d63bdd121cc43e4cef43a2d2174ccff839f3e82c4d8b7a85facd29',
             'app_user_name' => 'KAISAPI',
             'app_user_password' => '#NyumbaniKaisa@2022',
