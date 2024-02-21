@@ -363,6 +363,26 @@ class UserSeeder extends Seeder
             'api_key' => '354689719058f71527a5eb7029f51c26',
         ]);
 
+        //  Seed a project.
+        $kaisa1 = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'Kaisa Garden Management PLC',
+            'description' => 'Management of resident collections',
+            'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
+            'uuid' => '10000028',
+            'api_key' => '3b9030066c61dfa51d09eaa8e9cc3c1e',
+        ]);
+
+        //  Seed a project.
+        $kaisa2 = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'Kaisa Garden Management PLC',
+            'description' => 'Management of resident collections',
+            'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
+            'uuid' => '10000029',
+            'api_key' => 'f9d49d06113079255c8568a7fc5fd912',
+        ]);
+
         //  Seed the M-Pesa credentials.
         $amprestProject->mpesaCredentials()->create([
             'short_code' => $shortCode = '204440',
@@ -704,6 +724,30 @@ class UserSeeder extends Seeder
             'pass_key' => '552c51e776d63bdd121cc43e4cef43a2d2174ccff839f3e82c4d8b7a85facd29',
             'app_user_name' => 'WHITEAPARTMENTSAPI',
             'app_user_password' => '#NyumbaniWhite@2022',
+            'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
+        ]);
+
+        //  Seed the Gold Park credentials.
+        $kaisa1->mpesaCredentials()->create([
+            'short_code' => $shortCode = '4132063',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => 'xNWaz7jP97aC3lEQKJYBjGXKCpAUR2RWifftRATWdZRj4LZA',
+            'consumer_secret' => 'Be5t2FXQQFA5ijqWzBgSExUZh3KjrvVs5SR3CIAxM9QKLGCEMGjj5woA2k3v8SCQ',
+            'pass_key' => 'f8f3d86c005903796ca0d1fc652bc99950883a82c71c52b2166a83f10fd6f835',
+            'app_user_name' => 'KAISAPI',
+            'app_user_password' => '#NyumbaniKaisa@2022',
+            'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
+        ]);
+
+        //  Seed the Gold Park credentials.
+        $kaisa2->mpesaCredentials()->create([
+            'short_code' => $shortCode = '401857',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => 'i5AMZBR3kG2AkWRXqjA2o5fU3U5AFFi48AMTNZEwIx19wXYA',
+            'consumer_secret' => 'cT0CnIFMUn2hf4IORsG6iyCec5e2e1Gjs18v8U5nj8z0kjRaNPOqbWC4tSp0pEBt',
+            'pass_key' => '552c51e776d63bdd121cc43e4cef43a2d2174ccff839f3e82c4d8b7a85facd29',
+            'app_user_name' => 'KAISAPI',
+            'app_user_password' => '#NyumbaniKaisa@2022',
             'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
         ]);
     }
