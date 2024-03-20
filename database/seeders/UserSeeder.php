@@ -383,6 +383,37 @@ class UserSeeder extends Seeder
             'api_key' => 'f9d49d06113079255c8568a7fc5fd912',
         ]);
 
+        //  Seed a project.
+        $mtKenya = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'Mt.Kenya Developers',
+            'description' => 'Management of resident collections',
+            'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
+            'uuid' => '10000031',
+            'api_key' => '1bc31d146afd183849ff060bcfff6da1',
+        ]);
+
+
+        //  Seed a project.
+        $platinum = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'Platinum Residency Management Limited',
+            'description' => 'Management of resident collections',
+            'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
+            'uuid' => '10000032',
+            'api_key' => 'cb947ca1fe870e6824d581c739103b9c',
+        ]);
+
+        //  Seed a project.
+        $theFedge = Project::create([
+            'team_id' => $amprest->id,
+            'name' => 'The Fedge Residency',
+            'description' => 'Management of resident collections',
+            'pay_transaction_callback' => 'https://app.nyumbani.ke/api/v1/mpesa/transactions',
+            'uuid' => '10000033',
+            'api_key' => 'e461b794ad2a4a6c5d27d1df725b3f07',
+        ]);
+
         //  Seed the M-Pesa credentials.
         $amprestProject->mpesaCredentials()->create([
             'short_code' => $shortCode = '204440',
@@ -741,13 +772,49 @@ class UserSeeder extends Seeder
 
         //  Seed the Gold Park credentials.
         $kaisa2->mpesaCredentials()->create([
-            'short_code' => $shortCode = '401857',
+            'short_code' => $shortCode = '4041857',
             'short_code_type' => 'pay_bill',
             'consumer_key' => 'i5AMZBR3kG2AkWRXqjA2o5fU3U5AFFi48AMTNZEwIx19wXYA',
             'consumer_secret' => 'cT0CnIFMUn2hf4IORsG6iyCec5e2e1Gjs18v8U5nj8z0kjRaNPOqbWC4tSp0pEBtg',
             'pass_key' => '552c51e776d63bdd121cc43e4cef43a2d2174ccff839f3e82c4d8b7a85facd29',
             'app_user_name' => 'KAISAPI',
             'app_user_password' => '#NyumbaniKaisa@2022',
+            'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
+        ]);
+
+        //  Seed the Gold Park credentials.
+        $mtKenya->mpesaCredentials()->create([
+            'short_code' => $shortCode = '856458',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => 'd2XwVr73ac7hnXIY9ORbbsqccosujcQdQGFG9P5Wz2MB5HgY',
+            'consumer_secret' => 'bRAjQ5h1F85GBBdTITGuYXpOo7V9Bn5it8fpNAMmHHGcvrKHohE7szuAlP0XGBd2',
+            'pass_key' => 'da6ef7bbfaf8ea0886fd7247def4aa89f2e96828e09a4b7257d327a3d447b190',
+            'app_user_name' => 'MTKENYAAPI',
+            'app_user_password' => '#NyumbaniMTKenya@2022',
+            'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
+        ]);
+
+        //  Seed the Gold Park credentials.
+        $platinum->mpesaCredentials()->create([
+            'short_code' => $shortCode = '4161870',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => 'mLZ8WTPPE5cqSvAPEAvALMdbUyH9sQxg2Y0XyY2c8RHbqG5z',
+            'consumer_secret' => 'ARPXZs74K8FIn32dfl4CX3aCHj8yoQbW0hxMf3VdArKcqm06Zt460ljJ2Y0CJfs6',
+            'pass_key' => '2a913c021da24c378d2f34ae8735c0655430159e2fd4b9c5c7b4f19001b85d05',
+            'app_user_name' => 'PLATINUMAPI',
+            'app_user_password' => '#Platinum@2022',
+            'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
+        ]);
+
+        //  Seed the Gold Park credentials.
+        $theFedge->mpesaCredentials()->create([
+            'short_code' => $shortCode = '4134075',
+            'short_code_type' => 'pay_bill',
+            'consumer_key' => '6KLGUL6jJmBoSuf3omZYcpFIMAdslnAbqXI5kTbe6jtJQF6X',
+            'consumer_secret' => 'uAPqVTmGfuUq1yAzxKwCCe1hdzPsVu4xPV0vw2gQMMKlBAOPfRA8ZkfwCrZqGN3s',
+            'pass_key' => '57d49271ce0f15b01f0d2d63f91c63ebcfc04db437597a8873d90344097df3ba',
+            'app_user_name' => 'FEDGEAPI',
+            'app_user_password' => '#Fedge@2022',
             'balance_callback' => "https://app.nyumbani.ke/api/v1/mpesa/$shortCode/balance",
         ]);
     }
